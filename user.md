@@ -91,7 +91,7 @@
 ```
 /* 此处每一个JSON的key都是上述接口中的key值，value对应的就是页面上用户输入的数据 */
 {
-	"username": "test",
+    "username": "test",
     "password": "123456",
     "alias": "I'm angry",
     "email": "123456@qq.com",
@@ -126,7 +126,7 @@
 // 注意：只有管理员等有权限的用户访问才会给出用户完整信息
 // 提示：以下查询参数只需指定其中一个即可
 {
-	"userID": 1,
+    "userID": 1,
     "username": "test",
     /* ... */
 }
@@ -156,7 +156,7 @@
 ```
 // 注意：只有管理员等有权限的用户才可以更新其它用户的信息，否则403
 {
-	"userID": 1,
+    "userID": 1,
     "username": "test",
     "alias": "Hong Kong Reporter",
     /* ... */
@@ -166,14 +166,14 @@
 * 更新成功
 ```
 {
-	"status": "ok",
+    "status": "ok",
     "go": "/forum/user/info"
 }
 ```
 * 更新失败
 ```
 {
-	"status": "failed",
+    "status": "failed",
     "reason": "你的资料被钦定了，没有中央的决定不能乱改。"
 }
 ```
@@ -188,14 +188,14 @@
 * 上传成功
 ```
 {
-	"status": "ok",
+    "status": "ok",
     "resaddr": "/image/avatar/1a2b3c4d5e6f7890.jpg"
 }
 ```
 * 上传失败
 ```
 {
-	"status": "failed",
+    "status": "failed",
     "reason": "服务器空间/权限不足，无法创建头像。"
 }
 ```
