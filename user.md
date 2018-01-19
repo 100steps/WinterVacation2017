@@ -6,7 +6,7 @@
 * 访问方式：`POST`
 * 访问条件限制：无
 ### POST 请求格式：`JSON`
-```
+```JavaScript
 {
 	"username": "test", /* 登录用户名 */
 	"password": "...", /* 用户密码（3次MD5加密） */
@@ -15,14 +15,14 @@
 ```
 ### POST 返回格式：`JSON`
 * 登录成功
-```
+```JavaScript
 {
     "status": "ok", /* 登录状态：成功 */
     "go": "/forum/main" /* 登录后跳转的页面 */
 }
 ```
 * 登录失败
-```
+```JavaScript
 {
     "status": "failed", /* 登录状态：失败 */
     "reason": "用户名或密码错误。" /* 登录失败的原因（展示给用户） */
@@ -36,7 +36,7 @@
 * 访问条件限制：无
 ### GET 请求格式：无需参数
 ### GET 返回格式：`JSON`
-```
+```JavaScript
 /*
 	返回一个JSON数组，数组中的每个元素都是一个JSON对象
 	其中，额外参数有must（必填项）、password（需要遮挡）、notShowInReg（注册界面不用填写，比如头像）、file（上传文件）
@@ -88,7 +88,7 @@
 * 访问方式：`POST`
 * 访问条件限制：无
 ### POST 请求格式：`JSON`
-```
+```JavaScript
 /* 此处每一个JSON的key都是上述接口中的key值，value对应的就是页面上用户输入的数据 */
 {
     "username": "test",
@@ -100,14 +100,14 @@
 ```
 ### POST 返回格式：`JSON`
 * 注册成功
-```
+```JavaScript
 {
     "status": "ok", /* 注册状态：成功 */
     "go": "/forum/main" /* 注册后跳转的页面 */
 }
 ```
 * 注册失败
-```
+```JavaScript
 {
     "status": "failed", /* 注册状态：失败 */
     "reason": "您的姿势水平不够高，论坛不对您开放注册。" /* 注册失败的原因（展示给用户） */
@@ -122,7 +122,7 @@
 ### GET 请求格式：不带参数 或 `JSON`
 * 不带参数：返回用户自身信息；
 * 带参数：查询用户信息
-```
+```JavaScript
 // 注意：只有管理员等有权限的用户访问才会给出用户完整信息
 // 提示：以下查询参数只需指定其中一个即可
 {
@@ -132,7 +132,7 @@
 }
 ```
 ### GET 返回格式：`JSON`
-```
+```JavaScript
 // 注意：返回的是JSON数组（为了兼容查询用户）
 [
     {
@@ -153,7 +153,7 @@
 ### PUT 请求格式：`JSON`
 * 不带参数：更新用户自身信息；
 * 带参数：（管理员）更新指定用户信息
-```
+```JavaScript
 // 注意：只有管理员等有权限的用户才可以更新其它用户的信息，否则403
 {
     "userID": 1,
@@ -164,14 +164,14 @@
 ```
 ### PUT 返回格式：`JSON`
 * 更新成功
-```
+```JavaScript
 {
     "status": "ok",
     "go": "/forum/user/info"
 }
 ```
 * 更新失败
-```
+```JavaScript
 {
     "status": "failed",
     "reason": "你的资料被钦定了，没有中央的决定不能乱改。"
@@ -186,14 +186,14 @@
 ### PUT 请求类型：`image/jpeg`
 ### PUT 返回格式：`JSON`
 * 上传成功
-```
+```JavaScript
 {
     "status": "ok",
     "resaddr": "/image/avatar/1a2b3c4d5e6f7890.jpg"
 }
 ```
 * 上传失败
-```
+```JavaScript
 {
     "status": "failed",
     "reason": "服务器空间/权限不足，无法创建头像。"
