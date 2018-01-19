@@ -1,0 +1,257 @@
+.background{
+	background: url(background.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	z-index: -3;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	opacity:0.75;
+	filter:alpha(opacity=75);
+}
+
+.title{
+	position: absolute;
+	z-index:-2;
+	background-size: cover;
+	background: url(title.png) repeat;
+	opacity:0.6;
+	filter:alpha(opacity=60);
+	width: 60%;
+	left: 20%;
+	top: 10px;
+	height: 12%;
+	box-shadow: 10px 10px 5px #000;
+	border-radius: 5px;
+}
+
+.titleText{
+	position: absolute;
+	z-index:-1;
+	font-size: 1000%;
+	width: 60%;
+	left: 20%;
+	top: 10px;
+	height: 12%;
+	font-weight: bold;
+	line-height: 200%;
+	font-family: "微软雅黑";
+	text-align: center;
+}
+
+.shade{
+	position: absolute;
+	z-index:0;
+	width: 60%;
+	left: 20%;
+	top: 10px;
+	height: 12%;
+
+}
+
+.guide{
+	position: absolute;
+	z-index:0;
+	background-size: cover;
+	background: url(title.png) repeat;
+	width: 70%;
+	left: 15%;
+	top: 14%;
+	height: 3%;
+	box-shadow: 10px 10px 5px #000;
+	border-radius: 5px;
+	font-size: 300%;
+	font-weight: bold;
+	font-family: "微软雅黑";
+}
+
+.downMenuV{
+	position: absolute;
+	left: 50%;
+	margin-left: -40px;
+	top: 16%;
+	margin-top: -20px;
+	z-index: 0;
+	background-size: cover;
+	width:0;
+	height:0;
+	border-top:40px solid #000;
+	border-bottom:none;
+	border-left:40px solid transparent;
+	border-right:40px solid transparent;
+
+}
+
+.downMenu{
+	position: absolute;
+	z-index: 1;
+	width: 70%;
+	left: 15%;
+	top: 17%;
+	height: 8%;
+	background: white;
+	box-shadow: 10px 10px 5px #000;
+	border-radius: 5px;
+	background: url(background.png) no-repeat;
+	background-size: cover;
+
+}
+
+.link{
+	float: right;
+	box-shadow: 10px 10px 5px #000;
+	height: 60%;
+	width: 28%;
+	margin-right: 4%;
+	margin-top: 1%;
+	border-radius: 5px;
+	text-align: center;
+	background: white;
+	opacity:0.6;
+	filter:alpha(opacity=60);
+}
+
+.linkText{
+	font-size: 500%;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: black;
+	line-height: 200%;
+	text-decoration: none;
+}
+
+.loginShade{
+	background: black;
+	position: absolute;
+	z-index: 2;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	opacity:0.9;
+	filter:alpha(opacity=9);
+
+}
+
+.loginWindow{
+	background: url(background.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	z-index: 3;
+	height: 60%;
+	width: 60%;
+	top: 20%;
+	left: 20%;
+
+}
+
+.loginPage{
+	position: absolute;
+	z-index: 4;
+	height: 80%;
+	width: 80%;
+	top: 10%;
+	left: 10%;
+	background: white;
+	opacity:0.8;
+	filter:alpha(opacity=8);
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+
+}
+
+.loginButton{
+	z-index: 4;
+	height: 6%;
+	width: 24%;
+	margin-top: 1%;
+	margin-left: 1%;
+	background: url(title.png) no-repeat;
+	background-size: cover;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+	text-align: center;
+}
+
+.loginButtonIn{
+	z-index: 4;
+	height: 6%;
+	width: 30%;
+	margin-top: 1%;
+	margin-left: 1%;
+	background: url(title.png) no-repeat;
+	background-size: cover;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+	text-align: center;
+}
+
+.loginText{
+	font-size: 400%;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: black;
+	line-height: 150%;
+}
+
+.loginInputSign{
+	margin-top: 5%;
+	margin-left: 10%;
+}
+
+.loginButtonCenter{
+	margin-top: 5%;
+	margin-left: 35%;
+}
+
+.list{
+	position: absolute;
+	z-index: 0;
+	top: 18%;
+	left: 10%;
+	width: 60%;
+	height: 65%;
+	background: white;
+	opacity:0.8;
+	filter:alpha(opacity=8);
+	overflow: auto;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+}
+
+.makeTitle{
+	position: absolute;
+	z-index: 0;
+	top: 2%;
+	height: 6%;
+	left: 10%;
+	width: 80%;
+	overflow: auto;
+	border-radius: 5px;
+}
+
+.makeBody{
+	position: absolute;
+	z-index: 0;
+	top: 10%;
+	height: 60%;
+	left: 10%;
+	width: 80%;
+	overflow: auto;
+	border-radius: 5px;
+}
+
+@keyframes appear{
+
+		from{opacity:0;filter:alpha(opacity=0);}
+		to{opacity:1;filter:alpha(opacity=100);}
+
+	}
+@keyframes m{
+
+		0%{top: -100%;opacity:0;filter:alpha(opacity=0);}
+		20%{top: 17%;opacity:0;filter:alpha(opacity=0);}
+		100%{top: 17%;opacity:1;filter:alpha(opacity=100);}
+
+	}
