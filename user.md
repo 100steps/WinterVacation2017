@@ -114,28 +114,19 @@
 }
 ```
 
-## 个人信息接口0：获取个人信息
-* URL路由访问地址：`/forum/user/info`
+## 个人信息接口
+### 获取个人信息
+* URL路由访问地址：`/forum/user`
 * 文件实际路径：`/forum/user/getUserInfo.php`
 * 访问方式：`GET`
 * 访问条件限制：登录后的用户
-### GET 请求格式：不带参数 或 `JSON`
-* 不带参数：返回用户自身信息；
-* 带参数：查询用户信息
-```JavaScript
-// 注意：只有管理员等有权限的用户访问才会给出用户完整信息
-// 提示：以下查询参数只需指定其中一个即可
-{
-    "userID": 1,
-    "username": "test",
-    /* ... */
-}
-```
-### GET 返回格式：`JSON`
+#### GET 请求格式：不带参数
+#### GET 返回格式：`JSON`
 ```JavaScript
 // 注意：返回的是JSON数组（为了兼容查询用户）
 [
     {
+        "userID": 123,
         "username": "test",
         "alias": "I'm angry",
         "email": "123456@qq.com",
@@ -145,16 +136,23 @@
 ]
 ```
 
-## 个人信息接口1：更新个人信息
-* URL路由访问地址：`/forum/user/info`
+### 获取他人信息
+* URL路由访问地址：`/forum/user/{UserID}`
+* 文件实际路径：`/forum/user/getUserInfo.php`
+* 访问方式：`GET`
+* 访问条件限制：无
+#### GET 请求格式：
+标准GET请求，其中`{UserID}`为用户对应的ID（详见搜索接口）
+#### GET 返回格式：`JSON`
+示例同上，略
+
+### 更新个人信息
+* URL路由访问地址：`/forum/user`
 * 文件实际路径：`/forum/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：登录后的用户、管理员
-### PUT 请求格式：`JSON`
-* 不带参数：更新用户自身信息；
-* 带参数：（管理员）更新指定用户信息
+#### PUT 请求格式：`JSON`
 ```JavaScript
-// 注意：只有管理员等有权限的用户才可以更新其它用户的信息，否则403
 {
     "userID": 1,
     "username": "test",
@@ -162,7 +160,7 @@
     /* ... */
 }
 ```
-### PUT 返回格式：`JSON`
+#### PUT 返回格式：`JSON`
 * 更新成功
 ```JavaScript
 {
@@ -178,13 +176,23 @@
 }
 ```
 
-## 个人信息接口2：上传个人头像
-* URL路由访问地址：`/forum/user/avatar`
-* 文件实际路径：`/forum/user/putUserAvatar.php`
+### 更新他人信息
+* URL路由访问地址：`/forum/user/{UserID}`
+* 文件实际路径：`/forum/user/putUserInfo.php`
 * 访问方式：`PUT`
+* 访问条件限制：管理员
+#### PUT 请求格式：`JSON`
+同上，略
+#### PUT 返回格式：`JSON`
+同上，略
+
+### 上传个人头像
+* URL路由访问地址：`/forum/user/avatar`
+* 文件实际路径：`/forum/user/postUserAvatar.php`
+* 访问方式：`POST`
 * 访问条件限制：登录后的用户，且头像大小不能大于 1 MByte
-### PUT 请求类型：`image/jpeg`
-### PUT 返回格式：`JSON`
+#### POST 请求类型：`image/jpeg`
+#### POST 返回格式：`JSON`
 * 上传成功
 ```JavaScript
 {
