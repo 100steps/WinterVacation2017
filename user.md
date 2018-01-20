@@ -1,8 +1,8 @@
 # 用户系统
 
 ## 登录接口
-* URL路由访问地址：`/forum/user/login`
-* 文件实际路径：`/forum/user/login.php`
+* URL路由访问地址：`/api/user/login`
+* 文件实际路径：`/api/user/login.php`
 * 访问方式：`POST`
 * 访问条件限制：无
 ### POST 请求格式：`JSON`
@@ -30,8 +30,8 @@
 ```
 
 ## 模板接口：获得注册/修改用户信息时需要填写的信息
-* URL路由访问地址：`/forum/user/template`
-* 文件实际路径：`/forum/user/getTemplate.php`
+* URL路由访问地址：`/api/user/template`
+* 文件实际路径：`/api/user/getTemplate.php`
 * 访问方式：`GET`
 * 访问条件限制：无
 ### GET 请求格式：无需参数
@@ -83,8 +83,8 @@
 ```
 
 ## 注册接口：提交注册信息
-* URL路由访问地址：`/forum/user/reg`
-* 文件实际路径：`/forum/user/reg.php`
+* URL路由访问地址：`/api/user/reg`
+* 文件实际路径：`/api/user/reg.php`
 * 访问方式：`POST`
 * 访问条件限制：无
 ### POST 请求格式：`JSON`
@@ -116,8 +116,8 @@
 
 ## 个人信息接口
 ### 获取个人信息
-* URL路由访问地址：`/forum/user`
-* 文件实际路径：`/forum/user/getUserInfo.php`
+* URL路由访问地址：`/api/user`
+* 文件实际路径：`/api/user/getUserInfo.php`
 * 访问方式：`GET`
 * 访问条件限制：登录后的用户
 #### GET 请求格式：不带参数
@@ -137,8 +137,8 @@
 ```
 
 ### 获取他人信息
-* URL路由访问地址：`/forum/user/{UserID}`
-* 文件实际路径：`/forum/user/getUserInfo.php`
+* URL路由访问地址：`/api/user/{UserID}`
+* 文件实际路径：`/api/user/getUserInfo.php`
 * 访问方式：`GET`
 * 访问条件限制：无
 #### GET 请求格式：
@@ -147,8 +147,8 @@
 示例同上，略
 
 ### 更新个人信息
-* URL路由访问地址：`/forum/user`
-* 文件实际路径：`/forum/user/putUserInfo.php`
+* URL路由访问地址：`/api/user`
+* 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：登录后的用户、管理员
 #### PUT 请求格式：`JSON`
@@ -177,8 +177,8 @@
 ```
 
 ### 更新他人信息
-* URL路由访问地址：`/forum/user/{UserID}`
-* 文件实际路径：`/forum/user/putUserInfo.php`
+* URL路由访问地址：`/api/user/{UserID}`
+* 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：管理员
 #### PUT 请求格式：`JSON`
@@ -187,8 +187,8 @@
 同上，略
 
 ### 上传个人头像
-* URL路由访问地址：`/forum/user/avatar`
-* 文件实际路径：`/forum/user/postUserAvatar.php`
+* URL路由访问地址：`/api/user/avatar`
+* 文件实际路径：`/api/user/postUserAvatar.php`
 * 访问方式：`POST`
 * 访问条件限制：登录后的用户，且头像大小不能大于 1 MByte
 #### POST 请求类型：`image/jpeg`
