@@ -4,10 +4,10 @@
 	<title></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="page-css.css">
-	<link rel="stylesheet" type="text/css" href="page-css-media.css">
+	<link rel="stylesheet" type="text/css" href="forum-css.css">
+	<link rel="stylesheet" type="text/css" href="forum-css-media.css">
 </head>
-<body>
+<body onload="showPage();">
 <div class="background">
 	<div style="animation: appear 2s;">
 		<div class="title"></div>
@@ -22,14 +22,15 @@
 		<div id="downMenuId" class="downMenu" style="animation: m 1s">
 			<div class="link"><a class="linkText" onclick="make();">编写</a></div>
 			<div class="link"><a class="linkText" onclick="login();">登录</a></div>
-			<div class="link"><a href="page.html" class="linkText">首页</a></div>
+			<div class="link"><a href="forum.html" class="linkText">首页</a></div>
 		</div>
 		<div id="list" class="list"></div>
 	</div>
 <!--这里是页面-->
 	<div id="make" class="make" style="display: none;">
-		<input type="label" name="" id="makeTitle" class="makeTitle">
-		<input type="label" name="" id="makeBody" class="makeBody">
+		<div class="makeText makeLeft">题目</div><textarea type="label" name="" id="makeTitle" class="makeTitle loginText"></textarea><br>
+		<div class="makeText makeLeft">内容</div><textarea type="label" name="" id="makeBody" class="makeBody loginText"></textarea>
+		<div id="page" class="loginText makeButton" onclick="submitPage();">提交</div>
 	</div>
 <!--这里是编辑界面-->
 
@@ -70,6 +71,11 @@
 
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
+	var pageNum=0
+
+	if (localStorage.getItem("boxN")!="none") {
+			pageNum=localStorage.getItem("boxN");
+	}
 
 	var judgeForReturn=0;
 
@@ -119,6 +125,22 @@
 		$("#list").attr("style","display: none;");
 		$("#make").attr("style","display: block;");
 	};
+
+	function submitPage(){
+		pageNum++;
+		var title=document.getElementById("makeTitle").value;
+		var body=document.getElementById("makeBody").value;
+		localStorage.setItem("boxMT"+pageNum, title);
+    	localStorage.setItem("boxMB"+pageNum, body);
+    	localStorage.setItem("boxN",pageNum);
+
+	}
+
+	function showPage(){
+		for (var i = 1; i <= pageNum; i++) {
+			$("#list").append("<div class='pageShow linkText'>"+localStorage.getItem("boxMT"+i)+"</div>");
+		}
+	}
 
 </script>
 

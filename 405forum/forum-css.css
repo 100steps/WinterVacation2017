@@ -225,8 +225,8 @@
 	z-index: 0;
 	top: 2%;
 	height: 6%;
-	left: 10%;
-	width: 80%;
+	left: 15%;
+	width: 70%;
 	overflow: auto;
 	border-radius: 5px;
 }
@@ -234,12 +234,52 @@
 .makeBody{
 	position: absolute;
 	z-index: 0;
-	top: 10%;
+	top: 12%;
 	height: 60%;
-	left: 10%;
-	width: 80%;
+	left: 15%;
+	width: 70%;
 	overflow: auto;
 	border-radius: 5px;
+}
+
+.makeText{
+	font-size: 400%;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: black;
+	margin-top: 5%;
+}
+
+.makeLeft{
+	margin-left: 5%;
+	margin-top: 1%;
+}
+
+.makeButton{
+	position: absolute;
+	left: 35%;
+	top: 75%;
+	width: 30%;
+	height: 6%;
+	background: url(title.png) no-repeat;
+	background-size: cover;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+	text-align: center;
+
+}
+
+.pageShow{
+	position: relative;
+	height: 20%;
+	background: url(background.png) no-repeat;
+	background-size: cover;
+	border-radius: 5px;
+	text-align: center;
+	width: 90%;
+	margin-top: 2%;
+	left: 5%;
+
 }
 
 @keyframes appear{
