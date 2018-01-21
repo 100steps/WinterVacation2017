@@ -30,16 +30,17 @@
 ```
 
 ## 模板接口：获得注册/修改用户信息时需要填写的信息
-* URL路由访问地址：`/api/user/template`
+* URL路由访问地址：`/api/user/template?type={Type}`
 * 文件实际路径：`/api/user/getTemplate.php`
 * 访问方式：`GET`
 * 访问条件限制：无
-### GET 请求格式：无需参数
+### GET 请求格式：标准GET请求
+* **`{Type}`**：获取的参数，可以为`reg`（返回注册时需填写的内容）和`user`（更改个人信息时填写的内容）
 ### GET 返回格式：`JSON`
 ```JavaScript
 /*
 	返回一个JSON数组，数组中的每个元素都是一个JSON对象
-	其中，额外参数有must（必填项）、password（需要遮挡）、notShowInReg（注册界面不用填写，比如头像）、file（上传文件）
+	其中，额外参数有must（必填项）、password（需要遮挡）、file（上传文件）
 */
 [
     {
@@ -77,7 +78,7 @@
         "desc": "头像",
         "limit": "", 
         "regex": "", 
-        "flag": ["notShowInReg", "file"]
+        "flag": ["file"]
     } /* TODO */
 ]
 ```
