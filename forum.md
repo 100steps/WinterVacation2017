@@ -27,6 +27,7 @@
     	"title": "震惊！华南理工大学居然发生这种事情！",
         "author": "灌水大佬",
         "authorID": 123,
+        "authorImage": "/image/avatar/1234567890abcdef.jpg",
         "createTime": 1516421353371,
         "modifyTime": 1516421388888,
         "lastReplyTime": 1516421366666,
@@ -35,6 +36,7 @@
         "icon": "/image/icon/hot.png",
         "view": 2147483647,
         "reply": 1024,
+        "participant": 2,
         "flag": ["top"]
     }, /* ... */
 ]
@@ -45,6 +47,7 @@
  * `title`：帖子标题
  * `author`：帖子作者
  * `authorID`：帖子作者id
+ * `authorImage`：帖子作者头像
  * `createTime`：帖子创建的时间戳
  * `modifyTime`：帖子修改的时间戳
  * `lastReplyTime`：最后回复的时间戳
@@ -53,6 +56,7 @@
  * `icon`：帖子的图标
  * `view`：帖子的访问量
  * `reply`：帖子的回复数量
+ * `participant`：参与回复的人员数量
  * `flag`：特殊标记数组，其中的元素可以是
    * `"top"` 置顶
 
@@ -116,6 +120,7 @@
     "title": "震惊！华南理工大学居然发生这种事情！",
     "author": "灌水大佬",
     "authorID": 123,
+    "authorImage": "/image/avatar/1234567890abcdef.jpg",
     "createTime": 1516421353371,
     "modifyTime": 1516421388888,
     "lastReplyTime": 1516421366666,
@@ -130,6 +135,7 @@
             "replyID": 0,
             "author": "灌水大佬",
             "authorID": 123,
+            "authorImage": "/image/avatar/1234567890abcdef.jpg",
             "commentCount": 2,
             "time": 1516421353371,
             "modifyTime": 1516421388888,
@@ -138,6 +144,7 @@
             "replyID": 1,
             "author": "百步梯萌新",
             "authorID": 666,
+            "authorImage": "/image/avatar/1234567890abcdef.jpg",
             "commentCount": 0,
             "time": 1516421366666,
             "modifyTime": 1516421388888,
@@ -152,6 +159,7 @@
    * `replyID`：楼层号
    * `author`：本楼层作者名
    * `authorID`：本楼层作者id
+   * `authorImage`：本楼层作者头像
    * `commentCount`：评论条数
    * `time`：此楼层的创建时间戳
    * `modifyTime`：此楼层的修改时间戳
