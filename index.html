@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>扫雷</title>
+        <link rel="stylesheet" type="text/css" href="">
+        <style type="text/css">
+            body{
+                text-align: center;
+            }
+            #container{
+                display: inline-block;
+            }
+            .unit{
+                display: inline-block;
+                float: left;
+                height: 20px;
+                width: 20px;
+                background-color: gray;
+                border: 1px outset;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>扫雷</h1>
+        <div>
+            <select>
+                <option onclick="chooseLevel(9, 9, 10)">初级</option>
+                <option onclick="chooseLevel(16, 16, 40)">中级</option>
+                <option onclick="chooseLevel(16, 30, 99)">高级</option>
+                <option>自定义</option>
+            </select>
+        </div>
+        <div id="container"></div>
+        <script>
+            window.onload = function () {
+                document.oncontextmenu = function (e) {
+                    e.preventDefault();
+                }
+            }
+            var xx = 9; //行
+            var yy = 9; //列
+            var zz = 10; //雷数
+            var exploredArea = 0;
+            var field = {};
+            var mineNum = [];
+            var mineId = [];
+            function init() {
+                mineNum = [];
+                mineId = [];
+                field = {};
+                exploredArea = 0;
+            }
+            function setMine(i, x, y) {
+                var temp = 1 + Math.round((x * y - 1) * Math.random());
+                if (mineNum.indexOf(temp) == -1) {
+                    mineNum[i] = temp;
+                } else {
+                    setMine(i, x, y);
+                }
+            } //布雷
+            function setField(x, y, z) {
+                document.getElementById("container").style.width = y * 21.6 + "px";
+                init();
+                for (var i = 0; i <= z - 1; i++) {
+                    setMine(i, x, y);
+                }
+                var n = 1; //区域编号
+                var html = [];
+                for (var ix = 1; ix <= x; ix++) {
+                    for (var iy = 1; iy <= y; iy++) {
+                        var unitId = ix + "_" + iy;
+                        html.push("<div id='" + unitId + "' class='unit' onclick='sweep(" + ix + ", " + iy + ")' onmousedown='flag(event, this)'></div>");
+                        if (mineNum.indexOf(n) != -1) {
+                            field[unitId] = "mine";
+                            mineId.push(unitId);
+                        }
+                        n++;
+                    }
+                }
+                document.getElementById("container").innerHTML = html.join("");
+                console.log(mineId);
+            }
+            function flag(e, element) {
+                if (e.button == 2) {
+                    if (element.innerHTML == "") {
+                        element.innerHTML = "<a style='color: green;'>F</a>";
+                    } else {
+                        element.innerHTML = "";
+                    }
+                }
+            }
+            function sweep(x, y) {
+                var unitId = x + "_" + y;
+                document.getElementById(unitId).onclick = "";
+                document.getElementById(unitId).onmousedown = "";
+                var around = 0;
+                if (field[unitId] == "mine") {
+                    for (var i = 0; i <= mineId.length - 1; i++) {
+                        document.getElementById(mineId[i]).innerHTML = "<a style='color: red;'>X</a>";
+                        document.getElementById(unitId).onclick = "";
+                        document.getElementById(mineId[i]).onmousedown = "";
+                    }
+                    lose();
+                } else {
+                    for (var tempX = x - 1; tempX <= x + 1; tempX++) {
+                        for (var tempY = y - 1; tempY <= y + 1; tempY++) {
+                            var unitIdTemp = tempX + "_" + tempY;
+                            if (field[unitIdTemp] == "mine") {
+                                around = around + 1;
+                            }
+                        }
+                    }
+                    console.log(around);
+                    if (around != 0) {
+                        document.getElementById(unitId).innerHTML = around;
+                    } else if (around == 0) {
+                        document.getElementById(unitId).style.backgroundColor = "white";
+                        for (var tempX = x - 1; tempX <= x + 1; tempX++) {
+                            for (var tempY = y - 1; tempY <= y + 1; tempY++) {
+                                var unitIdTemp = tempX + "_" + tempY;
+                                if (tempX > 0 && tempX <= xx && tempY > 0 && tempY <= yy) {
+                                    if (document.getElementById(unitIdTemp).onclick != null) {
+                                        sweep(tempX, tempY);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    exploredArea = exploredArea + 1;
+                    win();
+                }
+            }
+            function win() {
+                if (exploredArea == (xx * yy) - zz) {
+                    alert("你赢了！");
+                    resetField();
+                }
+            }
+            function lose() {
+                alert("你输了！");
+                resetField();
+            }
+            function resetField() {
+                document.getElementById("container").innerHTML = "";
+                setField(xx, yy, zz);
+            }
+            function chooseLevel(x, y, z) {
+                if (x > 0 && y > 0 && z < (x * y)) {
+                    xx = x;
+                    yy = y;
+                    zz = z;
+                    setField(xx, yy, zz);
+                } else {
+                    alert("参数不合法！")
+                }
+            }
+            setField(xx, yy, zz);
+        </script>
+    </body>
+</html>
