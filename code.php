@@ -9,7 +9,6 @@ for($i=0;$i<4;$i++)
 }
 
 $_SESSION["code"]=$yzm;
- 
  $_width=75;
  $_height=25;
  $_img=imagecreatetruecolor($_width,$_height);

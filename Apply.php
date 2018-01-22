@@ -10,10 +10,14 @@ $username=$_POST['UserName'];
 $userid=$_POST['UserId'];
 $userpassword=$_POST['UserPassword'];
 $code=$_POST['Code'];
-$str="/(.)+\/((.)+)/";
-preg_match($str,$_FILES["UserPhoto"]["type"],$output);
-$diction="userphoto/".$userid.".".$output[2];
-move_uploaded_file($_FILES["UserPhoto"]["tmp_name"], $diction);
+if($_FILES['UserPhoto']['size']>0) {
+    $str = "/(.)+\/((.)+)/";
+    preg_match($str, $_FILES["UserPhoto"]["type"], $output);
+    $diction = "userphoto/" . $userid . "." . $output[2];
+    move_uploaded_file($_FILES["UserPhoto"]["tmp_name"], $diction);
+}else{
+    $diction="userphoto/root.png";
+}
 if($code!=$_SESSION['code']){
     $msg="验证码错误！";
     $result="N";

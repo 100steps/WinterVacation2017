@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2018-01-22 06:39:59
+-- Generation Time: 2018-01-22 15:44:58
 -- 服务器版本： 5.7.19
 -- PHP Version: 7.1.9
 
@@ -31,11 +31,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(25) COLLATE utf8_bin NOT NULL,
-  `userid` int(11) NOT NULL,
-  `userpassword` varchar(24) COLLATE utf8_bin NOT NULL,
+  `username` varchar(24) COLLATE utf8_bin NOT NULL,
+  `userid` bigint(18) NOT NULL,
+  `userpassword` varchar(16) COLLATE utf8_bin NOT NULL,
   `userphoto` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 COMMIT;
 
