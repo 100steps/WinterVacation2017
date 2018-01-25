@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="forum-css.css">
 	<link rel="stylesheet" type="text/css" href="forum-css-media.css">
 </head>
-<body onload="showPage();">
+<body onload="showList();">
 <div class="background">
 	<div style="animation: appear 2s;">
 		<div class="title"></div>
@@ -30,11 +30,23 @@
 	<div id="make" class="make" style="display: none;">
 		<div class="makeText makeLeft">题目</div><textarea type="label" name="" id="makeTitle" class="makeTitle loginText"></textarea><br>
 		<div class="makeText makeLeft">内容</div><textarea type="label" name="" id="makeBody" class="makeBody loginText"></textarea>
-		<div id="page" class="loginText makeButton" onclick="submitPage();">提交</div>
+		<div class="loginText makeButton" onclick="submitPage();alert('提交成功');">提交</div>
 	</div>
 <!--这里是编辑界面-->
-
-
+	<div id="article" class="make" style="display: none;">
+		<div class="loginText makeButton" style="left: 60%;" onclick="articleReturn();">返回</div>
+		<div class="loginText makeButton" style="left: 10%;" onclick="comment();">评论</div>
+	</div>
+<!--这里是展示文章界面-->
+	<div id="comment" class="make" style="display: none;">
+		<div class="makeLeft makeText">评论</div>
+		<div class="commentList"></div>
+		<div class="makeLeft makeText" style="top: 57%;position: absolute;">输入</div>
+		<textarea type="label" name="" id="commentInput" class="makeTitle loginText" style="top: 60%;"></textarea>
+		<div class="loginText makeButton" style="left: 10%;" onclick="">发送</div>
+		<div class="loginText makeButton" style="left: 60%;" onclick="commentReturn();">返回</div>
+	</div>
+<!--这是评论界面-->
 </div>
 
 
@@ -71,20 +83,26 @@
 
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-	var pageNum=0
-
+	var pageNum=0;
 	if (localStorage.getItem("boxN")!="none") {
 			pageNum=localStorage.getItem("boxN");
+	};
+	var commentNum=0;
+	if (localStorage.getItem("boxCN")!="none") {
+			commentNum=localStorage.getItem("boxCN");
 	}
-
+	var articleShown=0;
 	var judgeForReturn=0;
+
+
 
 	$("#downMenuId").fadeOut(10);
 	function show(){
 		$("#downMenuId").fadeToggle();
 	};
 	function login(){
-		$("#login").attr("style","display: block;");
+		$("#login").attr("style","display: block;animation: appear 1s;");
+		show();
 	};
 	function loginReturn(){
 	if (judgeForReturn==0) {
@@ -123,7 +141,10 @@
 
 	function make(){
 		$("#list").attr("style","display: none;");
-		$("#make").attr("style","display: block;");
+		$("#article").attr("style","display: none;");
+		$("#comment").attr("style","display: none;");
+		$("#make").attr("style","display: block;animation: appear 1s;");
+		$("#downMenuId").fadeOut();
 	};
 
 	function submitPage(){
@@ -136,10 +157,35 @@
 
 	}
 
-	function showPage(){
+	function showList(){
 		for (var i = 1; i <= pageNum; i++) {
-			$("#list").append("<div class='pageShow linkText'>"+localStorage.getItem("boxMT"+i)+"</div>");
+			$("#list").append("<div class='pageShow linkText' onclick='articleShown="+i+";showArticle();'>"+localStorage.getItem("boxMT"+i)+"</div>");
 		}
+	}
+
+	function showArticle(){
+		var title=localStorage.getItem("boxMT"+articleShown);
+		var body=localStorage.getItem("boxMB"+articleShown);
+		$("#list").attr("style","display: none;");
+		$("#article").attr("style","display: block;animation: appear 1s;");
+		$("#article").append(
+			"<textarea class='makeTitle loginText articleBackground' style='text-align: center;' readonly='readonly'>"+title+"</textarea><textarea class='makeBody loginText articleBackground' readonly='readonly'>"+body+"</textarea>"
+			);
+	}
+
+	function articleReturn(){
+		$("#article").attr("style","display: none;");
+		$("#list").attr("style","display: block;animation: appear 1s;");
+	}
+
+	function comment(){
+		$("#article").attr("style","display: none;");
+		$("#comment").attr("style","display: block;animation: appear 1s;");
+	}
+
+	function commentReturn(){
+		$("#comment").attr("style","display: none;");
+		$("#article").attr("style","display: block;animation: appear 1s;");
 	}
 
 </script>

@@ -257,7 +257,6 @@
 
 .makeButton{
 	position: absolute;
-	left: 35%;
 	top: 75%;
 	width: 30%;
 	height: 6%;
@@ -279,7 +278,24 @@
 	width: 90%;
 	margin-top: 2%;
 	left: 5%;
+	overflow: auto;
+}
 
+.articleBackground{
+	background-size: cover;
+	background: url(title.png) repeat;
+}
+
+.commentList{
+	position: absolute;
+	z-index: 0;
+	background: white;
+	top: 2%;
+	height: 50%;
+	left: 15%;
+	width: 70%;
+	overflow: auto;
+	border-radius: 5px;
 }
 
 @keyframes appear{
