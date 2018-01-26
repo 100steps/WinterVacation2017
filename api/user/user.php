@@ -12,7 +12,7 @@ switch ($method){
     case "GET":
         $reply=array("code"=>200,"name"=>"user","email"=>"123@qq.com","sex"=>"male","birthday"=>"2017-1-1",
             "province"=>"广东","city"=>"广州","phoneNumber"=>"123456","qq"=>123456,"signature"=>"哈哈哈哈",
-            "imageurl"=>"http://localhost/no_hole-forum-doc/api/user/userimage.php");
+            "imageUrl"=>"http://localhost/no_hole-forum-doc/api/user/userimage.php");
         echo json_encode($reply);
         break;
     case "PUT":
