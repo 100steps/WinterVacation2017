@@ -18,11 +18,11 @@ if($code==$_SESSION['code']) {
             if ($userpassword == $row['userpassword']) {
                 $msg = "";
                 $result = "Y";
+                setcookie("userid",$userid,time()+24*60*60);
                 $a = 0;
             } else {
                 $msg = "密码错误！";
                 $result = "N";
-                $userid = "";
                 $a = 0;
             }
         }
@@ -30,13 +30,11 @@ if($code==$_SESSION['code']) {
 }else{
     $msg="验证码错误！";
     $result="N";
-    $useid="";
     $a=0;
 }
 if(isset($a)){
 }else{
     $msg="用户账号不存在，请先注册";
     $result="N";
-    $userid="";
 }
-echo json_encode(array("result"=>$result,"msg"=>$msg,"userid"=>$userid));
+echo json_encode(array("result"=>$result,"msg"=>$msg));

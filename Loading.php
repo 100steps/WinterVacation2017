@@ -32,7 +32,6 @@ if($page=="1") {
         $i++;
     }
 }else{
-
     $findtop = "select `id` from `forum` where `T-Ftop` = 1 order by `id` desc";
     $find = $dbh->query($findtop);
     $top = array();
@@ -52,7 +51,7 @@ if($page=="1") {
         }
         $end = count($extraid);
         $from = ($page - 1) * 25+1-count($top);
-        $sql_extra = "select*from `forum` where `id` between $extraid[$from] and $extraid[$end] and `T-Ftop` != 1 order by `id` desc";
+        $sql_extra = "select*from `forum` where `id` between $extraid[$end] and $extraid[$from] and `T-Ftop` != 1 order by `id` desc";
         $find_extra = $dbh->query($sql_extra);
         $extra = array();
         $i = 1;
@@ -69,7 +68,7 @@ if($page=="1") {
 //计算页数
 $sql="select `id` from `forum` order by `id` desc limit 1";
 $res=$dbh->query($sql);
-$pages=$res->fetch()['id'];
+$pages=ceil($res->fetch()['id']/25);
 //返回
 echo json_encode(array("top"=>$top,"note"=>$extra,"pages"=>$pages));
 

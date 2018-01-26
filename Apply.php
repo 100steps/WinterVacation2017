@@ -21,7 +21,6 @@ if($_FILES['UserPhoto']['size']>0) {
 if($code!=$_SESSION['code']){
     $msg="验证码错误！";
     $result="N";
-    $id="";
 }else{
     $msg="";
     include_once("pdo_db.php");
@@ -29,14 +28,14 @@ if($code!=$_SESSION['code']){
     $res = $dbh->exec($sql);
     if($res){
         $result="Y";
-        $id=$userid;
+        $msg="";
+        setcookie("userid",$userid,time()+24*60*60);
     }else{
         $result="N";
         $msg="未录入数据库";
-        $id="";
     }
 }
-echo json_encode(array('result'=>$result,'msg'=>$msg,'userid'=>$id));
+echo json_encode(array('result'=>$result,'msg'=>$msg));
 
 
 
