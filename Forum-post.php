@@ -1,7 +1,6 @@
 <?php
 if(isset($_COOKIE['userid'])){
     $userid=$_COOKIE['userid'];
-    $userid=$_POST['UserId'];
     $notename=$_POST['Notename'];
     $notecontent=$_POST['Content'];
     date_default_timezone_set("Asia/Shanghai");
