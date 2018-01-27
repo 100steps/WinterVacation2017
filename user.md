@@ -5,7 +5,8 @@
 * 文件实际路径：`/api/user/login.php`
 * 访问方式：`POST`
 * 访问条件限制：无
-### POST 请求格式：`JSON`
+### POST 请求格式：标准POST请求
+ajax中`data`字段对应的json如下
 ```JavaScript
 {
 	"username": "test", /* 登录用户名 */
@@ -35,7 +36,7 @@
 * 访问方式：`GET`
 * 访问条件限制：无
 ### GET 请求格式：标准GET请求
-* **`{Type}`**：获取的参数，可以为`reg`（返回注册时需填写的内容）和`user`（更改个人信息时填写的内容）
+* **`{Type}`**：获取的参数，可以为`login`（登录的时候需填写的内容）、`reg`（返回注册时需填写的内容）和`user`（更改个人信息时填写的内容）
 ### GET 返回格式：`JSON`
 ```JavaScript
 /*
@@ -88,7 +89,8 @@
 * 文件实际路径：`/api/user/reg.php`
 * 访问方式：`POST`
 * 访问条件限制：无
-### POST 请求格式：`JSON`
+### POST 请求格式：标准POST请求
+ajax中`data`字段对应的json如下
 ```JavaScript
 /* 此处每一个JSON的key都是上述接口中的key值，value对应的就是页面上用户输入的数据 */
 {
@@ -152,7 +154,8 @@
 * 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：登录后的用户、管理员
-#### PUT 请求格式：`JSON`
+#### PUT 请求格式：标准PUT请求
+ajax中`data`字段对应的json如下
 ```JavaScript
 {
     "userID": 1,
@@ -182,7 +185,7 @@
 * 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：管理员
-#### PUT 请求格式：`JSON`
+#### PUT 请求格式：标准POST请求
 同上，略
 #### PUT 返回格式：`JSON`
 同上，略
