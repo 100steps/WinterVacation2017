@@ -19,7 +19,6 @@ if($page<=$pages) {
             );
             $i++;
         }
-        echo "<br>";
 //其余帖子按照发布时间倒序排序(即最新的在上面)
         $number_extra = 25 - count($top);
         $sql_extra = "select*from `forum` where `T-Ftop` != 1 order by `id` desc limit $number_extra";

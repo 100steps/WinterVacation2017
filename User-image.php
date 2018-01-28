@@ -1,6 +1,5 @@
 <?php
 if(isset($_COOKIE['userid'])) {
-    echo $_COOKIE['userid'];
     $userid = $_COOKIE['userid'];
     include_once('pdo_db.php');
     $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
