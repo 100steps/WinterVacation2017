@@ -26,12 +26,23 @@ if($page<=$pages) {
         $extra = array();
         $i = 1;
         while ($row_extra = $find_extra->fetch()) {
-            $extra[$i] = array(
-                "noteid" => $row_extra['id'],
-                "notename" => $row_extra['notename'],
-                "time" => $row_extra['time'],
-                "userid" => $row_extra['userid']
-            );
+            $userid=$row_extra['userid'];
+
+            include_once('pdo_db.php');
+            $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
+            $res = $dbh->query($sql);
+            while($row = $res->fetch()) {
+                $username = $row['username'];
+                $userphoto = $row['userphoto'];
+                $extra[$i] = array(
+                    "noteid" => $row_extra['id'],
+                    "notename" => $row_extra['notename'],
+                    "time" => $row_extra['time'],
+                    "username"=>$username,
+                    "userphoto"=>$userphoto,
+                    "userid"=>$userid
+                );
+            }
             $i++;
         }
     } else {
@@ -59,12 +70,23 @@ if($page<=$pages) {
         $extra = array();
         $i = 1;
         while ($row_extra = $find_extra->fetch()) {
-            $extra[$i] = array(
-                "noteid" => $row_extra['id'],
-                "notename" => $row_extra['notename'],
-                "time" => $row_extra['time'],
-                "userid" => $row_extra['userid']
-            );
+            $userid=$row_extra['userid'];
+
+            include_once('pdo_db.php');
+            $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
+            $res = $dbh->query($sql);
+            while($row = $res->fetch()) {
+                $username = $row['username'];
+                $userphoto = $row['userphoto'];
+                $extra[$i] = array(
+                    "noteid" => $row_extra['id'],
+                    "notename" => $row_extra['notename'],
+                    "time" => $row_extra['time'],
+                    "username"=>$username,
+                    "userphoto"=>$userphoto,
+                    "userid"=>$userid
+                );
+            }
             $i++;
         }
     }

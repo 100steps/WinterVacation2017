@@ -25,16 +25,16 @@ if(isset($_COOKIE['userid'])){
 //为新帖子建表
     $createform="CREATE TABLE `tieba`.`$noteid` (
     `id` INT NOT NULL auto_increment,
-    `floorcontent` VARCHAR(255) NOT NULL,
+    `floorcontent` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin  NOT NULL,
     `userid` BIGINT(18) NOT NULL ,
     `quoter` INT,
     `time` DATETIME NOT NULL,
-    `praise` TEXT ,
+    `praise` TEXT CHARACTER SET utf8 COLLATE utf8_bin,
     PRIMARY KEY (`id`)
     )";
     $res3=$dbh->exec($createform);
 //向新表录入帖子内容和用户id
-  $sql3="INSERT INTO `$noteid` (`id`, `floorcontent`, `userid`, `quoter`, `time`, `praise`) VALUES (NULL, '$notecontent', '$userid', NULL, '$time', NULL);";
+  $sql3="INSERT INTO `$noteid` (`id`, `floorcontent`, `userid`, `quoter`, `time`, `praise`) VALUES (NULL, '$notecontent', '$userid','0', '$time', NULL);";
   $res4=$dbh->exec($sql3);
   if($res4){
       $result="Y";
