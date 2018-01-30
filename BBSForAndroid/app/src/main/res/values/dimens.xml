@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="title_left_margin">5dp</dimen>
+    <dimen name="title_right_margin">5dp</dimen>
+    <dimen name="tab_corner_radius">10dp</dimen>
+    <dimen name="fixed_height_bottom_padding">5dp</dimen>
+
+</resources>
