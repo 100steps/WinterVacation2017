@@ -36,12 +36,31 @@
 
 	}
 	.loginInputSign{
-		margin-top: 12%;
+		margin-top: 6%;
 		margin-left: 8%;
+	}
+	.loginButtonIn{
+		z-index: 4;
+		height: 8%;
+		width: 30%;
+		margin-top: 1%;
+		margin-left: 1%;
+		background: url(button.png) repeat;
+		background-size: cover;
+		border-radius: 5px;
+		box-shadow: 5px 5px 5px #000;
+		text-align: center;
 	}
 	.makeLeft{
 		margin-left: 0;
 		margin-top: 3%;
+	}
+	.userM{
+		width: 25%;
+		left: 70%
+	}
+	.userL{
+		left: 5%;
 	}
 }
 
@@ -139,7 +158,6 @@
 		left: 15%;
 		top: 23%;
 		height: 12%;
-		background: white;
 		box-shadow: 10px 10px 5px #000;
 		border-radius: 5px;
 		background: url(background.png) no-repeat;
@@ -164,10 +182,21 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		left: 10%;
 		width: 60%;
 		height: 65%;
-		background: white;
+		background: url(title.png) repeat;
+		opacity:0.8;
+		filter:alpha(opacity=8);
+		overflow: auto;
+		box-shadow: 10px 10px 5px #000;
+		border-radius: 5px;
+	}
+	.userCard{
+		position: absolute;
+		z-index: 0;
+		top: 25%;
+		height: 65%;
+		background: url(title.png) repeat;
 		opacity:0.8;
 		filter:alpha(opacity=8);
 		overflow: auto;
@@ -276,7 +305,6 @@
 		left: 15%;
 		top: 24%;
 		height: 12%;
-		background: white;
 		box-shadow: 5px 5px 3px #000;
 		border-radius: 5px;
 		background: url(background.png) no-repeat;
@@ -301,10 +329,21 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		left: 10%;
 		width: 60%;
 		height: 65%;
-		background: white;
+		background: url(title.png) repeat;
+		opacity:0.8;
+		filter:alpha(opacity=8);
+		overflow: auto;
+		box-shadow: 5px 5px 3px #000;
+		border-radius: 5px;
+	}
+	.userCard{
+		position: absolute;
+		z-index: 0;
+		top: 25%;
+		height: 65%;
+		background: url(title.png) repeat;
 		opacity:0.8;
 		filter:alpha(opacity=8);
 		overflow: auto;
@@ -414,7 +453,6 @@
 		left: 15%;
 		top: 24%;
 		height: 14%;
-		background: white;
 		box-shadow: 4px 4px 2px #000;
 		border-radius: 5px;
 		background: url(background.png) no-repeat;
@@ -439,10 +477,21 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		left: 10%;
 		width: 60%;
 		height: 65%;
-		background: white;
+		background: url(title.png) repeat;
+		opacity:0.8;
+		filter:alpha(opacity=8);
+		overflow: auto;
+		box-shadow: 4px 4px 2px #000;
+		border-radius: 5px;
+	}
+	.userCard{
+		position: absolute;
+		z-index: 0;
+		top: 25%;
+		height: 65%;
+		background: url(title.png) repeat;
 		opacity:0.8;
 		filter:alpha(opacity=8);
 		overflow: auto;

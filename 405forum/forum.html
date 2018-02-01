@@ -24,18 +24,30 @@
 			<div class="link"><a class="linkText" onclick="login();">登录</a></div>
 			<div class="link"><a href="forum.html" class="linkText">首页</a></div>
 		</div>
-		<div id="list" class="list"></div>
+		<div id="list" class="list userL"></div>
+		<div id="userCard" class="userCard userM">
+			<div class="userBackground">
+				<div class="makeText" style="position: absolute;top: 0%;left: 10%;">用户：<div id="state" style="color: red;">未登录</div></div>
+				<div class="makeText" style="position: absolute;top: 25%;left: 10%;">性别：<div id="sexShown" style="color: red;">保密</div></div>
+				<div class="makeText" style="position: absolute;top: 50%;left: 10%;">评论文章：0</div>
+				<div class="makeText" style="position: absolute;top: 75%;left: 10%;">访问次数：0</div>
+			</div>
+			<div class="loginText makeButton" style="left: 10%;width: 80%;top: 85%;" onclick="userCardChange();">修改</div>
+		</div>
+	<!--这是用户资料卡-->
+
+
 	</div>
 <!--这里是页面-->
 	<div id="make" class="make" style="display: none;">
 		<div class="makeText makeLeft">题目</div><textarea type="label" name="" id="makeTitle" class="makeTitle loginText"></textarea><br>
 		<div class="makeText makeLeft">内容</div><textarea type="label" name="" id="makeBody" class="makeBody loginText"></textarea>
-		<div class="loginText makeButton" onclick="submitPage();alert('提交成功');">提交</div>
+		<div class="loginText makeButton" style="left: 35%;" onclick="submitPage();alert('提交成功');">提交</div>
 	</div>
 <!--这里是编辑界面-->
 	<div id="article" class="make" style="display: none;">
-		<div class="loginText makeButton" style="left: 60%;" onclick="articleReturn();">返回</div>
-		<div class="loginText makeButton" style="left: 10%;" onclick="comment();">评论</div>
+		<div class="loginText makeButton" style="left: 55%;" onclick="articleReturn();">返回</div>
+		<div class="loginText makeButton" style="left: 15%;" onclick="comment();">评论</div>
 	</div>
 <!--这里是展示文章界面-->
 	<div id="comment" class="make" style="display: none;">
@@ -43,10 +55,11 @@
 		<div class="commentList"></div>
 		<div class="makeLeft makeText" style="top: 57%;position: absolute;">输入</div>
 		<textarea type="label" name="" id="commentInput" class="makeTitle loginText" style="top: 60%;"></textarea>
-		<div class="loginText makeButton" style="left: 10%;" onclick="">发送</div>
-		<div class="loginText makeButton" style="left: 60%;" onclick="commentReturn();">返回</div>
+		<div class="loginText makeButton" style="left: 15%;" onclick="">发送</div>
+		<div class="loginText makeButton" style="left: 55%;" onclick="commentReturn();">返回</div>
 	</div>
 <!--这是评论界面-->
+
 </div>
 
 
@@ -54,12 +67,14 @@
 	<div class="loginShade"></div>
 	<div class="loginWindow">
 		<div class="loginPage">
-			<div class="loginInputSign loginText">用户名：<input id="userId" type="label" name="id" style="width: 80%"></div>
-			<div class="loginInputSign loginText">密&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="label" name="password" style="width: 80%"></div>
+			<div class="loginInputSign loginText" style="top: 2%;">用户名：<input id="userId" type="label" name="id" style="width: 70%;"></div>
+			<div class="loginInputSign loginText" style="top: 20%;">密&nbsp;&nbsp;&nbsp;码：<input id="password" type="label" name="password" style="width: 70%"></div>
 
 			<div id="register" style="display: none;">
-				<div class="loginInputSign loginText">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input id="mail" type="label" name="mail" style="width: 80%"></div>
-				<div class="loginInputSign loginText">性&nbsp;&nbsp;&nbsp;&nbsp;别：<select name="sex" id="sex">
+				<div class="loginInputSign loginText" style="top: 38%;">昵&nbsp;&nbsp;&nbsp;称：<input id="name" type="label" name="name" style="width: 70%"></div>
+				<div class="loginInputSign loginText" style="top: 56%;">邮&nbsp;&nbsp;&nbsp;箱：<input id="mail" type="label" name="mail" style="width: 70%"></div>
+				<div class="loginInputSign loginText" style="top: 74%;">性&nbsp;&nbsp;&nbsp;别：
+					<select name="sex" id="sex">
 						<option value="1">男</option>
 						<option value="2">女</option>
 						<option value="0">保密</option>
@@ -67,17 +82,39 @@
 				</div>
 			</div>
 
-			<div id="in" class="loginButtonIn loginText loginButtonCenter" >登录</div>
-			<div id="no" class="loginButtonIn loginText loginButtonCenter"  onclick="register();">注册</div>
-			<div id="reg" class="loginButtonIn loginText loginButtonCenter" style="display: none;">提交</div>
+			<div id="in" class="loginButtonIn loginText loginButtonCenter in">登录</div>
+			<div id="no" class="loginButtonIn loginText loginButtonCenter no" onclick="register();">注册</div>
+			<div id="reg" class="loginButtonIn loginText loginButtonCenter reg" style="display: none;">提交</div>
 
 		</div>
 		<div class="loginButton loginText" style="position: absolute;" onclick="loginReturn();">返回</div>
 	</div>
 
 <!--这里是登录界面-->
+</div>
 
+<div id="userCardChange" style="display: none;">
+	<div class="loginShade"></div>
+	<div class="loginWindow">
+		<div class="loginPage">
+			<div class="loginInputSign loginText" style="top: 2%;">昵&nbsp;&nbsp;&nbsp;称：<input id="CName" type="label" name="name" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 20%;">邮&nbsp;&nbsp;&nbsp;箱：<input id="CMail" type="label" name="mail" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 38%;">生&nbsp;&nbsp;&nbsp;日：<input id="born" type="label" name="born" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 56%;">住&nbsp;&nbsp;&nbsp;址：<input id="address" type="label" name="address" style="width: 70%">
+			</div>
+			<div class="loginInputSign loginText" style="top: 74%;">性&nbsp;&nbsp;&nbsp;别：
+				<select name="sex" id="CSex">
+					<option value="1">男</option>
+					<option value="2">女</option>
+					<option value="0">保密</option>
+				</select>
+			</div>
+			<div id="userC" class="loginButtonIn loginText loginButtonCenter reg">提交</div>
+		</div>
+		<div class="loginButton loginText" style="position: absolute;" onclick="userCReturn();">返回</div>
+	</div>
 
+<!--这是用户资料卡修改资料页面-->
 </div>
 
 
@@ -97,13 +134,16 @@
 
 
 	$("#downMenuId").fadeOut(10);
+
 	function show(){
 		$("#downMenuId").fadeToggle();
 	};
+
 	function login(){
 		$("#login").attr("style","display: block;animation: appear 1s;");
-		show();
+		$("#downMenuId").fadeOut();
 	};
+
 	function loginReturn(){
 	if (judgeForReturn==0) {
 		$("#login").attr("style","display: none;");
@@ -120,6 +160,7 @@
 		clear("mail");
 		clear("sex");
 	};
+
 	function register(){
 		judgeForReturn=judgeForReturn+1;
 
@@ -141,6 +182,7 @@
 
 	function make(){
 		$("#list").attr("style","display: none;");
+		$("#userCard").attr("style","display: none;");
 		$("#article").attr("style","display: none;");
 		$("#comment").attr("style","display: none;");
 		$("#make").attr("style","display: block;animation: appear 1s;");
@@ -167,6 +209,7 @@
 		var title=localStorage.getItem("boxMT"+articleShown);
 		var body=localStorage.getItem("boxMB"+articleShown);
 		$("#list").attr("style","display: none;");
+		$("#userCard").attr("style","display: none;");
 		$("#article").attr("style","display: block;animation: appear 1s;");
 		$("#article").append(
 			"<textarea class='makeTitle loginText articleBackground' style='text-align: center;' readonly='readonly'>"+title+"</textarea><textarea class='makeBody loginText articleBackground' readonly='readonly'>"+body+"</textarea>"
@@ -176,6 +219,7 @@
 	function articleReturn(){
 		$("#article").attr("style","display: none;");
 		$("#list").attr("style","display: block;animation: appear 1s;");
+		$("#userCard").attr("style","display: block;animation: appear 1s;");
 	}
 
 	function comment(){
@@ -186,6 +230,16 @@
 	function commentReturn(){
 		$("#comment").attr("style","display: none;");
 		$("#article").attr("style","display: block;animation: appear 1s;");
+	}
+
+	function userCardChange(){
+		if (document.getElementById("state").innerHTML=="未登录") {alert("你仍未登录，由于没有接口，界面可以预览");}
+		$("#userCardChange").attr("style","display: block;animation: appear 1s;");
+		$("#downMenuId").fadeOut();
+	}
+
+	function userCReturn(){
+		$("#userCardChange").attr("style","display: none;");
 	}
 
 </script>

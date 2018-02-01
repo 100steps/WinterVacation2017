@@ -90,7 +90,7 @@
 	left: 15%;
 	top: 17%;
 	height: 8%;
-	background: white;
+	background: url(title.png) repeat;
 	box-shadow: 10px 10px 5px #000;
 	border-radius: 5px;
 	background: url(background.png) no-repeat;
@@ -107,7 +107,7 @@
 	margin-top: 1%;
 	border-radius: 5px;
 	text-align: center;
-	background: white;
+	background: url(title.png) repeat;
 	opacity:0.6;
 	filter:alpha(opacity=60);
 }
@@ -153,7 +153,7 @@
 	width: 80%;
 	top: 10%;
 	left: 10%;
-	background: white;
+	background: url(title.png) repeat;
 	opacity:0.8;
 	filter:alpha(opacity=8);
 	border-radius: 5px;
@@ -167,10 +167,10 @@
 	width: 24%;
 	margin-top: 1%;
 	margin-left: 1%;
-	background: url(title.png) no-repeat;
+	background: url(button.png) repeat;
 	background-size: cover;
 	border-radius: 5px;
-	box-shadow: 10px 10px 5px #000;
+	box-shadow: 5px 5px 5px #000;
 	text-align: center;
 }
 
@@ -180,10 +180,10 @@
 	width: 30%;
 	margin-top: 1%;
 	margin-left: 1%;
-	background: url(title.png) no-repeat;
+	background: url(button.png) repeat;
 	background-size: cover;
 	border-radius: 5px;
-	box-shadow: 10px 10px 5px #000;
+	box-shadow: 5px 5px 5px #000;
 	text-align: center;
 }
 
@@ -196,28 +196,63 @@
 }
 
 .loginInputSign{
-	margin-top: 5%;
+	margin-top: 4%;
 	margin-left: 10%;
+	position: absolute;
+	width: 100%;
 }
 
 .loginButtonCenter{
-	margin-top: 5%;
-	margin-left: 35%;
+	position: absolute;
+	left: 34%;
+}
+
+.in{
+	top: 50%;
+}
+
+.no{
+	top: 65%;
+}
+
+.reg{
+	top: 87.5%;
 }
 
 .list{
 	position: absolute;
 	z-index: 0;
 	top: 18%;
-	left: 10%;
 	width: 60%;
 	height: 65%;
-	background: white;
+	background: url(title.png) repeat;
 	opacity:0.8;
 	filter:alpha(opacity=8);
 	overflow: auto;
 	border-radius: 5px;
 	box-shadow: 10px 10px 5px #000;
+}
+
+.userCard{
+	position: absolute;
+	z-index: 0;
+	top: 18%;
+	left: 70%;
+	height: 65%;
+	background: url(title.png) repeat;
+	opacity:0.8;
+	filter:alpha(opacity=8);
+	overflow: auto;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;	
+}
+
+.userM{
+	width: 15%;
+	left: 80%;
+}
+.userL{
+	left: 15%;
 }
 
 .makeTitle{
@@ -260,7 +295,7 @@
 	top: 75%;
 	width: 30%;
 	height: 6%;
-	background: url(title.png) no-repeat;
+	background: url(button.png) repeat;
 	background-size: cover;
 	border-radius: 5px;
 	box-shadow: 10px 10px 5px #000;
@@ -289,13 +324,23 @@
 .commentList{
 	position: absolute;
 	z-index: 0;
-	background: white;
+	background: url(title.png) repeat;
 	top: 2%;
 	height: 50%;
 	left: 15%;
 	width: 70%;
 	overflow: auto;
 	border-radius: 5px;
+}
+
+.userBackground{
+	position: absolute;
+	height: 70%;
+	top: 10%;
+	left: 5%;
+	width: 90%;
+	background-size: cover;
+	background: url(button.png) repeat;
 }
 
 @keyframes appear{
