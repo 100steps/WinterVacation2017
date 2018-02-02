@@ -34,7 +34,7 @@ switch ($method){
         }
         break;
     case "DELETE":
-        parse_str(file_get_contents('php://input'), $arguments);//未验证，ddl到了，=_=!
+        parse_str(file_get_contents('php://input'), $arguments);
         $id=$arguments['id'];
         $password=$arguments['password'];
         $captcha=$arguments['captcha'];
@@ -87,7 +87,7 @@ switch ($method){
         echo json_encode($data);
         break;
     case "PUT":
-        parse_str(file_get_contents('php://input'), $arguments);//未验证
+        parse_str(file_get_contents('php://input'), $arguments);
         $id=$arguments['id'];
         $name=$arguments['name'];
         $email=$arguments['email'];
