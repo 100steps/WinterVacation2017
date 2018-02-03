@@ -1,17 +1,19 @@
 <?php
+require_once '../object/replyClass.php';
+$obj=new replyClass();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case "POST":
-        $reply = array("code" => 201);
-        echo json_encode($reply);
+        $obj->post();
         break;
     case "DELETE":
-        $reply = array("code" => 204);
-        echo json_encode($reply);
+        $obj->delete();
         break;
     case "GET":
-        $reply = array("code"=>200,
-            1=>array("number"=>1,"user"=>"user","date"=>"2018-1-26","text"=>"这是第一个回复"));
-        echo json_encode($reply);
+        parse_str(file_get_contents('php://input'), $arguments);
+        $id=$arguments['id'];
+        $number=$arguments['number'];
+        $amount=$arguments['amount'];
+        echo json_encode($obj->get($id,$number,$amount));
         break;
 }

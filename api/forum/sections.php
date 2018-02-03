@@ -1,22 +1,27 @@
 <?php
+require_once '../object/sectionsClass.php';
 $method = $_SERVER['REQUEST_METHOD'];
+$sections=new sectionsClass();
 switch ($method) {
     case "POST":
-        $reply = array("code" => 201);
-        echo json_encode($reply);
+        $name=$_POST['name'];
+        $moderator=$_POST['moderator'];
+        $introduce=$_POST['introduce'];
+        $sections->postSection($name,$moderator,$introduce);
         break;
     case "DELETE":
-        $reply = array("code" => 204);
-        echo json_encode($reply);
+        parse_str(file_get_contents('php://input'), $arguments);
+        $name=$arguments['name'];
+        $sections->deleteSection($name);
         break;
     case "GET":
-        $reply = array("code"=>200,"amount"=>2,
-            1=>array("name"=>"生活","moderator"=>"user","introduce"=>"此版块暂无介绍"),
-            2=>array("name"=>"学习","moderator"=>"user","introduce"=>"此版块暂无介绍"));
-        echo json_encode($reply);
+        $sections->getSections();
         break;
     case "PUT":
-        $reply = array("code"=>201);
-        echo json_encode($reply);
+        parse_str(file_get_contents('php://input'), $arguments);
+        $name=$arguments['name'];
+        $moderator=$arguments['moderator'];
+        $introduce=$arguments['introduce'];
+        $sections->putSections($name,$moderator,$introduce);
         break;
 }
