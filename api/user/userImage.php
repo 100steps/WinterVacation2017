@@ -10,7 +10,7 @@ switch ($method) {
             echo $content;
         }else{
             $th=new thumbnail();
-            $content=$th->img_create_small($fileName,60,60);
+            $content=$th->img_create_small($fileName,$_GET['width'],$_GET['length']);
         }
         break;
     case "PUT":

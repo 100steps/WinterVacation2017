@@ -10,14 +10,14 @@ switch ($method) {
             echo json_encode($reply);
             break;
         }
-        $obj=new pdoHandleMysql("no_hole-forum");
+        $obj=new userClass();
         if(stripos($nameOrEmail,".com")){
             if(!$obj->isExist('user','email',"{$nameOrEmail}")){
                 $reply = array("code" => 204,"error"=>"该邮箱未注册");
                 echo json_encode($reply);
                 break;
             }
-            $data=$obj->selectPassword('user','email',"{$nameOrEmail}");
+            $data=$obj->selectData('user','email',"{$nameOrEmail}",'(password)');
             if($data[0]['password']==$password){
                 $_SESSION['id']=$data[0]['id'];
                 $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"$data[0]['name']");
@@ -37,7 +37,7 @@ switch ($method) {
                 echo json_encode($reply);
                 break;
             }
-            $data=$obj->selectPassword('user','name',"{$nameOrEmail}");
+            $data=$obj->selectData('user','name',"{$nameOrEmail}",'(password)');
             if($data[0]['password']==$password){
                 $_SESSION['id']=$data[0]['id'];
                 $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"$data[0]['name']");

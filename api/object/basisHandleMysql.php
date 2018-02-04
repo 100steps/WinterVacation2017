@@ -13,8 +13,8 @@ class basisHandleMysql
         }
     }
 
-    function selectData($table, $column, $value){
-        $sql="select*from {$table} where {$column} = '{$value}'";
+    function selectData($table, $column, $value,$content="*"){
+        $sql="select '{$content}'from {$table} where {$column} = '{$value}'";
         $stmt=$this->dbh->query($sql);
         if($stmt){
             $result=$stmt->fetchAll();

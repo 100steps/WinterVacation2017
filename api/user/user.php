@@ -1,6 +1,6 @@
 //待加修改密码接口，修改密码方法，改进程序结构
 <?php
-require_once '../object/pdoHandleMysql.php';
+require_once '../object/userClass.php';
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method){
     case "POST":
@@ -13,7 +13,7 @@ switch ($method){
             echo json_encode($reply);
             break;
         }
-        $obj=new pdoHandleMysql("no_hole-forum");
+        $obj=new userClass();
         if($obj->isExist('user','name',"{$name}")){
             $reply=array("code"=>422,"error"=>"用户名已注册");
             echo json_encode($reply);
@@ -48,13 +48,13 @@ switch ($method){
             echo json_encode($reply);
             break;
         }
-        $obj=new pdoHandleMysql("no_hole-forum");
+        $obj=new userClass();;
         if(!$obj->isExist('user','id',"{$id}")){
             $reply=array("code"=>422,"error"=>"用户名已注册");
             echo json_encode($reply);
             break;
         }
-        $data=$obj->selectPassword("user","id","{$id}");
+        $data=$obj->selectData("user","id","{$id}",'(password)');
         if($data[0][$password]==$password){
             if($obj->deleteUser("{$id}")){
                 $reply=array("code"=>204);
@@ -72,10 +72,9 @@ switch ($method){
             echo json_encode($reply);
             break;
         }
-        break;
     case "GET":
         $id=$_GET['id'];
-        $obj=new pdoHandleMysql("no_hole-forum");
+        $obj=new userClass();
         if(!$obj->isExist('user','id','{$id}')){
             $reply=array("code"=>404,"error"=>"用户不存在");
             echo json_encode($reply);

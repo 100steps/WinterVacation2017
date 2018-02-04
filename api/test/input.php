@@ -22,7 +22,7 @@
 //imagejpeg('../user/userImage/userImage.jpg');
 
 
-require_once '../object/captchaImage_class.php';
+require_once '../object/captchaImageClass.php';
 //$im = imagecreatetruecolor(160,50);
 ////imagecolorallocate($im, 255, 255, 255);
 //$text_color = imagecolorallocate($im, 255, 0, 0);
