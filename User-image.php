@@ -14,7 +14,8 @@ if(isset($_COOKIE['userid'])) {
     $msg="未登录";
     $username ="";
     $userphoto ="";
+    $userid="";
 }
-echo json_encode(array("result"=>$result,"msg"=>$msg,"username"=>$username,"userphoto"=>$userphoto));
+echo json_encode(array("result"=>$result,"msg"=>$msg,"username"=>$username,"userphoto"=>$userphoto,"userid"=>$userid));
 
 

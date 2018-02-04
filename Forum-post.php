@@ -43,12 +43,28 @@ if(isset($_COOKIE['userid'])){
       $result="N";
       $msg="无法录入数据库";
   }
+
 //返回结果
 //{
 //1.result："Y"  (成功)  msg: ""
 //2.result："N"  (失败)  msg: "无法录入数据库"   数据库出现异常的情况--请联系后端
 //}
     echo json_encode(array('result'=>$result,'msg'=>$msg));
+    include_once("pdo_usersdb.php");
+    $sql_findfriend="select*from `$userid`";
+    $res_findfriend=$dbh->query($sql_findfriend);
+    $friend=array();
+    $i=1;
+    while($row_findfriend=$res_findfriend->fetch()){
+        $friend[$i]=$row_findfriend['userid'];
+        $i++;
+    }
+    include_once("pdo_usersmoment.php");
+    for($i=1;$i<=count($friend);$i++){
+        $friendid=$friend[$i];
+        $sql_addmoment="insert into `$friendid` values(null,null,null,'$userid-$noteid','$time')";
+        $res_addmoment=$dbh->exec($sql_addmoment);
+    }
 }else{
     echo json_encode(array('result'=>"N",'msg'=>"请先登录"));
 }

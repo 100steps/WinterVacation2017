@@ -22,10 +22,11 @@ if(isset($a)) {
     while ($row_check = $res_check->fetch()) {
         $pages = ceil($row_check['id'] / 25);
     }
-    $sql_findname2 = "select `notename` from `forum` where `id`=$noteid";
+    $sql_findname2 = "select `notename`,`userid` from `forum` where `id`=$noteid";
     $res_findname2 = $dbh->query($sql_findname2);
     while ($row_findname2 = $res_findname2->fetch()) {
         $notename = $row_findname2['notename'];
+        $noteuser=$row_findname2['userid'];
     }
     if ($page <= $pages) {
         if ($page == 1) {
@@ -38,13 +39,26 @@ if(isset($a)) {
             $sql_add = "update `forum` set `clickid`=$clickid where `id`=$noteid";
             $res_add = $dbh->exec($sql_add);
         }
+        $number = $page * 25;
+        $sql_findid = "select `id` from `$noteid` order by `id` asc limit $number";
+        $res_findid = $dbh->query($sql_findid);
+        $id = array();
+        $i = 1;
+        while ($row_findid = $res_findid->fetch()) {
+            $id[$i] = $row_findid['id'];
+            $i++;
+        }
         $from = ($page - 1) * 25 + 1;
         $to = $page * 25;
-        $sql_findfloor = "select*from `$noteid` where `id` between $from and $to order by `id` asc ";
-        $res_findfloor = $dbh->query($sql_findfloor);
+        if($to>count($id)){
+            $to=count($id);
+        }
+        $sql_find = "select*from`$noteid` where `id` between $id[$from] and $id[$to] order by `id` asc ";
+        $res_find = $dbh->query($sql_find);
         $floor = array();
-        while ($row_findfloor = $res_findfloor->fetch()) {
-            $praise = $row_findfloor['praise'];
+        $i=$from;
+        while ($row_find = $res_find->fetch()) {
+            $praise = $row_find['praise'];
             $praiser = explode(",", $praise);
             if (in_array($userid, $praiser)) {
                 $dianzan = "1";
@@ -53,58 +67,80 @@ if(isset($a)) {
                 $dianzan = "0";
                 $dianzanid = count($praiser);
             }
-            $i = $row_findfloor['id'];
-
-            $userid = $row_findfloor['userid'];
-            include_once('pdo_db.php');
-            $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
-            $res = $dbh->query($sql);
-            while ($row = $res->fetch()) {
-                $username = $row['username'];
-                $userphoto = $row['userphoto'];
-                $floor[$i] = array(
-                    "content" => $row_findfloor['floorcontent'],
-                    "username" => $username,
-                    "userphoto" => $userphoto,
-                    "userid" => $userid,
-                    "time" => $row_findfloor['time'],
-                    "quoter" => $row_findfloor['quoter'],
-                    "praiseid" => $dianzanid,
-                    "T-Fpraise" => $dianzan
-                );
-
-            }
-
-
+        $floorid = $row_find['id'];
+        $userid2 = $row_find['userid'];
+        $sql_finduser = "select `username`,`userphoto` from `users` where `userid`= $userid2 ";
+        $res_finduser = $dbh->query($sql_finduser);
+        while ($row_finduser = $res_finduser->fetch()) {
+            $username = $row_finduser['username'];
+            $userphoto = $row_finduser['userphoto'];
+            $floor[$i] = array(
+                "floor" => $floorid,
+                "content" => $row_find['floorcontent'],
+                "username" => $username,
+                "userphoto" => $userphoto,
+                "userid" => $userid2,
+                "time" => $row_find['time'],
+                "quoter" => $row_find['quoter'],
+                "praiseid" => $dianzanid,
+                "T-Fpraise" => $dianzan
+            );
         }
-        for ($a = $from; $a < ($from + count($floor)); $a++) {
-            if ($floor[$a]['quoter'] != 0) {
-                $quoterid = $floor[$a]['quoter'];
-                $sql_quoter = "select `floorcontent`,`userid`,`time` from `$noteid` where `id`=$quoterid ";
-                $res_quoter = $dbh->query($sql_quoter);
-                while ($row_quoter = $res_quoter->fetch()) {
-                    $userid = $row_quoter['userid'];
-                    include_once('pdo_db.php');
-                    $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
-                    $res = $dbh->query($sql);
-                    while ($row = $res->fetch()) {
-                        $username = $row['username'];
-                        $userphoto = $row['userphoto'];
-                        $floor[$a]['quoter'] = array(
-                            "content" => $row_quoter['floorcontent'],
-                            "time" => $row_quoter['time'],
-                            "quoterid" => $floor[$a]['quoter'],
-                            "username" => $username,
-                            "userphoto" => $userphoto,
-                            "userid" => $userid
-
-                        );
-                    }
-
+        $i++;
+    }
+    for($a=$from;$a<=$to;$a++){
+        if ($floor[$a]['quoter'] != 0) {
+            $quoterid = $floor[$a]['quoter'];
+            $sql_quoter = "select `floorcontent`,`userid`,`time` from `$noteid` where `id`=$quoterid ";
+            $res_quoter = $dbh->query($sql_quoter);
+            while ($row_quoter = $res_quoter->fetch()) {
+                $userid = $row_quoter['userid'];
+                include_once('pdo_db.php');
+                $sql = "select `username`,`userphoto` from `users` where `userid`= $userid ";
+                $res = $dbh->query($sql);
+                while ($row = $res->fetch()) {
+                    $username = $row['username'];
+                    $userphoto = $row['userphoto'];
+                    $floor[$a]['quoter'] = array(
+                        "content" => $row_quoter['floorcontent'],
+                        "time" => $row_quoter['time'],
+                        "quoterid" => $floor[$a]['quoter'],
+                        "username" => $username,
+                        "userphoto" => $userphoto,
+                        "userid" => $userid
+                    );
                 }
+
             }
         }
+    }
         echo json_encode(array("floor" => $floor, "pages" => $pages, "notename" => $notename));
+
+
+        if($userid==$noteuser){
+            include_once("pdo_usersmoment.php");
+            $sql_findif="select `id`,`comment` from `$noteuser` where `comment` like 'new-$noteid-%'";
+            $res_findif=$dbh->query($sql_findif);
+            while ($row_findif = $res_findif->fetch()) {
+                $comment = $row_findif['comment'];
+                $id2 = $row_findif['id'];
+            }
+            if (isset($comment)) {
+                $sql_delectmoment = "DELETE FROM `$noteuser` WHERE `$noteuser`.`id` = $id2";
+                $res_delectmoment = $dbh->exec($sql_delectmoment);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
     } else {
         echo json_encode(array("result" => "N"));
     }

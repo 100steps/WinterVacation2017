@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2018-01-31 06:58:29
+-- Generation Time: 2018-02-01 02:47:26
 -- 服务器版本： 5.7.19
 -- PHP Version: 7.1.9
 
@@ -25,23 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `users`
+-- 表的结构 `chat-image`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+DROP TABLE IF EXISTS `chat-image`;
+CREATE TABLE IF NOT EXISTS `chat-image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(24) COLLATE utf8_bin NOT NULL,
-  `userid` bigint(18) NOT NULL,
-  `userpassword` varchar(16) COLLATE utf8_bin NOT NULL,
-  `userphoto` text COLLATE utf8_bin NOT NULL,
-  `sex` int(1) DEFAULT NULL,
-  `birth` date DEFAULT NULL,
-  `QQ` bigint(20) DEFAULT NULL,
-  `email` text COLLATE utf8_bin,
-  `power` int(11) NOT NULL DEFAULT '0',
+  `sender` bigint(20) NOT NULL,
+  `receiver` bigint(20) NOT NULL,
+  `image` text COLLATE utf8_bin NOT NULL,
+  `time` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `userid` (`userid`)
+  KEY `both` (`sender`,`receiver`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 COMMIT;
 
