@@ -14,7 +14,7 @@ class basisHandleMysql
     }
 
     function selectData($table, $column, $value,$content="*"){
-        $sql="select '{$content}'from {$table} where {$column} = '{$value}'";
+        $sql="select $content from {$table} where {$column} = '{$value}'";
         $stmt=$this->dbh->query($sql);
         if($stmt){
             $result=$stmt->fetchAll();
@@ -32,7 +32,15 @@ class basisHandleMysql
     }
 
     function  deleteRow($table,$column,$value){
-        $sql="delete from '{$table}' where '{$column}' = '{$value}'";
+        $sql="delete from $table where $column = '{$value}'";
+        if($this->dbh->exec($sql)==1)
+            return TRUE;
+        else
+            return FALSE;
+    }
+
+    function deleteRow2($table,$content){
+        $sql="delete from '{$table}' where '{$content}'";
         if($this->dbh->exec($sql)==1)
             return TRUE;
         else

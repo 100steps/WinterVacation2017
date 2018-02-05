@@ -1,5 +1,6 @@
+/////////////清空验证码
 <?php
-
+require_once 'basisHandleMysql.php';
 class userClass extends basisHandleMysql
 {
 
@@ -24,16 +25,22 @@ class userClass extends basisHandleMysql
     }
 
     function  deleteUser($id){
-        return $this->deleteRow('user','id',"$id");
+        return $this->deleteRow('user','id',"{$id}");
     }
     function  putUser($id,$name,$email,$sex,$birthday,$province,$city,$phoneNumber,
                       $qq,$signature,$imageUrl){
+
         $sql="update user set name='{$name}',email='{$email}',sex='{$sex}',
               birthday='{$birthday}',province='{$province}',city='{$city}',phoneNumber='{$phoneNumber}',
               qq='{$qq}',signature='{$signature}',imageUrl='{$imageUrl}' where 
               id='{$id}'";
-        if($this->dbh->exec($sql)==1)
+
+
+        if($this->dbh->exec($sql)==1){
+            $_SESSION['name']=$name;
             return TRUE;
+        }
+
         else
             return FALSE;
     }

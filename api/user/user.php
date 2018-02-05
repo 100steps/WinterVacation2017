@@ -1,6 +1,7 @@
-//待加修改密码接口，修改密码方法，改进程序结构
 <?php
 require_once '../object/userClass.php';
+header('content-type:text/html;charset=utf-8');
+session_start();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method){
     case "POST":
@@ -8,6 +9,7 @@ switch ($method){
         $email=$_POST['email'];
         $password=$_POST['password'];
         $captcha=$_POST['captcha'];
+        echo $_SESSION['captcha'];
         if($captcha!=$_SESSION['captcha']) {
             $reply=array("code"=>422,"error"=>"验证码错误");
             echo json_encode($reply);
@@ -48,15 +50,15 @@ switch ($method){
             echo json_encode($reply);
             break;
         }
-        $obj=new userClass();;
+        $obj=new userClass();
         if(!$obj->isExist('user','id',"{$id}")){
-            $reply=array("code"=>422,"error"=>"用户名已注册");
+            $reply=array("code"=>422,"error"=>"用户未注册");
             echo json_encode($reply);
             break;
         }
         $data=$obj->selectData("user","id","{$id}",'(password)');
-        if($data[0][$password]==$password){
-            if($obj->deleteUser("{$id}")){
+        if($data[0]['password']==$password){
+            if($obj->deleteUser($id)){
                 $reply=array("code"=>204);
                 echo json_encode($reply);
                 break;
@@ -75,7 +77,7 @@ switch ($method){
     case "GET":
         $id=$_GET['id'];
         $obj=new userClass();
-        if(!$obj->isExist('user','id','{$id}')){
+        if(!$obj->isExist('user','id',$id)){
             $reply=array("code"=>404,"error"=>"用户不存在");
             echo json_encode($reply);
             break;
@@ -84,6 +86,7 @@ switch ($method){
         $data=$data[0];
         $data["code"]=200;   //添加code
         echo json_encode($data);
+        print_r($data);
         break;
     case "PUT":
         parse_str(file_get_contents('php://input'), $arguments);
@@ -103,6 +106,9 @@ switch ($method){
             echo json_encode($reply);
             break;
         }
+        //echo $_SESSION['name'];
+        //echo $_SESSION['id'];///////////////////////////////
+        $obj=new userClass();
         if($obj->putUser($id,$name,$email,$sex,$birthday,$province,$city,$phoneNumber,$qq,$signature,$imageUrl)){
             $reply=array("code"=>201);
             echo json_encode($reply);

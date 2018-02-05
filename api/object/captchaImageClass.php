@@ -39,7 +39,7 @@ class captchaImageClass
 
     function disturb($image,$num){
         for(;$num>0;$num--){
-            $color=imagecolorallocate($image,rand(0,255),rand(0,255),rand(0,255));
+            $color=imagecolorallocate($image,0,0,0);
             imageline($image,rand(0,40),rand(0,50),rand(120,160),rand(0,50),$color);
         }
     }
@@ -54,12 +54,14 @@ class captchaImageClass
         imagecolorallocate($im, 255, 255, 255);
         $text_color = imagecolorallocate($im, 0, 0, 0);
         imagestring($im, 5, 20, 20,  $this->captchaI, $text_color);
-        $file="../user/tmpImage/".$_SESSION['id'].".jpg";
-        $thumbnail="../user/tmpImage/".$_SESSION['id']."thumbnail.jpg";
-        $this->disturb($im,10);
+        $ran=rand(0,1000000);
+        $file="../user/tmpImage/".$ran.".jpg";
+        $thumbnail="../user/tmpImage/".$ran."thumbnail.jpg";
+        $this->disturb($im,5);
         imagejpeg($im,$file);
-        header('Content-Type: image/jpeg');
+        //header('Content-Type: image/jpeg');
         $th=new thumbnail();
+        //$th->img_create_small($file,$width,$length,$thumbnail);
         $th->img_create_small($file,$width,$length,$thumbnail);
         unlink($file);
         return $thumbnail;

@@ -1,5 +1,7 @@
 <?php
+require_once '../object/userClass.php';
 $method = $_SERVER['REQUEST_METHOD'];
+session_start();
 switch ($method) {
     case "POST":
         $nameOrEmail=$_POST['nameOrEmail'];
@@ -20,6 +22,7 @@ switch ($method) {
             $data=$obj->selectData('user','email',"{$nameOrEmail}",'(password)');
             if($data[0]['password']==$password){
                 $_SESSION['id']=$data[0]['id'];
+                $_SESSION['name']=$data[0]['name'];
                 $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"$data[0]['name']");
                 echo json_encode($reply);
                 break;
@@ -37,10 +40,13 @@ switch ($method) {
                 echo json_encode($reply);
                 break;
             }
-            $data=$obj->selectData('user','name',"{$nameOrEmail}",'(password)');
+            $data=$obj->selectData('user','name',"{$nameOrEmail}");
+            //print_r($data);         //////////////////////////////////
+            //echo $password;
             if($data[0]['password']==$password){
                 $_SESSION['id']=$data[0]['id'];
-                $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"$data[0]['name']");
+                $_SESSION['name']=$data[0]['name'];
+                $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"{$data[0]['name']}");
                 echo json_encode($reply);
                 break;
             }
@@ -54,6 +60,7 @@ switch ($method) {
 
     case "DELETE":
         $_SESSION['id']=null;
+        $_SESSION['name']=null;
         $reply = array("code" => 204);
         echo json_encode($reply);
         break;

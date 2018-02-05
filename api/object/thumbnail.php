@@ -17,7 +17,7 @@ class thumbnail
         $src_H = $image[1]; //获取原图高度
         $tn = imagecreatetruecolor($width, $length); //创建缩略图
         imagecopyresampled($tn, $im, 0, 0, 0, 0, $width, $length, $src_W, $src_H); //复制图像并改变大小
-        header('Content-Type: image/jpeg');
+        //header('Content-Type: image/jpeg');
         return imagejpeg($tn, $small_img);
 
     }

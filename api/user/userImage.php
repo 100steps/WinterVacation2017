@@ -1,10 +1,11 @@
 <?php
 require_once '../object/thumbnail.php';
+session_start();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case "GET":
         header('content-type:image/jpg;');
-        $fileName="./userImage/".$_SESSION['id'].".jpg";
+        $fileName="./userImage/".$_GET['id'].".jpg";
         if($_GET['type']=="original"){
             $content=file_get_contents($fileName);
             echo $content;
