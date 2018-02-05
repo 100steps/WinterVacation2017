@@ -16,7 +16,7 @@
         android:id="@+id/login_icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/icon"
+        android:src="@mipmap/icon"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/title"
         android:layout_marginTop="20dp" />

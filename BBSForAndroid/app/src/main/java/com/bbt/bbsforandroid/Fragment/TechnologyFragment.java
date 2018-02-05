@@ -65,7 +65,7 @@ public class TechnologyFragment extends Fragment {
         //遍历添加，新方法
         postList.addAll(Arrays.asList(posts));
 
-        addItem(new Post("Test", "this is a test", R.drawable.icon, 666));
+        addItem(new Post("Test", "this is a test", R.mipmap.icon, 666));
 
         adapter = new PostAdapter(postList);
         recyclerView.setAdapter(adapter);

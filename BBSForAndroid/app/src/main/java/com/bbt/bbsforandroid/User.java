@@ -1,6 +1,6 @@
 package com.bbt.bbsforandroid;
 
-/**
+/*
  * User信息实体类
  * Created by zyt on 2018/1/27.
  */
