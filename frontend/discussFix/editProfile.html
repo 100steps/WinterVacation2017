@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>个人信息页面</title>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>    
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body background="bg.jpg" style="
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: -2;
+  ">
+    <div id="bg">
+    </div>
+	<div id="headLine">
+	<h1>个人信息</h1>
+  <a href="afterSignIn.html" style="float:right">放弃修改</a>
+	</div>
+
+	<div class="container text-center" id="signUp">
+	<div class="row">
+
+		<form class="form-inline" role="form"><br>
+  			<div class="form-group">
+  				<label for="username">用户名:</label>
+  				<input type="text" class="form-control" id="username" placeholder="elder" required="required">
+  				<span class="glyphicon glyphicon-ok"></span>
+  				<p>3~15个英文字符/数字</p>
+			</div>
+			<p><br></p>
+
+			<div class="form-group">
+				<label for="password">密码:</label>
+  				<input type="password" class="form-control" id="password" placeholder="******" required="required">
+  				<span class="glyphicon glyphicon-ok"></span>
+  				<p>6~20位字符</p>
+			</div>
+			<p><br></p>
+
+			<div class="form-group">
+				<label for="checkPassword">再次确认密码:</label>
+  				<input type="password" class="form-control" id="checkPassword" placeholder="再次确认密码" required="required">
+  				<span class="glyphicon glyphicon-ok"></span>
+  				<p>再次确认密码</p>
+			</div><br>
+			<p><br></p>
+
+			<div class="form-group">
+				<label for="e-mail">邮箱:</label>
+  				<input type="text" class="form-control" id="e-mail" placeholder="xxxx@xx.com" required="required">
+  				<span class="glyphicon glyphicon-ok"></span>
+			</div><br>
+			<p><br></p>
+
+			<div class="form-group">
+				<label for="nickName">昵称:</label>
+  				<input type="text" class="form-control" id="nickName" placeholder="elder" required="required">
+  				<span class="glyphicon glyphicon-ok"></span>
+  				<p>6~20位字符</p>
+			</div><br>
+			<p><br></p>
+
+			<div class="form-group">
+    			<label for="exampleInputFile">上传新头像</label>
+    			<input type="file" id="portrait">
+  			</div>
+  			<p><br></p>
+
+			<div class="form-group">
+				<label for="checkNum">验证码:</label>
+  				<input type="text" class="form-control" id="checkNum" placeholder="输入图中的5位字符" required="required">
+  				<img src="checkPicture.jpg">
+  				<a id="changePic">
+    				<span class="glyphicon glyphicon-refresh"></span>看不清楚换一张
+    			</a>
+			</div><br>
+			<p><br></p>
+
+  			<button type="submit" class="btn btn-default">确认修改个人信息</button><br>
+	</div>
+	</div>
+</body>
+</html>

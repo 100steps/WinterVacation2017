@@ -1,0 +1,22 @@
+#edit{
+	background-color: #faf0e6;
+	border-radius: 10px;
+}
+#threadTitle{
+	margin:1% 25%;
+	border-radius: 5px;
+	width:50%;
+	height: 45px;
+}
+#thread{
+	margin:1% 10%;
+	width:80%;
+	border-radius: 5px;
+}
+#threadSubmit{
+	display: block;
+	margin: 0 auto;
+}
+#editPicture{
+	margin: 1% 10%;
+}

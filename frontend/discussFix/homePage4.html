@@ -13,9 +13,10 @@
     <!--顶部-->
     <div id="head">
     	<img src="head.jpg" style="position:absolute;left:0;top:0;width:100%;z-index: -2;">
-    	<a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a><span> | </span>    	
-    	<a href="#"><span class="glyphicon glyphicon-user"></span>注册 |</a><span> | </span>
-    	<a href="#">帮助</a><span> | </span>
+    	<img src="annpm.png"><span> | </span>
+    	<a href="editProfile.html">个人中心</a><span> | </span>
+    	<a href="homePageMain.html">退出登录</a><span> | </span>
+    	<a href="http://www.baidu.com">帮助 |</a>
     	<br><br><br><br><br><br>
     </div>
 	
@@ -23,17 +24,15 @@
     <div class="row">
     	<!--导航栏-->
     	<ul class="nav nav-pills col-lg-offset-1">
-			<li class="active"><a href="#">广场</a></li>
-			<li><a href="#">情感</a></li>
-			<li><a href="#">搞笑</a></li>
-			<li><a href="#">生活</a></li>
+			<li class="active"><a href="afterSignIn.html">广场</a></li>
+			<li><a href="homePage1.html">情感</a></li>
+			<li><a href="homePage2.html">搞笑</a></li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">更多<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#" style="color: #B22222">校园</a></li>
-					<li><a href="#" style="color: #B22222">体育</a></li>
-					<li><a href="#" style="color: #B22222">娱乐</a></li>
+					<li><a href="homePage3.html" style="color: #B22222">体育</a></li>
+					<li><a href="homePage4.html" style="color: #B22222">娱乐</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -44,6 +43,7 @@
                 <input type="text" class="form-control input-lg" placeholder="输入帖子关键词">
             </div>
             <button type="submit" class="btn btn-default btn-lg">搜索</button>
+            <button type="submit" class="btn btn-default btn-lg" onclick="window.open('http://www.baidu.com')">我要发帖</button>
         </form>
     	</div>
 	</div>
@@ -95,18 +95,15 @@
 		<!--版面-->
 		<div class="panel panel-danger col-lg-10 col-lg-offset-1">
 			<div class="panel-heading">
-				<h3 class="panel-title">今日头条</h3>
+				<h3 class="panel-title">娱（ba）乐（gua）头帖</h3>
 			</div>
     		<div class="panel-body" id="box1">
-    			<a href="#">热帖一</a><span class="label label-danger">热</span><br>
-    			<a href="#">热帖二</a><br>
-    			<a href="#">热帖三</a><br>
-    			<a href="#">热帖四</a><br>
-    			<a href="#">热帖五</a><br>
-    			<a href="#">热帖六</a><br>
-    			<a href="#">热帖七</a><br>
-    			<a href="#">热帖八</a><br>
-    			<a href="#">热帖九</a><br>
+    			<a href="#">鹿晗关晓彤？</a><span class="label label-danger">热</span><br>
+    			<a href="#">景甜张继科？</a><br>
+    			<a href="#">谢娜双胞胎？</a><br>
+    			<a href="#">朱亚文 宝贝？</a><br>
+    			<a href="#">声临其境 边江老师？</a><br>
+    			<a href="#">微博热搜回归？</a><br>
     		</div>
     		<ul class="pagination pagination-sm">
 				<li><a href="#"><<</a></li>
@@ -121,7 +118,7 @@
 
 		<div class="panel panel-danger col-lg-5 col-lg-offset-1" id="div2">
 			<div class="panel-heading">
-				<h3 class="panel-title">即使热帖</h3>
+				<h3 class="panel-title">即时热帖</h3>
 			</div>
     		<div class="panel-body" id="box2">
     			<a href="#">热帖一</a><br>
@@ -147,18 +144,14 @@
 
 		<div class="panel panel-danger col-lg-5">
 			<div class="panel-heading">
-				<h3 class="panel-title">历史巅峰榜</h3>
+				<h3 class="panel-title">猜你喜欢</h3>
 			</div>
     		<div class="panel-body" id="box3">
-    			<a href="#">热帖一</a><br>
-    			<a href="#">热帖二</a><br>
-    			<a href="#">热帖三</a><br>
-    			<a href="#">热帖四</a><br>
-    			<a href="#">热帖五</a><br>
-    			<a href="#">热帖六</a><br>
-    			<a href="#">热帖七</a><br>
-    			<a href="#">热帖八</a><br>
-    			<a href="#">热帖九</a><br>
+    			<a href="#">话题一</a><br>
+    			<a href="#">话题二</a><br>
+    			<a href="#">话题三</a><br>
+    			<a href="#">话题四</a><br>
+    			<a href="#">话题五</a><br>
     		</div>
     		<ul class="pagination pagination-sm">
 				<li><a href="#"><<</a></li>
