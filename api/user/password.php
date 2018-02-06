@@ -19,6 +19,7 @@ switch ($method) {
         parse_str(file_get_contents('php://input'), $arguments);
         $oldPassword=$arguments['oldPassword'];
         $newPassword=$arguments['newPassword'];
+        $newPassword=password_hash($newPassword, PASSWORD_DEFAULT);
         $obj=new userClass();
         $password=$obj->selectData('user','id',$_SESSION['id'],'(password)');
         $password=$password[0]['password'];
@@ -27,7 +28,7 @@ switch ($method) {
             echo json_encode($reply);
             break;
         }
-        if($password==$oldPassword){
+        if(password_verify($oldPassword,$password)){
             $sql="update user set password='{$newPassword}'where id='{$_SESSION['id']}'";
             if($obj->dbh->exec($sql)==1){
                 $reply=array("code"=>201);

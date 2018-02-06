@@ -8,6 +8,7 @@ switch ($method){
         $name=$_POST['name'];
         $email=$_POST['email'];
         $password=$_POST['password'];
+        $password=password_hash($password, PASSWORD_DEFAULT);
         $captcha=$_POST['captcha'];
         echo $_SESSION['captcha'];
         if($captcha!=$_SESSION['captcha']) {
@@ -57,7 +58,7 @@ switch ($method){
             break;
         }
         $data=$obj->selectData("user","id","{$id}",'(password)');
-        if($data[0]['password']==$password){
+        if(password_verify($data[0]['password'],$password)){
             if($obj->deleteUser($id)){
                 $reply=array("code"=>204);
                 echo json_encode($reply);
@@ -84,6 +85,7 @@ switch ($method){
         }
         $data=$obj->selectData('user','id',"{$id}");
         $data=$data[0];
+        $data['password']=null;
         $data["code"]=200;   //添加code
         echo json_encode($data);
         print_r($data);

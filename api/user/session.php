@@ -20,7 +20,7 @@ switch ($method) {
                 break;
             }
             $data=$obj->selectData('user','email',"{$nameOrEmail}",'(password)');
-            if($data[0]['password']==$password){
+            if(password_verify($data[0]['password'],$password)){
                 $_SESSION['id']=$data[0]['id'];
                 $_SESSION['name']=$data[0]['name'];
                 $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"$data[0]['name']");
@@ -43,7 +43,7 @@ switch ($method) {
             $data=$obj->selectData('user','name',"{$nameOrEmail}");
             //print_r($data);         //////////////////////////////////
             //echo $password;
-            if($data[0]['password']==$password){
+            if(password_verify($password,$data[0]['password'])){
                 $_SESSION['id']=$data[0]['id'];
                 $_SESSION['name']=$data[0]['name'];
                 $reply = array("code" => 201,"id"=>"{$data[0]['id']}","name"=>"{$data[0]['name']}");

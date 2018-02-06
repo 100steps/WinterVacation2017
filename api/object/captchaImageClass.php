@@ -55,8 +55,8 @@ class captchaImageClass
         $text_color = imagecolorallocate($im, 0, 0, 0);
         imagestring($im, 5, 20, 20,  $this->captchaI, $text_color);
         $ran=rand(0,1000000);
-        $file="../user/tmpImage/".$ran.".jpg";
-        $thumbnail="../user/tmpImage/".$ran."thumbnail.jpg";
+        $file="../../tmpImage/".$ran.".jpg";
+        $thumbnail="../../tmpImage/".$ran."thumbnail.jpg";
         $this->disturb($im,5);
         imagejpeg($im,$file);
         //header('Content-Type: image/jpeg');

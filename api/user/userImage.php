@@ -1,11 +1,15 @@
 <?php
 require_once '../object/thumbnail.php';
+require_once '../object/basisHandleMysql.php';
 session_start();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case "GET":
         header('content-type:image/jpg;');
-        $fileName="./userImage/".$_GET['id'].".jpg";
+        if(is_file("../../userImage/".$_GET['id'].".jpg"))
+            $fileName="../../userImage/".$_GET['id'].".jpg";
+        else
+            $fileName="../../userImage/userImage.jpg";
         if($_GET['type']=="original"){
             $content=file_get_contents($fileName);
             echo $content;
@@ -15,8 +19,23 @@ switch ($method) {
         }
         break;
     case "PUT":
+        if(!$_SESSION['id']){
+            $reply=array("code"=>401,"error"=>"用户未登陆");
+            echo json_encode($reply);
+            break;
+        }
+        $file="../../userImage/".$_SESSION['id'].".jpg";
+        if(!is_file($file)){
+            $obj=new basisHandleMysql();
+            $sql="update user set imageUrl='{$file}' where id='{$_SESSION['id']}'";
+            if($obj->dbh->exec($sql)!=1){
+                $reply = array("code"=>422,"error"=>"写入数据库失败");
+                echo json_encode($reply);
+                break;
+            }
+        }
         $put=fopen('php://input','r');   //更新头像
-        $fileName="./userImage/".$_SESSION['id'].".jpg";
+        $fileName="../../userImage/".$_SESSION['id'].".jpg";
         $image=fopen($fileName,'w');
         while(!feof($put)){
             fwrite($image,fgets($put));
