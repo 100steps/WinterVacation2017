@@ -5,38 +5,39 @@
  * Date: 2018/2/3
  * Time: 22:24
  */
-
+require_once 'basisHandleMysql.php';
 class replyClass extends basisHandleMysql
 {
     function post(){
         $id=$_POST['id'];
         $text=$_POST['text'];
         date_default_timezone_set("Asia/Shanghai");
-        $dateTime=date('Y-m-d-H-i-s');
+        $date=date('Y-m-d H:i:s');
         $user=$_SESSION['name'];
         $data=$this->selectData('post','id',$id);
         if(!$data){
             $reply = array("code" => 404,"error"=>"空帖子");
-            echo json_encode($reply);
-            return ;
+            return $reply;
         }
         $this->dbh->beginTransaction();
         $replyAmount=$data[0]['replyAmount']+1;
         $replyNumber=$data[0]['replyNumber']+1;
-        $sql="update post set replyAmount='{$replyAmount}',replyNumber='{$replyNumber}'";
-        if(!$this->dbh->exec($sql)==1){
-            $this->dbh->rollBack();
-        }
-        $sql="insert into reply (id,text,dateTime,user,number) values
-                  ('{$id}','{$text}','{$dateTime}','{$user}','{$replyNumber}')";
-        if($this->dbh->exec($sql)==1){
+        $sql="update post set replyAmount='{$replyAmount}',replyNumber='{$replyNumber}'where id='{$id}'";
+        $set=$this->dbh->exec($sql);
+        $delete=$this->deleteRow('postList','id',$id);
+        $sql="insert into postList (id) values ('{$id}')";
+        $put=$this->dbh->exec($sql);
+        $sql="insert into reply (id,text,date,user,number) values
+                  ('{$id}','{$text}','{$date}','{$user}','{$replyNumber}')";
+        $insert=$this->dbh->exec($sql);
+        if($insert==1&&$set==1&&$put==1&&$delete){
             $reply = array("code" => 201);
-            echo json_encode($reply);
             $this->dbh->commit();
+            return $reply;
         }else{
             $reply = array("code" => 400,"error"=>"创建失败");
-            echo json_encode($reply);
             $this->dbh->rollBack();
+            return $reply;
         }
     }
 
@@ -55,7 +56,7 @@ class replyClass extends basisHandleMysql
                 $tmp=0;
                 $reply=array();
                 for(;$number<$end;$number++){        //填充回复的数组
-                    $reply["$tmp++"]=$stmt["$number-1"];
+                    $reply[$tmp++]=$stmt[$number-1];
                 }
                 $data['reply']=$reply;
                 $data['amount']=$amount;
@@ -74,33 +75,34 @@ class replyClass extends basisHandleMysql
         $id=$arguments['id'];
         $number=$arguments['number'];
         if(!($this->isExist('post','id',"$id")
-            &&$this->isExist('reply','number',$number))){
+            &&$this->select('reply',"*","number=$number and id=$id"))){
             $reply = array("code" => 404,"error"=>"空回复");
-            echo json_encode($reply);
-            return ;
+            return $reply;
         }
         $data=$this->selectData('post','id',$id);
-        $section=$this->selectData('sections','name',"$data[0][section]");
+        $section=$this->selectData('sections','name',$data[0]['section']);
         $reply=$this->selectData('reply','number',$number);
-        if($_SESSION['id']==00001||$section[0]['moderator']==$_SESSION['name']
+        if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']
             ||$_SESSION['name']==$data[0]['author']||$_SESSION['name']==$reply[0]['user']){
             $data=$this->selectData('post','id',$id);
             $replyAmount=$data[0]['replyAmount']-1;
             $this->dbh->beginTransaction();
             $delete=$this->deleteRow2('reply',"id='{$id}' and number='{$number}'");
-            $sql="update post set replyAmount='{$replyAmount}'";
-            if($delete||$this->dbh->exec($sql)==1){
+            if($delete)
+            echo $delete.'ppppppppppp';
+            $sql="update post set replyAmount='{$replyAmount}'where id ='{$id}'";
+            if($delete && ($this->dbh->exec($sql)==1)){
                 $reply = array("code" => 204);
-                echo json_encode($reply);
                 $this->dbh->commit();
+                return $reply;
             }else{
                 $this->dbh->rollBack();
                 $reply = array("code" => 404,"error"=>"删除失败");
-                echo json_encode($reply);
+                return $reply;
             }
         }else{
             $reply = array("code" => 401,"error"=>"没有权限");
-            echo json_encode($reply);
+            return $reply;
         }
     }
 }

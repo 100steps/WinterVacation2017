@@ -1,5 +1,4 @@
 <?php
-//等待修改用户部分
 
 class basisHandleMysql
 {
@@ -12,12 +11,22 @@ class basisHandleMysql
             die();
         }
     }
+    function select($table, $column,$content){
+        $sql="select $column from $table where $content";
+        $stmt=$this->dbh->query($sql);
+        if($stmt){
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        else
+            return FALSE;
+    }
 
-    function selectData($table, $column, $value,$content="*"){
+    function selectData($table, $column, $value,$content="*"){              //旧版本，待取消
         $sql="select $content from {$table} where {$column} = '{$value}'";
         $stmt=$this->dbh->query($sql);
         if($stmt){
-            $result=$stmt->fetchAll();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
         else
@@ -40,7 +49,7 @@ class basisHandleMysql
     }
 
     function deleteRow2($table,$content){
-        $sql="delete from '{$table}' where '{$content}'";
+        $sql="delete from $table  where $content";
         if($this->dbh->exec($sql)==1)
             return TRUE;
         else

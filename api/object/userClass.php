@@ -1,4 +1,3 @@
-/////////////清空验证码
 <?php
 require_once 'basisHandleMysql.php';
 class userClass extends basisHandleMysql

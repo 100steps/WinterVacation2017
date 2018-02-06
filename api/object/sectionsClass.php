@@ -9,7 +9,7 @@ require_once 'basisHandleMysql.php';
 class sectionsClass extends basisHandleMysql
 {
     function getSections(){
-        $data=$this->selectData('sections','*','*');
+        $data=$this->selectData('sections',1,1);
         if($data){
             $num=count($data);
             $data['code']=200;
@@ -22,7 +22,7 @@ class sectionsClass extends basisHandleMysql
     }
 
     function deleteSection($section){
-        if($_SESSION['id']==00001){
+        if($_SESSION['id']==1){
             if($this->deleteRow('sections','name',"{$section}")){
                 $reply = array("code" => 204);
                 echo json_encode($reply);
@@ -37,25 +37,25 @@ class sectionsClass extends basisHandleMysql
     }
 
     function postSection($name,$moderator,$introduce){
-        if($_SESSION['id']==00001){
+        if($_SESSION['id']==1){
             $sql="insert into sections (name,moderator,introduce) values
                   ('{$name}','{$moderator}','{$introduce}')";
             if($this->dbh->exec($sql)==1){
                 $reply = array("code" => 201);
-                echo json_encode($reply);
+                return $reply;
             }else{
                 $reply = array("code" => 500,"error"=>"创建失败");
-                echo json_encode($reply);
+                return $reply;
             }
         }else{
             $reply = array("code" => 401,"error"=>"没有权限");
-            echo json_encode($reply);
+            return $reply;
         }
     }
 
-    function putSections($name,$moderator,$introduce){
-        if($_SESSION['id']==00001){
-            $sql="update user set name='{$name}',moderator='{$moderator}',introduce='{$introduce}'";
+    function putSections($oldName,$newName,$moderator,$introduce){
+        if($_SESSION['id']==1){
+            $sql="update sections set name='{$newName}',moderator='{$moderator}',introduce='{$introduce}'where name='{$oldName}'";
             if($this->dbh->exec($sql)==1){
                 $reply = array("code" => 201);
                 echo json_encode($reply);
