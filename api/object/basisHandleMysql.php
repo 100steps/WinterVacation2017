@@ -13,6 +13,7 @@ class basisHandleMysql
     }
     function select($table, $column,$content){
         $sql="select $column from $table where $content";
+        //echo $sql;
         $stmt=$this->dbh->query($sql);
         if($stmt){
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);

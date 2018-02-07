@@ -24,8 +24,10 @@ class replyClass extends basisHandleMysql
         $replyNumber=$data[0]['replyNumber']+1;
         $sql="update post set replyAmount='{$replyAmount}',replyNumber='{$replyNumber}'where id='{$id}'";
         $set=$this->dbh->exec($sql);
+        $data=$this->select('postlist',"section,top","id = '{$id}'");
         $delete=$this->deleteRow('postList','id',$id);
-        $sql="insert into postList (id) values ('{$id}')";
+        $sql="insert into postlist (id,section,top) values ('{$id}',
+               '{$data[0]['section']}','{$data[0]['top']}')";
         $put=$this->dbh->exec($sql);
         $sql="insert into reply (id,text,date,user,number) values
                   ('{$id}','{$text}','{$date}','{$user}','{$replyNumber}')";
@@ -88,8 +90,6 @@ class replyClass extends basisHandleMysql
             $replyAmount=$data[0]['replyAmount']-1;
             $this->dbh->beginTransaction();
             $delete=$this->deleteRow2('reply',"id='{$id}' and number='{$number}'");
-            if($delete)
-            echo $delete.'ppppppppppp';
             $sql="update post set replyAmount='{$replyAmount}'where id ='{$id}'";
             if($delete && ($this->dbh->exec($sql)==1)){
                 $reply = array("code" => 204);

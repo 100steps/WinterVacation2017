@@ -27,7 +27,8 @@ class postClass extends basisHandleMysql
         $post=$this->dbh->exec($sql);
         $id=$this->select('post','id',
             "date='{$date}' and author='{$_SESSION['name']}'")[0]['id'];
-        $sql="insert into postList (id) values ('{$id}')";
+        $sql="insert into postList (id,section,top) values ('{$id}',
+               '{$section}',0)";
         $postList=$this->dbh->exec($sql);
         if($post==1&&$postList==1){
             $this->dbh->commit();
@@ -53,8 +54,10 @@ class postClass extends basisHandleMysql
         $section=$this->selectData('sections','name',$data[0]['section']);
         if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']||$_SESSION['name']==$data[0]['author']){
             $this->dbh->beginTransaction();
+            $data=$this->select('postList','section,top',"id = '{$id}'");
             $delete=$this->deleteRow('postList','id',$id);
-            $sql="insert into postList (id) values ('{$id}')";
+            $sql="insert into postList (id,section,top) values ('{$id}',
+               '{$data[0]['section']}','{$data[0]['top']}')";
             $put=$this->dbh->exec($sql);
             $sql="update post set title='{$title}',text='{$text}'where id='{$id}'";
             $set=$this->dbh->exec($sql);
