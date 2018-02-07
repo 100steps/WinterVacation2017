@@ -20,7 +20,7 @@ class basisHandleMysql
             return $result;
         }
         else
-            return 0;
+            return 0;      //返回零以区分查询失败还是查询结果为空
     }
 
     function selectData($table, $column, $value,$content="*"){              //旧版本，待取消

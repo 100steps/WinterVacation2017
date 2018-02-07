@@ -13,10 +13,10 @@ class thumbnail
                 $im = imagecreatefrompng($big_img);
                 break;
         }
-        $src_W = $image[0]; //获取原图宽度
-        $src_H = $image[1]; //获取原图高度
+        $srcW = $image[0]; //获取原图宽度
+        $srcH = $image[1]; //获取原图高度
         $tn = imagecreatetruecolor($width, $length); //创建缩略图
-        imagecopyresampled($tn, $im, 0, 0, 0, 0, $width, $length, $src_W, $src_H); //复制图像并改变大小
+        imagecopyresampled($tn, $im, 0, 0, 0, 0, $width, $length, $srcW, $srcH); //复制图像并改变大小
         //header('Content-Type: image/jpeg');
         return imagejpeg($tn, $small_img);
 

@@ -45,7 +45,6 @@ class userClass extends basisHandleMysql
 
 
     function changeName($oldName,$newName){
-        $_SESSION['name']=$newName;
         $sql="update blackList set name='{$newName}'where 
               name='{$oldName}'";
         $this->dbh->exec($sql);
@@ -58,5 +57,13 @@ class userClass extends basisHandleMysql
         $sql="update sections set moderator='{$newName}'where 
               moderator='{$oldName}'";
         $this->dbh->exec($sql);
+        if(is_file("../../userImage/".$_SESSION['name'].".jpg")){
+            $file="../../userImage/".$newName.".jpg";
+            $sql="update user set imageUrl='{$file}' where id='{$_SESSION['id']}'";
+            $this->dbh->exec($sql);
+            rename("../../userImage/".$_SESSION['name'].".jpg",
+                   "../../userImage/".$newName.".jpg");
+        }
+        $_SESSION['name']=$newName;
     }
 }

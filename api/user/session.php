@@ -1,4 +1,7 @@
 <?php
+/*
+ * 通过SESSION来记录登录状态
+ * */
 require_once '../object/userClass.php';
 $method = $_SERVER['REQUEST_METHOD'];
 session_start();

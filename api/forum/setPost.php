@@ -11,9 +11,9 @@ switch ($method) {
         $essential=$arguments['essential'];
         $data=$obj->selectData('post','id',$id);
         $section=$obj->selectData('sections','name',$data[0]['section']);
-        if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']){
+        if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']){    //判断权限
             $obj->dbh->beginTransaction();
-            $topExec=1;
+            $topExec=1;           //初始化三个变量，记录数据库是否操作成功
             $listTop=1;
             $essentialExec=1;
             if($top!=$data[0]['top']){

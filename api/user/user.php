@@ -8,7 +8,7 @@ switch ($method){
         $name=$_POST['name'];
         $email=$_POST['email'];
         $password=$_POST['password'];
-        $password=password_hash($password, PASSWORD_DEFAULT);
+        $password=password_hash($password, PASSWORD_DEFAULT);//通过单向散列算法加密保存用户密码
         $captcha=$_POST['captcha'];
         echo $_SESSION['captcha'];
         if($captcha!=$_SESSION['captcha']) {
@@ -76,19 +76,18 @@ switch ($method){
             break;
         }
     case "GET":
-        $id=$_GET['id'];
+        $name=$_GET['name'];
         $obj=new userClass();
-        if(!$obj->isExist('user','id',$id)){
+        if(!$obj->isExist('user','name',$name)){
             $reply=array("code"=>404,"error"=>"用户不存在");
             echo json_encode($reply);
             break;
         }
-        $data=$obj->selectData('user','id',"{$id}");
+        $data=$obj->selectData('user','name',"{$name}");
         $data=$data[0];
         $data['password']=null;
         $data["code"]=200;   //添加code
         echo json_encode($data);
-        print_r($data);
         break;
     case "PUT":
         parse_str(file_get_contents('php://input'), $arguments);

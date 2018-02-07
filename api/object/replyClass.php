@@ -27,7 +27,7 @@ class replyClass extends basisHandleMysql
             $reply = array("code" => 404,"error"=>"空帖子");
             return $reply;
         }
-        $list=$this->select('postlist',"section,top","id = '{$id}'");
+        $list=$this->select('postList',"section,top","id = '{$id}'");
         if(!$list){
             $reply = array("code" => 404,"error"=>"无法查询帖子列表");
             return $reply;
@@ -38,11 +38,11 @@ class replyClass extends basisHandleMysql
             return $reply;
         }
         $this->dbh->beginTransaction();
-        $replyAmount=$data[0]['replyAmount']+1;
+        $replyAmount=$data[0]['replyAmount']+1;//回帖数量和最新楼层加一
         $replyNumber=$data[0]['replyNumber']+1;
         $sql="update post set replyAmount='{$replyAmount}',replyNumber='{$replyNumber}'where id='{$id}'";
         $set=$this->dbh->exec($sql);
-        $delete=$this->deleteRow('postList','id',$id);
+        $delete=$this->deleteRow('postList','id',$id);  //更新在postList中的位置
         $sql="insert into postlist (id,section,top) values ('{$id}',
                '{$list[0]['section']}','{$list[0]['top']}')";
         $put=$this->dbh->exec($sql);
@@ -102,10 +102,10 @@ class replyClass extends basisHandleMysql
         $section=$this->selectData('sections','name',$data[0]['section']);
         $reply=$this->selectData('reply','number',$number);
         if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']
-            ||$_SESSION['name']==$data[0]['author']||$_SESSION['name']==$reply[0]['user']){
+            ||$_SESSION['name']==$data[0]['author']||$_SESSION['name']==$reply[0]['user']){ //检测权限
             $data=$this->selectData('post','id',$id);
             $replyAmount=$data[0]['replyAmount']-1;
-            $this->dbh->beginTransaction();
+            $this->dbh->beginTransaction();//删除回复和更新帖子对回复的记录
             $delete=$this->deleteRow2('reply',"id='{$id}' and number='{$number}'");
             $sql="update post set replyAmount='{$replyAmount}'where id ='{$id}'";
             if($delete && ($this->dbh->exec($sql)==1)){

@@ -8,7 +8,7 @@ switch ($method) {
         header('content-type:image/jpg;');
         $image=$obj->createImage($_GET['length'],$_GET['width']);
         $content=file_get_contents($image);
-        $_SESSION['captcha']=$obj->getCaptcha();
+        $_SESSION['captcha']=$obj->getCaptcha();//验证码保留在SESSION中，收到客户端的验证码时与之对比
         echo $content;
         unlink($image);
         break;

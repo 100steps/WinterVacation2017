@@ -19,7 +19,7 @@ class postClass extends basisHandleMysql
         date_default_timezone_set("Asia/Shanghai");
         $date=date('Y-m-d H:i:s');
         $author=$_SESSION['name'];
-        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){//检测验证码是否为空以防不请求验证码直接访问
             $reply = array("code" => 401,"error"=>"验证码错误");
             $_SESSION['captcha']=null;
             return $reply;
@@ -34,7 +34,7 @@ class postClass extends basisHandleMysql
             $reply = array("code" => 204,"error"=>"无此版块");
             return $reply;
         }
-        $this->dbh->beginTransaction();
+        $this->dbh->beginTransaction();//开启事务，更新post和postList都成功才能成功
         $sql="insert into post (title,text,section,date,author) values
                   ('{$title}','{$text}','{$section}','{$date}','{$author}')";
         $post=$this->dbh->exec($sql);
@@ -77,8 +77,8 @@ class postClass extends basisHandleMysql
             $reply = array("code" => 401,"error"=>"已被关进小黑屋");
             return $reply;
         }
-        if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']||$_SESSION['name']==$data[0]['author']){
-            $this->dbh->beginTransaction();
+        if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']||$_SESSION['name']==$data[0]['author']){//检测权限
+            $this->dbh->beginTransaction();//通过删除再插入来更新在number
             $data=$this->select('postList','section,top',"id = '{$id}'");
             $delete=$this->deleteRow('postList','id',$id);
             $sql="insert into postList (id,section,top) values ('{$id}',
@@ -103,12 +103,13 @@ class postClass extends basisHandleMysql
 
     function get(){
         $id=$_GET['id'];
+        $amount=$_GET['amount'];
         $data=$this->selectData('post','id',$id);
         if($data!=0){
             $obj=new replyClass();
             $data=$data[0];
             $data['code']=200;
-            $data['reply']=$obj->get($id,1,10);
+            $data['reply']=$obj->get($id,1,$amount);
         }else{
             $data['code']=404;
             $data['error']="查询失败";
@@ -127,7 +128,7 @@ class postClass extends basisHandleMysql
         $section=$this->selectData('sections','name',$data[0]['section']);
         if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']
             ||$_SESSION['name']==$data[0]['author']){
-            $this->dbh->beginTransaction();
+            $this->dbh->beginTransaction();//在post和postList中删除
             if($this->deleteRow('post','id',$id)
                 &&$this->deleteRow('postList','id',$id)){
                 $this->dbh->commit();

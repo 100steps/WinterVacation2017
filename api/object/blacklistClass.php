@@ -9,7 +9,7 @@
 require_once 'basisHandleMysql.php';
 class blacklistClass extends basisHandleMysql
 {
-    function checkPrivilege($name,$section){
+    function checkPrivilege($name,$section){       //检测权限
         $data=$this->select('sections','moderator',"name='{$section}'");
         if($_SESSION['name']=="admin"||$name=$data[0]['moderator']){
             return TRUE;
@@ -25,7 +25,7 @@ class blacklistClass extends basisHandleMysql
         else
             return FALSE;
     }
-    function isBlack($name,$section){
+    function isBlack($name,$section){  //检测是否处于黑名单
         if($this->select('blacklist','*',"name='{$name}' 
         and section ='{$section}'"))
             return TRUE;
