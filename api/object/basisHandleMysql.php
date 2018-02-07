@@ -20,7 +20,7 @@ class basisHandleMysql
             return $result;
         }
         else
-            return FALSE;
+            return 0;
     }
 
     function selectData($table, $column, $value,$content="*"){              //旧版本，待取消
@@ -31,7 +31,7 @@ class basisHandleMysql
             return $result;
         }
         else
-            return FALSE;
+            return 0;
     }
 
     function  isExist($table, $column, $value){

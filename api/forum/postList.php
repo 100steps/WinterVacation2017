@@ -23,6 +23,11 @@ switch ($method) {
                 break ;
         }
         $tmp=0;
+        if($list==0){
+            $reply=array('code'=>404,'error'=>"查询失败");
+            echo json_encode($reply);
+            break;
+        }
         foreach ($list as $idArray) {
             $id=intval($idArray['id']);
             $data[$tmp] = $obj->select('post', 'id,title,author,date,essential

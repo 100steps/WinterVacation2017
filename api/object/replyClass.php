@@ -6,6 +6,7 @@
  * Time: 22:24
  */
 require_once 'basisHandleMysql.php';
+require_once 'blacklistClass.php';
 class replyClass extends basisHandleMysql
 {
     function post(){
@@ -14,9 +15,26 @@ class replyClass extends basisHandleMysql
         date_default_timezone_set("Asia/Shanghai");
         $date=date('Y-m-d H:i:s');
         $user=$_SESSION['name'];
+        $captcha=$_SESSION['captcha'];
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){
+            $reply = array("code" => 401,"error"=>"验证码错误");
+            $_SESSION['captcha']=null;
+            return $reply;
+        }
+        $_SESSION['captcha']=null;
         $data=$this->selectData('post','id',$id);
         if(!$data){
             $reply = array("code" => 404,"error"=>"空帖子");
+            return $reply;
+        }
+        $list=$this->select('postlist',"section,top","id = '{$id}'");
+        if(!$list){
+            $reply = array("code" => 404,"error"=>"无法查询帖子列表");
+            return $reply;
+        }
+        $black=new blacklistClass();
+        if($black->isBlack($user,$data[0]['section'])){
+            $reply = array("code" => 401,"error"=>"已被关进小黑屋");
             return $reply;
         }
         $this->dbh->beginTransaction();
@@ -24,10 +42,9 @@ class replyClass extends basisHandleMysql
         $replyNumber=$data[0]['replyNumber']+1;
         $sql="update post set replyAmount='{$replyAmount}',replyNumber='{$replyNumber}'where id='{$id}'";
         $set=$this->dbh->exec($sql);
-        $data=$this->select('postlist',"section,top","id = '{$id}'");
         $delete=$this->deleteRow('postList','id',$id);
         $sql="insert into postlist (id,section,top) values ('{$id}',
-               '{$data[0]['section']}','{$data[0]['top']}')";
+               '{$list[0]['section']}','{$list[0]['top']}')";
         $put=$this->dbh->exec($sql);
         $sql="insert into reply (id,text,date,user,number) values
                   ('{$id}','{$text}','{$date}','{$user}','{$replyNumber}')";
@@ -49,7 +66,7 @@ class replyClass extends basisHandleMysql
         //$sql="select*from reply where id = '{$id}' and number > '{$begin}' and number <'{$end}'";
         $stmt=$this->selectData('reply','id',$id);
         //$stmt=$this->dbh->query($sql);
-        if($stmt){
+        if($stmt!=0){
             if(count($stmt)<=$amount){
                 $data['reply']=$stmt;
                 $data['amount']=count($stmt);

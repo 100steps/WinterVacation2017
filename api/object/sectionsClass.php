@@ -10,14 +10,17 @@ class sectionsClass extends basisHandleMysql
 {
     function getSections(){
         $data=$this->selectData('sections',1,1);
-        if($data){
-            $num=count($data);
-            $data['code']=200;
-            $data['amount']=$num;
-        }else{
-            $data['code']=404;
-            $data['error']="查询失败";
-        }
+//        if($data){
+//            $num=count($data);
+//            $data['code']=200;
+//            $data['amount']=$num;
+//        }else{
+//            $data['code']=404;
+//            $data['error']="查询失败";
+//        }
+        $num=count($data);
+        $data['code']=200;
+        $data['amount']=$num;
         echo json_encode($data);
     }
 

@@ -7,6 +7,7 @@
  */
 require_once 'basisHandleMysql.php';
 require_once 'replyClass.php';
+require_once '../object/blacklistClass.php';
 class postClass extends basisHandleMysql
 {
 
@@ -14,9 +15,21 @@ class postClass extends basisHandleMysql
         $title=$_POST['title'];
         $text=$_POST['text'];
         $section=$_POST['section'];
+        $captcha=$_POST['captcha'];
         date_default_timezone_set("Asia/Shanghai");
         $date=date('Y-m-d H:i:s');
         $author=$_SESSION['name'];
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){
+            $reply = array("code" => 401,"error"=>"验证码错误");
+            $_SESSION['captcha']=null;
+            return $reply;
+        }
+        $_SESSION['captcha']=null;
+        $black=new blacklistClass();
+        if($black->isBlack($author,$section)){
+            $reply = array("code" => 401,"error"=>"已被关进小黑屋");
+            return $reply;
+        }
         if(!$this->isExist('sections','name',$section)){
             $reply = array("code" => 204,"error"=>"无此版块");
             return $reply;
@@ -46,12 +59,24 @@ class postClass extends basisHandleMysql
         $title=$arguments['title'];
         $text=$arguments['text'];
         $id=$arguments['id'];
+        $captcha=$arguments['captcha'];
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){
+            $reply = array("code" => 401,"error"=>"验证码错误");
+            $_SESSION['captcha']=null;
+            return $reply;
+        }
+        $_SESSION['captcha']=null;
         if(!$this->isExist('post','id',"$id")){
             $reply = array("code" => 404,"error"=>"空帖子");
             return $reply;
         }
         $data=$this->selectData('post','id',$id);
         $section=$this->selectData('sections','name',$data[0]['section']);
+        $black=new blacklistClass();
+        if($black->isBlack($_SESSION['name'],$section)){
+            $reply = array("code" => 401,"error"=>"已被关进小黑屋");
+            return $reply;
+        }
         if($_SESSION['id']==1||$section[0]['moderator']==$_SESSION['name']||$_SESSION['name']==$data[0]['author']){
             $this->dbh->beginTransaction();
             $data=$this->select('postList','section,top',"id = '{$id}'");
@@ -79,7 +104,7 @@ class postClass extends basisHandleMysql
     function get(){
         $id=$_GET['id'];
         $data=$this->selectData('post','id',$id);
-        if($data){
+        if($data!=0){
             $obj=new replyClass();
             $data=$data[0];
             $data['code']=200;

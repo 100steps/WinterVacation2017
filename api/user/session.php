@@ -7,11 +7,13 @@ switch ($method) {
         $nameOrEmail=$_POST['nameOrEmail'];
         $password=$_POST['password'];
         $captcha=$_POST['captcha'];
-        if($captcha!=$_SESSION['captcha']){
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']){
             $reply = array("code" => 401,"error"=>"验证码错误");
             echo json_encode($reply);
+            $_SESSION['captcha']=null;
             break;
         }
+        $_SESSION['captcha']=null;
         $obj=new userClass();
         if(stripos($nameOrEmail,".com")){
             if(!$obj->isExist('user','email',"{$nameOrEmail}")){

@@ -15,8 +15,8 @@ class captchaImageClass
     private $x;
     private $y;
     private $captchaArray=array('Z','S','E','4','X','d','R','5','C','f','T','6',
-        'V','g','Y','7','B','h','u','8','N','J','i','9','m','k','O','0','l','P',
-        'a','w','3','q','1','2');
+        'V','g','Y','7','B','h','u','8','N','J','i','9','m','k','P',
+        'a','w','3','q','2');
 
 
     function getXY(){
@@ -26,7 +26,7 @@ class captchaImageClass
 
     function doCaptcha(){
         for($i=0;$i<5;$i++){
-            $tmp=$this->captchaArray[rand(0,35)];
+            $tmp=$this->captchaArray[rand(0,31)];
             $this->captcha.=$tmp;
             $this->captchaI.=$tmp."  ";
         }

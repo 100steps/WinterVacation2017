@@ -36,7 +36,6 @@ class userClass extends basisHandleMysql
 
 
         if($this->dbh->exec($sql)==1){
-            $_SESSION['name']=$name;
             return TRUE;
         }
 
@@ -45,5 +44,19 @@ class userClass extends basisHandleMysql
     }
 
 
-
+    function changeName($oldName,$newName){
+        $_SESSION['name']=$newName;
+        $sql="update blackList set name='{$newName}'where 
+              name='{$oldName}'";
+        $this->dbh->exec($sql);
+        $sql="update post set author='{$newName}'where 
+              author='{$oldName}'";
+        $this->dbh->exec($sql);
+        $sql="update reply set user='{$newName}'where 
+              user='{$oldName}'";
+        $this->dbh->exec($sql);
+        $sql="update sections set moderator='{$newName}'where 
+              moderator='{$oldName}'";
+        $this->dbh->exec($sql);
+    }
 }

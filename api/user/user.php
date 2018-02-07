@@ -112,6 +112,9 @@ switch ($method){
         //echo $_SESSION['id'];///////////////////////////////
         $obj=new userClass();
         if($obj->putUser($id,$name,$email,$sex,$birthday,$province,$city,$phoneNumber,$qq,$signature,$imageUrl)){
+            if($name!=$_SESSION['name']){
+                $obj->changeName($_SESSION['name'],$name);
+            }
             $reply=array("code"=>201);
             echo json_encode($reply);
             break;
