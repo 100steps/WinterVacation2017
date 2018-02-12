@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-02-07 15:54:47
--- 服务器版本： 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: 2018-02-12 08:58:51
+-- 服务器版本： 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -209,7 +209,7 @@ CREATE TABLE `user` (
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `sex` enum('male','famale') DEFAULT NULL,
+  `sex` enum('male','famale','secret') DEFAULT 'secret',
   `birthday` date DEFAULT NULL,
   `province` char(64) DEFAULT NULL,
   `city` char(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
