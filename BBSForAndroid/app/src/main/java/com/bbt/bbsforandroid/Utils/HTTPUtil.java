@@ -63,7 +63,7 @@ public class HTTPUtil {
                 gson.fromJson(jsonData, new TypeToken<List<User>>() {}.getType());
         for (User user : userList) {
             Log.i("user_name", user.getUser_name());
-            Log.i("user_gender", user.getUser_gender());
+            Log.i("user_password", user.getUser_password());
         }
     }
 
