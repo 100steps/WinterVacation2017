@@ -113,7 +113,7 @@
                 }
                 container.innerHTML = html.join("");
                 container.onclick = function() {
-                    timeStart(container);
+                    container.onclick = timeStart;
                 }
                 console.log(clock);
                 console.log(mineId);
@@ -225,9 +225,9 @@
                 }
                 element.value = "";
             }
-            function timeStart(element) {
+            function timeStart() {
                 console.log(clock);
-                element.onclick = null;
+                document.getElementById("container").onclick = null;
                 timer();
                 clock = setInterval("timer()", 1000);
             }
