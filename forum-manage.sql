@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2018-02-10 05:14:12
+-- Generation Time: 2018-02-13 16:47:20
 -- 服务器版本： 5.7.19
 -- PHP Version: 7.1.9
 
@@ -25,19 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `chat-image`
+-- 表的结构 `forum-manage`
 --
 
-DROP TABLE IF EXISTS `chat-image`;
-CREATE TABLE IF NOT EXISTS `chat-image` (
+DROP TABLE IF EXISTS `forum-manage`;
+CREATE TABLE IF NOT EXISTS `forum-manage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sender` bigint(20) NOT NULL,
-  `receiver` bigint(20) NOT NULL,
-  `image` text COLLATE utf8_bin NOT NULL,
+  `userid` bigint(20) NOT NULL,
+  `thing` varchar(255) COLLATE utf8_bin NOT NULL,
+  `image` varchar(255) COLLATE utf8_bin NOT NULL,
   `time` datetime NOT NULL,
-  `readed` int(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `both` (`sender`,`receiver`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `time` (`time`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 COMMIT;
 

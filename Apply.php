@@ -56,7 +56,11 @@ if($code!=$_SESSION['code']){
     $sql_add="CREATE TABLE `users-db`.`$userid` (
     `id` INT NOT NULL auto_increment,
     `userid` BIGINT(18) NOT NULL ,
-    PRIMARY KEY (`id`)
+    `m` int(1),
+    `y` int(1),
+    PRIMARY KEY (`id`),
+    index(`m`),
+    index(`y`)
     )";
     $res2=$dbh->exec($sql_add);
     include_once("pdo_usersmoment.php");

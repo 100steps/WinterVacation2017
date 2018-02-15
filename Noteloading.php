@@ -1,4 +1,11 @@
 <?php
+function userTextDecode($str){
+    $text = json_encode($str); //暴露出unicode
+    $text = preg_replace_callback('/\\\\\\\\/i',function($str){
+        return '\\';
+    },$text); //将两条斜杠变成一条，其他不动
+    return json_decode($text);
+}
 $noteid=$_GET['NoteId'];
 $page=$_GET['Page'];
 if(isset($_COOKIE['userid'])){
@@ -25,7 +32,7 @@ if(isset($a)) {
     $sql_findname2 = "select `notename`,`userid` from `forum` where `id`=$noteid";
     $res_findname2 = $dbh->query($sql_findname2);
     while ($row_findname2 = $res_findname2->fetch()) {
-        $notename = $row_findname2['notename'];
+        $notename =userTextDecode($row_findname2['notename']);
         $noteuser=$row_findname2['userid'];
     }
     if ($page <= $pages) {
@@ -62,10 +69,13 @@ if(isset($a)) {
             $praiser = explode(",", $praise);
             if (in_array($userid, $praiser)) {
                 $dianzan = "1";
-                $dianzanid = count($praiser);
+                $dianzanid = count($praiser)-1;
             } else {
                 $dianzan = "0";
-                $dianzanid = count($praiser);
+                $dianzanid = count($praiser)-1;
+            }
+            if($userid==""){
+                $dianzan="0";
             }
         $floorid = $row_find['id'];
         $userid2 = $row_find['userid'];
@@ -76,7 +86,7 @@ if(isset($a)) {
             $userphoto = $row_finduser['userphoto'];
             $floor[$i] = array(
                 "floor" => $floorid,
-                "content" => $row_find['floorcontent'],
+                "content" => userTextDecode($row_find['floorcontent']),
                 "username" => $username,
                 "userphoto" => $userphoto,
                 "userid" => $userid2,
@@ -102,7 +112,7 @@ if(isset($a)) {
                     $username = $row['username'];
                     $userphoto = $row['userphoto'];
                     $floor[$a]['quoter'] = array(
-                        "content" => $row_quoter['floorcontent'],
+                        "content" => userTextDecode($row_quoter['floorcontent']),
                         "time" => $row_quoter['time'],
                         "quoterid" => $floor[$a]['quoter'],
                         "username" => $username,
@@ -110,24 +120,26 @@ if(isset($a)) {
                         "userid" => $userid
                     );
                 }
-
+            }
+            if(isset($floor[$a]['quoter']['time'])){}else{
+                $floor[$a]['quoter']=array("content"=>"<font style='color:red'>内容已被删除！</font>");
             }
         }
     }
         echo json_encode(array("floor" => $floor, "pages" => $pages, "notename" => $notename));
-
-
-        if($userid==$noteuser){
-            include_once("pdo_usersmoment.php");
-            $sql_findif="select `id`,`comment` from `$noteuser` where `comment` like 'new-$noteid-%'";
-            $res_findif=$dbh->query($sql_findif);
-            while ($row_findif = $res_findif->fetch()) {
-                $comment = $row_findif['comment'];
-                $id2 = $row_findif['id'];
-            }
-            if (isset($comment)) {
-                $sql_delectmoment = "DELETE FROM `$noteuser` WHERE `$noteuser`.`id` = $id2";
-                $res_delectmoment = $dbh->exec($sql_delectmoment);
+        if(isset($_COOKIE['userid'])) {
+            if ($_COOKIE['userid'] == $noteuser) {
+                include_once("pdo_usersmoment.php");
+                $sql_findif = "select `id`,`comment` from `$noteuser` where `comment` like 'new-$noteid-%'";
+                $res_findif = $dbh->query($sql_findif);
+                while ($row_findif = $res_findif->fetch()) {
+                    $comment = $row_findif['comment'];
+                    $id2 = $row_findif['id'];
+                }
+                if (isset($comment)) {
+                    $sql_delectmoment = "DELETE FROM `$noteuser` WHERE `$noteuser`.`id` = $id2";
+                    $res_delectmoment = $dbh->exec($sql_delectmoment);
+                }
             }
         }
 
