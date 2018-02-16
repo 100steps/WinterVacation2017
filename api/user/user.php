@@ -10,12 +10,14 @@ switch ($method){
         $password=$_POST['password'];
         $password=password_hash($password, PASSWORD_DEFAULT);//通过单向散列算法加密保存用户密码
         $captcha=$_POST['captcha'];
-        echo $_SESSION['captcha'];
-        if($captcha!=$_SESSION['captcha']) {
+        //echo $_SESSION['captcha'];
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']) {
             $reply=array("code"=>422,"error"=>"验证码错误");
             echo json_encode($reply);
+            $_SESSION['captcha']=null;
             break;
         }
+        $_SESSION['captcha']=null;
         $obj=new userClass();
         if($obj->isExist('user','name',"{$name}")){
             $reply=array("code"=>422,"error"=>"用户名已注册");
@@ -41,11 +43,13 @@ switch ($method){
         $id=$arguments['id'];
         $password=$arguments['password'];
         $captcha=$arguments['captcha'];
-        if($captcha!=$_SESSION['captcha']) {
+        if(strcasecmp($captcha,$_SESSION['captcha'])!=0||!$_SESSION['captcha']) {
             $reply=array("code"=>422,"error"=>"验证码错误");
             echo json_encode($reply);
+            $_SESSION['captcha']=null;
             break;
         }
+        $_SESSION['captcha']=null;
         if($id!=$_SESSION['id']){
             $reply=array("code"=>401,"error"=>"无权限");
             echo json_encode($reply);
