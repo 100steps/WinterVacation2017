@@ -119,7 +119,7 @@ ajax中`data`字段对应的json如下
 
 ## 个人信息接口
 ### 获取个人信息
-* URL路由访问地址：`/api/user`
+* URL路由访问地址：`/api/user/info`
 * 文件实际路径：`/api/user/getUserInfo.php`
 * 访问方式：`GET`
 * 访问条件限制：登录后的用户
@@ -150,7 +150,7 @@ ajax中`data`字段对应的json如下
 示例同上，略
 
 ### 更新个人信息
-* URL路由访问地址：`/api/user`
+* URL路由访问地址：`/api/user/info`
 * 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：登录后的用户、管理员
@@ -181,7 +181,7 @@ ajax中`data`字段对应的json如下
 ```
 
 ### 更新他人信息
-* URL路由访问地址：`/api/user/{UserID}`
+* URL路由访问地址：`/api/user/info/{UserID}`
 * 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：管理员
@@ -190,7 +190,7 @@ ajax中`data`字段对应的json如下
 #### PUT 返回格式：`JSON`
 同上，略
 
-### 上传个人头像
+### 上传个人头像（尚待商榷）
 * URL路由访问地址：`/api/user/avatar`
 * 文件实际路径：`/api/user/postUserAvatar.php`
 * 访问方式：`POST`

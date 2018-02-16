@@ -37,14 +37,14 @@
  * `reply`：版块的回帖数量
  * `owner`：版主用户名
 
-### 修改版块信息
-* URL路由访问地址：`/api/forum/{Category}`
-* 文件实际路径：`/api/forum/modifyCategory.php`
-* 访问方式：`PUT`
-* 访问条件限制：管理员、版主
 
-#### PUT 请求格式：标准PUT请求
-URL中，`{Category}`为版块的**英文名**
+### 创建版块
+* URL路由访问地址：`/api/forum`
+* 文件实际路径：`/api/forum/createCategory.php`
+* 访问方式：`POST`
+* 访问条件限制：管理员
+
+#### POST 请求格式：标准POST请求
 ajax中`data`字段对应的json如下
 ```JavaScript
 {
@@ -61,6 +61,24 @@ ajax中`data`字段对应的json如下
 * `alias`：版块新中文名称
 * `icon`：版块新图标
 * `owner`：版块新版主用户名
+
+#### POST 返回格式：`JSON`
+```JavaScript
+{
+    "status": "ok",
+    "go": "/forum/"
+}
+```
+
+### 修改版块信息
+* URL路由访问地址：`/api/forum/{Category}`
+* 文件实际路径：`/api/forum/modifyCategory.php`
+* 访问方式：`PUT`
+* 访问条件限制：管理员、版主
+
+#### PUT 请求格式：标准PUT请求
+* URL中，`{Category}`为版块的**英文名**
+* ajax中`data`字段对应的json与创建版块相同，此处略
 
 #### PUT 返回格式：`JSON`
 ```JavaScript
