@@ -140,12 +140,12 @@ ajax中`data`字段对应的json如下
 ```
 
 ### 获取他人信息
-* URL路由访问地址：`/api/user/{UserID}`
+* URL路由访问地址：`/api/user/{Username}`
 * 文件实际路径：`/api/user/getUserInfo.php`
 * 访问方式：`GET`
 * 访问条件限制：无
 #### GET 请求格式：
-标准GET请求，其中`{UserID}`为用户对应的ID（详见搜索接口）
+标准GET请求，其中`{Username}`为用户对应的用户名
 #### GET 返回格式：`JSON`
 示例同上，略
 
@@ -181,7 +181,7 @@ ajax中`data`字段对应的json如下
 ```
 
 ### 更新他人信息
-* URL路由访问地址：`/api/user/info/{UserID}`
+* URL路由访问地址：`/api/user/info/{Username}`
 * 文件实际路径：`/api/user/putUserInfo.php`
 * 访问方式：`PUT`
 * 访问条件限制：管理员
