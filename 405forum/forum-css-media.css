@@ -42,7 +42,7 @@
 	.loginButtonIn{
 		z-index: 4;
 		height: 8%;
-		width: 30%;
+		width: 40%;
 		margin-top: 1%;
 		margin-left: 1%;
 		background: url(button.png) repeat;
@@ -50,6 +50,10 @@
 		border-radius: 5px;
 		box-shadow: 5px 5px 5px #000;
 		text-align: center;
+	}
+	.loginButtonCenter{
+		position: absolute;
+		left: 29%;
 	}
 	.makeLeft{
 		margin-left: 0;
@@ -61,6 +65,100 @@
 	}
 	.userL{
 		left: 5%;
+	}
+	.userMO{
+		float: none;
+	}
+	.userPicture{
+		position: absolute;
+		height: 40%;
+		top: 20%;
+		left: 5%;
+		width: 90%;
+		background-size: cover;
+		background: white;
+	}
+
+}
+
+@media screen and (min-width: 1500px){
+	.userText{
+		font-size: 300%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 180%;
+	}	
+	.submitText{
+		font-size: 200%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 150%;
+	}
+}
+@media screen and (min-width: 900px) and (max-width: 1500px){
+	.userText{
+		font-size: 140%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}
+	.submitText{
+		font-size: 140%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}	
+}
+@media screen and (min-width: 590px) and (max-width: 900px){
+	.userText{
+		font-size: 180%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}
+	.submitText{
+		font-size: 180%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}
+}
+@media screen and (min-width: 400px) and (max-width: 590px){
+	.userText{
+		font-size: 120%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}
+	.submitText{
+		font-size: 120%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 100%;
+	}
+}
+@media screen and (max-width: 400px){
+	.userText{
+		font-size: 80%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 120%;
+	}
+	.submitText{
+		font-size: 80%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 120%;
 	}
 }
 
@@ -81,6 +179,18 @@
 	.makeLeft{
 		margin-left: 0;
 		margin-top: 3%;
+	}
+	.userPicture{
+		position: absolute;
+		height: 28%;
+		top: 10%;
+		left: 10%;
+		width: 80%;
+		background-size: cover;
+		background: white;
+	}
+	.userMO{
+		float: none;
 	}
 }
 
@@ -197,8 +307,6 @@
 		top: 25%;
 		height: 65%;
 		background: url(title.png) repeat;
-		opacity:0.8;
-		filter:alpha(opacity=8);
 		overflow: auto;
 		box-shadow: 10px 10px 5px #000;
 		border-radius: 5px;
@@ -344,8 +452,6 @@
 		top: 25%;
 		height: 65%;
 		background: url(title.png) repeat;
-		opacity:0.8;
-		filter:alpha(opacity=8);
 		overflow: auto;
 		box-shadow: 5px 5px 3px #000;
 		border-radius: 5px;
@@ -492,8 +598,6 @@
 		top: 25%;
 		height: 65%;
 		background: url(title.png) repeat;
-		opacity:0.8;
-		filter:alpha(opacity=8);
 		overflow: auto;
 		box-shadow: 4px 4px 2px #000;
 		border-radius: 5px;

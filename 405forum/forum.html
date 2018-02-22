@@ -25,14 +25,17 @@
 			<div class="link"><a href="forum.html" class="linkText">首页</a></div>
 		</div>
 		<div id="list" class="list userL"></div>
+
+
 		<div id="userCard" class="userCard userM">
 			<div class="userBackground">
-				<div class="makeText" style="position: absolute;top: 0%;left: 10%;">用户：<div id="state" style="color: red;">未登录</div></div>
-				<div class="makeText" style="position: absolute;top: 25%;left: 10%;">性别：<div id="sexShown" style="color: red;">保密</div></div>
-				<div class="makeText" style="position: absolute;top: 50%;left: 10%;">评论文章：0</div>
-				<div class="makeText" style="position: absolute;top: 75%;left: 10%;">访问次数：0</div>
+				<div id="userPicture" class="userPicture" onclick="userPictureChange();"></div>
+				<div class="userText" style="position: absolute;top: 70%;left: 10%;">用户：<div id="state" class="userMO" style="color: red;">未登录</div></div>
 			</div>
-			<div class="loginText makeButton" style="left: 10%;width: 80%;top: 85%;" onclick="userCardChange();">修改</div>
+			<div class="userText makeButton" style="left: 10%;width: 80%;top: 60%;" onclick="userCard();">个人名片</div>
+			<div class="userText makeButton" style="left: 10%;width: 80%;top: 70%;" onclick="userPasswordChange();">修改密码</div>
+			<div class="userText makeButton" style="left: 10%;width: 80%;top: 80%;" onclick="userCardChange();">修改资料</div>
+			<div class="userText makeButton" style="left: 10%;width: 80%;top: 90%;" onclick="userExit();">退出登录</div>
 		</div>
 	<!--这是用户资料卡-->
 
@@ -67,19 +70,21 @@
 	<div class="loginShade"></div>
 	<div class="loginWindow">
 		<div class="loginPage">
-			<div class="loginInputSign loginText" style="top: 2%;">用户名：<input id="userId" type="label" name="id" style="width: 70%;"></div>
-			<div class="loginInputSign loginText" style="top: 20%;">密&nbsp;&nbsp;&nbsp;码：<input id="password" type="label" name="password" style="width: 70%"></div>
-
+			<div class="loginInputSign loginText" style="top: 12%;">昵&nbsp;&nbsp;&nbsp;称：
+				<br>
+				<input id="name" type="label" name="name" style="width: 80%;"></div>
+			<div class="loginInputSign loginText" style="top: 32%;">密&nbsp;&nbsp;&nbsp;码：
+				<br>
+				<input id="password" type="password" name="password" style="width: 80%"></div>
+			<div id="captcha" class="loginInputSign userText" style="top: 52%;">点击获取验证码:
+				<br>
+				<input id="captchaInput" type="label" name="captchaImg" style="width: 80%;">
+				<br>
+				<div id="captchaShown"></div></div>
 			<div id="register" style="display: none;">
-				<div class="loginInputSign loginText" style="top: 38%;">昵&nbsp;&nbsp;&nbsp;称：<input id="name" type="label" name="name" style="width: 70%"></div>
-				<div class="loginInputSign loginText" style="top: 56%;">邮&nbsp;&nbsp;&nbsp;箱：<input id="mail" type="label" name="mail" style="width: 70%"></div>
-				<div class="loginInputSign loginText" style="top: 74%;">性&nbsp;&nbsp;&nbsp;别：
-					<select name="sex" id="sex">
-						<option value="1">男</option>
-						<option value="2">女</option>
-						<option value="0">保密</option>
-					</select>
-				</div>
+				<div class="loginInputSign loginText" style="top: 52%;">邮&nbsp;&nbsp;&nbsp;箱：
+				<br>
+				<input id="mail" type="label" name="mail" style="width: 80%;"></div>
 			</div>
 
 			<div id="in" class="loginButtonIn loginText loginButtonCenter in">登录</div>
@@ -93,29 +98,91 @@
 <!--这里是登录界面-->
 </div>
 
+<div id="userPasswordChange" style="display: none;">
+	<div class="loginShade"></div>
+	<div class="loginWindow">
+		<div class="loginPage">
+			<div class="loginInputSign loginText" style="top: 12%;">旧密码：
+				<br>
+				<input id="passwordOld" type="password" name="passwordOld" style="width: 80%"></div>
+			<div class="loginInputSign loginText" style="top: 32%;">新密码：
+				<br>
+				<input id="passwordNewFirst" type="password" name="passwordNewFirst" style="width: 80%;"></div>
+			<div class="loginInputSign loginText" style="top: 52%;">重复新密码：
+				<br>
+				<input id="passwordNewSecond" type="password" name="passwordNewSecond" style="width: 80%;"></div>
+
+			<div id="userPasswordChangeCommit" class="loginButtonIn loginText loginButtonCenter userPasswordChangeCommit">提交</div>
+		</div>
+		<div class="loginButton loginText" style="position: absolute;" onclick="userPCReturn();">返回</div>
+	</div>
+
+<!--这里是修改密码界面-->
+</div>
+
+<div id="userPictureChange" style="display: none;">
+	<div class="loginShade"></div>
+	<div class="loginWindow">
+		<div class="loginPage">
+			<form id="formUPC" class="pictureForm" method="put" enctype="multipart/form-data" onsubmit="return false;">
+            　　<input id="image" class="submitText" type="file" name="image">
+            <br>
+            　　<button id="submitUPC" class="formSubmit submitText" type="submit">上传</button>
+            </form>
+		</div>
+		<div class="loginButton loginText" style="position: absolute;" onclick="userPiCReturn();">返回</div>
+	</div>
+
+<!--这里是修改头像界面-->
+</div>
+
 <div id="userCardChange" style="display: none;">
 	<div class="loginShade"></div>
 	<div class="loginWindow">
 		<div class="loginPage">
-			<div class="loginInputSign loginText" style="top: 2%;">昵&nbsp;&nbsp;&nbsp;称：<input id="CName" type="label" name="name" style="width: 70%"></div>
-			<div class="loginInputSign loginText" style="top: 20%;">邮&nbsp;&nbsp;&nbsp;箱：<input id="CMail" type="label" name="mail" style="width: 70%"></div>
-			<div class="loginInputSign loginText" style="top: 38%;">生&nbsp;&nbsp;&nbsp;日：<input id="born" type="label" name="born" style="width: 70%"></div>
-			<div class="loginInputSign loginText" style="top: 56%;">住&nbsp;&nbsp;&nbsp;址：<input id="address" type="label" name="address" style="width: 70%">
-			</div>
-			<div class="loginInputSign loginText" style="top: 74%;">性&nbsp;&nbsp;&nbsp;别：
+			<div class="loginInputSign loginText" style="top:  2%;">昵&nbsp;&nbsp;&nbsp;称：<input id="CName" type="label" name="name" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 22%;">邮&nbsp;&nbsp;&nbsp;箱：<input id="CMail" type="label" name="mail" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 42%;">生&nbsp;&nbsp;&nbsp;日：<input id="birthday" type="label" name="birthday" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 62%;">住&nbsp;&nbsp;&nbsp;址：
+			<input id="province" type="label" name="province" style="width: 20%;">省
+			<input id="city" type="label" name="city" style="width: 20%;">市</div>
+			<div class="loginInputSign loginText" style="top: 82%;">性&nbsp;&nbsp;&nbsp;别：
 				<select name="sex" id="CSex">
-					<option value="1">男</option>
-					<option value="2">女</option>
-					<option value="0">保密</option>
+					<option value="male">男</option>
+					<option value="female">女</option>
+					<option value="secret">保密</option>
 				</select>
 			</div>
-			<div id="userC" class="loginButtonIn loginText loginButtonCenter reg">提交</div>
+			<div class="loginInputSign loginText" style="top: 102%;">手&nbsp;&nbsp;&nbsp;机：<input id="phone" type="label" name="phone" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 122%;">Q&nbsp;&nbsp;&nbsp;Q：<input id="qq" type="label" name="qq" style="width: 70%"></div>
+			<div class="loginInputSign loginText" style="top: 142%;">签&nbsp;&nbsp;&nbsp;名：<input id="signature" type="label" name="signature" style="width: 70%"></div>
+			<div id="userC" class="loginButtonIn loginText loginButtonCenter userSub">提交</div>
+		</div>
+		<div class="loginButton loginText" style="position: absolute;" onclick="userCCReturn();">返回</div>
+	</div>
+
+<!--这是用户修改资料页面-->
+</div>
+
+<div id="userCardLook" style="display: none;">
+	<div class="loginShade"></div>
+	<div class="loginWindow">
+		<div class="loginPage">
+			<div id="nameShown" class="loginInputSign loginText" style="top:  2%;color: blue;"></div>
+			<div id="mailShown" class="loginInputSign loginText" style="top: 12%;color: blue;"></div>
+			<div id="birthdayShown" class="loginInputSign loginText" style="top: 22%;color: blue;"></div>
+			<div id="addressShown" class="loginInputSign loginText" style="top: 32%;color: blue;"></div>
+			<div id="sexShown" class="loginInputSign loginText" style="top: 42%;color: blue;"></div>
+			<div id="phoneShown" class="loginInputSign loginText" style="top: 52%;color: blue;"></div>
+			<div id="qqShown" class="loginInputSign loginText" style="top: 62%;color: blue;"></div>
+			<div id="signatureShown" class="loginInputSign loginText" style="top: 72%;color: blue;"></div>
 		</div>
 		<div class="loginButton loginText" style="position: absolute;" onclick="userCReturn();">返回</div>
 	</div>
 
-<!--这是用户资料卡修改资料页面-->
+<!--这是用户资料页面-->
 </div>
+
 
 
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
@@ -130,6 +197,10 @@
 	}
 	var articleShown=0;
 	var judgeForReturn=0;
+	var userIdRecord=0;
+	var userNameRecord="";
+	var width=document.getElementById("userPicture").clientWidth;
+	var height=document.getElementById("userPicture").clientHeight;
 
 
 
@@ -155,10 +226,13 @@
 		$("#no").attr("style","display: block;");
 		$("#reg").attr("style","display: none;");
 		$("#register").attr("style","display: none;");
-		clear("userId");
+		$("#captcha").attr("style","top: 52%;");
+		clear("name");
 		clear("password");
 		clear("mail");
-		clear("sex");
+		clear("captchaInput");
+		$("#captchaShown").empty();
+		
 	};
 
 	function register(){
@@ -168,10 +242,13 @@
 		$("#no").attr("style","display: none;");
 		$("#reg").attr("style","display: block;");
 		$("#register").attr("style","display: block;");
-		clear("userId");
+		$("#captcha").attr("style","top: 72%;");
+		clear("name");
 		clear("password");
 		clear("mail");
-		clear("sex");
+		clear("captchaInput");
+		$("#captchaShown").empty();
+		
 	};
 
 	function clear(e){
@@ -233,13 +310,361 @@
 	}
 
 	function userCardChange(){
-		if (document.getElementById("state").innerHTML=="未登录") {alert("你仍未登录，由于没有接口，界面可以预览");}
+		
 		$("#userCardChange").attr("style","display: block;animation: appear 1s;");
 		$("#downMenuId").fadeOut();
 	}
 
-	function userCReturn(){
+	function userPasswordChange(){
+
+		$("#userPasswordChange").attr("style","display: block;animation: appear 1s;");
+		$("#downMenuId").fadeOut();
+
+	}
+	
+	function userPictureChange(){
+
+		$("#userPictureChange").attr("style","display: block;animation: appear 1s;");
+		$("#downMenuId").fadeOut();
+
+	}
+
+	function userCard(){
+		
+		$("#userCardLook").attr("style","display: block;animation: appear 1s;");
+		$("#downMenuId").fadeOut();
+		$("#nameShown").append("昵称：未知");
+		$("#mailShown").append("邮箱：未知");
+		$("#birthdayShown").append("生日：某年某月");
+		$("#addressShown").append("住址：某省某市");
+		$("#sexShown").append("性别：未知");
+		$("#phoneShown").append("手机：未知");
+		$("#qqShown").append("qq：未知");
+		$("#signatureShown").append("签名：未知");
+		getUser();
+	}
+
+	function userCCReturn(){
 		$("#userCardChange").attr("style","display: none;");
+		clear("CName");
+		clear("CSex");
+		clear("CMail");
+		clear("birthday");
+		clear("province");
+		clear("city");
+		clear("phone");
+		clear("qq");
+		clear("signature");
+
+
+	}
+
+	function userCReturn(){
+		$("#userCardLook").attr("style","display: none;");
+		$("#nameShown").empty();
+		$("#mailShown").empty();
+		$("#birthdayShown").empty();
+		$("#addressShown").empty();
+		$("#sexShown").empty();
+		$("#phoneShown").empty();
+		$("#qqShown").empty();
+		$("#signatureShown").empty();
+	}
+
+	function userPCReturn(){
+		$("#userPasswordChange").attr("style","display: none;");
+		clear("passwordOld");
+		clear("passwordNewFirst");
+		clear("passwordNewSecond");
+	}
+
+	function userPiCReturn(){
+		$("#userPictureChange").attr("style","display: none;");
+		userPicture();
+	}
+
+//对接区域↓
+	$(function () {
+                $("#captcha").bind("click", function () {
+                    if (document.getElementById('captchaShown').innerHTML!="") {$("#captchaShown").empty();}
+                    clickFrequency();
+                        $("#captchaShown").append( "<img src='http://39.108.171.175/no_hole/api/user/captchaImage.php?width=100&length=40'>");
+                })
+            });
+	
+	$(function () {
+
+	                $("#reg").bind("click", function () {
+	                    clickFrequency();
+
+	                    $.ajax(
+	                    	{
+	                            type:'POST',
+	                            url:"http://39.108.171.175/no_hole/api/user/user.php",
+	                            xhrFields:{
+	                                withCredentials:true
+	                            },
+	                            data:{
+	                                name: document.getElementById("name").value,
+	                                password:document.getElementById("password").value,
+	                                captcha:document.getElementById("captchaInput").value,
+	                                email:document.getElementById("mail").value
+	                            } 
+	                    	}
+	                    ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==201) {
+                                alert( "注册成功，自动回到登录界面" );
+                                loginReturn();
+
+                            }
+                            else {
+                                alert("注册失败，请重新注册——"+obj.error);
+                            }
+                        });
+	            });
+	      	});
+
+
+$(function () {
+
+                $("#in").bind("click", function () {
+                    clickFrequency();
+                    $.ajax(
+                        {
+                            type:'POST',
+                            url:"http://39.108.171.175/no_hole/api/user/session.php",
+                            xhrFields:{
+                                withCredentials:true
+                            },
+                            data:{
+                                nameOrEmail: document.getElementById("name").value,
+                                password:document.getElementById("password").value,
+                                captcha:document.getElementById("captchaInput").value,
+                            }
+
+                        }
+                    ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==201) {
+                                userID=obj.id;
+                                alert( "登录成功，自动回到首页界面" );
+                                loginReturn();
+                                userIdRecord=obj.id;
+                                userNameRecord=obj.name;		
+                                $("#state").empty();
+								$("#state").append(userNameRecord);
+								userPicture();
+                            }
+                            else {
+                                alert("登录失败，请重新登录——"+obj.error);
+                            }
+                        });
+                });
+            });
+	
+
+function userExit() {
+    clickFrequency();
+    $.ajax({
+            type:'DELETE',
+            url:"http://39.108.171.175/no_hole/api/user/session.php"
+
+           	}
+        ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==204) {
+                                alert( "退出成功" );
+                                userIdRecord=0;
+                                userNameRecord="";
+								$("#state").empty();
+								$("#state").append("未登录");
+								$("#userPicture").empty();
+
+                            }
+                            else {
+                                alert("退出失败——"+obj.error);
+                            }
+                        });
+}
+
+function getUser(){
+	clickFrequency();
+    $.ajax({
+            type:'GET',
+            url:"http://39.108.171.175/no_hole/api/user/user.php",
+            data:{
+            	name:userNameRecord,
+            },
+           	}
+        ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==200) {
+                            			$("#nameShown").empty();
+										$("#mailShown").empty();
+										$("#birthdayShown").empty();
+										$("#addressShown").empty();
+										$("#sexShown").empty();
+										$("#phoneShown").empty();
+										$("#qqShown").empty();
+										$("#signatureShown").empty();
+										$("#downMenuId").fadeOut();
+										$("#nameShown").append("昵称："+obj.name);
+										$("#mailShown").append("邮箱："+obj.email);
+										$("#birthdayShown").append("生日："+obj.birthday);
+										$("#addressShown").append("住址："+obj.province+"省"+obj.city+"市");
+										$("#sexShown").append("性别："+obj.sex);
+										$("#phoneShown").append("手机："+obj.phoneNumber);
+										$("#qqShown").append("qq："+obj.qq);
+										$("#signatureShown").append("签名："+obj.signature);
+                            }
+                            else {
+                                alert("查看失败——"+obj.error);
+                            }
+                        });
+}
+
+function userPicture(){
+	if (document.getElementById('userPicture').innerHTML!="") {$("#userPicture").empty();}
+	if (userIdRecord!=0) {
+	$("#userPicture").append(
+		"<img src='http://39.108.171.175/no_hole/api/user/userImage.php?name="+userNameRecord+"&type=1&width="+width+"&length="+height+"'>"
+		)
+	}
+	else{
+		alert("尚未登录，无法获得头像")
+	}
+}
+
+$(function () {
+                $("#userC").bind("click", function () {
+                    clickFrequency();
+                    var options=$("#CSex option:selected");
+                    if (userIdRecord!=0) {
+                    $.ajax(
+	                    	{
+	                            type:'PUT',
+	                            url:"http://39.108.171.175/no_hole/api/user/user.php",
+	                            xhrFields:{
+	                                withCredentials:true
+	                            },
+	                            data:{
+	                                id:userIdRecord,
+	                                name:document.getElementById("CName").value,
+	                                email:document.getElementById("CMail").value,
+	                                sex:options.val(),
+	                                birthday:document.getElementById("birthday").value,
+	                                province:document.getElementById("province").value,
+	                                city:document.getElementById("city").value,
+	                                phoneNumber:document.getElementById("phone").value,
+	                                qq:document.getElementById("qq").value,
+	                                signature:document.getElementById("signature").value,
+
+	                            } 
+	                    	}
+	                    ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==201) {
+                                alert( "修改成功，自动回到首界面" );
+                                userCCReturn();
+
+                            }
+                            else {
+                                alert("修改失败，请重新修改——"+obj.error);
+                            }
+                        });
+	                }
+	                else{
+	                	alert("未登录，无法修改资料");
+	                }
+                });
+            });
+
+
+$(function () {
+                $("#submitUPC").bind("click", function () {
+                    clickFrequency();
+                    $.ajax({
+							    url: 'http://39.108.171.175/no_hole/api/user/userImage.php',
+							    type: 'PUT',
+							    data: new FormData($('#formUPC')[0]),
+							    xhrFields:{
+	                                withCredentials:true
+	                            },
+							    processData: false,
+							    contentType: false,
+							}).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==201) {
+                                alert( "修改成功，自动回到首界面" );
+                                userPiCReturn();
+
+                            }
+                            else {
+                                alert("修改失败，请重新修改——"+obj.error);
+                            }
+                        });
+				});
+            });
+
+$(function () {
+                $("#userPasswordChangeCommit").bind("click", function () {
+                    clickFrequency();
+                    var oldPassword=document.getElementById("passwordOld").value;
+                    var newPasswordFirst=document.getElementById("passwordNewFirst").value;
+                    var newPasswordSecond=document.getElementById("passwordNewSecond").value;
+                    if (newPasswordFirst==newPasswordSecond) {
+                    $.ajax({
+							    url: 'http://39.108.171.175/no_hole/api/user/password.php',
+							    type: 'PUT',
+							    xhrFields:{
+	                                withCredentials:true
+	                            },
+							    data: {
+							    	oldPassword:oldPassword,
+							    	newPassword:newPasswordFirst,
+
+							    },
+							}).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==201) {
+                                alert( "修改成功，自动回到首界面" );
+                                userPCReturn();
+
+                            }
+                            else {
+                                alert("修改失败，请重新修改——"+obj.error);
+                            }
+                        });
+                    }
+                    else{
+                    	alert("两次输入的新密码不同，请重新输入")
+                    }
+				});
+            });
+
+	    var judgeForClick1=new Boolean(true);
+	    var judgeForClick2;
+	function clickFrequency()
+	{
+	    function timerForOnce()
+	    {
+	      judgeForClick1=true;
+	    }
+	    if (judgeForClick1==true)
+	    {
+	      setTimeout(function(){timerForOnce()},800);
+	    }
+	    else
+	    {
+	      alert("你点那么快做啥啊·-·变态");
+	    }
+
+
+	    judgeForClick2=judgeForClick1;
+	    judgeForClick1=false;
+
+	//降低点击频率
 	}
 
 </script>

@@ -158,7 +158,7 @@
 	filter:alpha(opacity=8);
 	border-radius: 5px;
 	box-shadow: 10px 10px 5px #000;
-
+	overflow: auto;
 }
 
 .loginButton{
@@ -208,15 +208,23 @@
 }
 
 .in{
-	top: 50%;
+	top: 100%;
 }
 
 .no{
-	top: 65%;
+	top: 120%;
 }
 
 .reg{
-	top: 87.5%;
+	top: 130%;
+}
+
+.userSub{
+	top: 170%;
+}
+
+.userPasswordChangeCommit{
+	top: 80%;
 }
 
 .list{
@@ -240,8 +248,6 @@
 	left: 70%;
 	height: 65%;
 	background: url(title.png) repeat;
-	opacity:0.8;
-	filter:alpha(opacity=8);
 	overflow: auto;
 	border-radius: 5px;
 	box-shadow: 10px 10px 5px #000;	
@@ -251,6 +257,11 @@
 	width: 15%;
 	left: 80%;
 }
+
+.userMO{
+	float: right;
+}
+
 .userL{
 	left: 15%;
 }
@@ -335,12 +346,45 @@
 
 .userBackground{
 	position: absolute;
-	height: 70%;
-	top: 10%;
+	height: 50%;
+	top: 5%;
 	left: 5%;
 	width: 90%;
 	background-size: cover;
 	background: url(button.png) repeat;
+}
+
+.userPicture{
+	position: absolute;
+	height: 60%;
+	top: 5%;
+	left: 15%;
+	width: 70%;
+	background-size: cover;
+	background: white;
+	
+}
+
+.pictureForm{
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	left: 5%;
+	top: 25%;
+
+}
+
+.formSubmit{
+	position: absolute;
+	top: 50%;
+	width: 60%;
+	height: 16%;
+	left: 26.75%;
+	background: url(button.png) repeat;
+	background-size: cover;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000;
+	text-align: center;
 }
 
 @keyframes appear{
