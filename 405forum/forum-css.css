@@ -121,6 +121,14 @@
 	text-decoration: none;
 }
 
+.smallText{
+	font-size: 200%;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: black;
+	line-height: 200%;
+}
+
 .loginShade{
 	background: black;
 	position: absolute;
@@ -231,7 +239,6 @@
 	position: absolute;
 	z-index: 0;
 	top: 18%;
-	width: 60%;
 	height: 65%;
 	background: url(title.png) repeat;
 	opacity:0.8;
@@ -263,7 +270,8 @@
 }
 
 .userL{
-	left: 15%;
+	left: 10%;
+	width: 65%;
 }
 
 .makeTitle{
@@ -327,6 +335,27 @@
 	overflow: auto;
 }
 
+.commentShow{
+	position: relative;
+	height: 20%;
+	background: url(button.png) repeat;
+	background-size: cover;
+	border-radius: 5px;
+	width: 90%;
+	margin-top: 2%;
+	left: 5%;
+	overflow: auto;
+}
+
+.commentPicture{
+	float: left;
+	height: 90%;
+	width: 7%;
+	background: url(title.png) repeat;
+	background: cover;
+
+}
+
 .articleBackground{
 	background-size: cover;
 	background: url(title.png) repeat;
@@ -386,6 +415,7 @@
 	box-shadow: 10px 10px 5px #000;
 	text-align: center;
 }
+
 
 @keyframes appear{
 

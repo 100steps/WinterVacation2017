@@ -65,6 +65,7 @@
 	}
 	.userL{
 		left: 5%;
+		width: 60%;
 	}
 	.userMO{
 		float: none;
@@ -77,6 +78,14 @@
 		width: 90%;
 		background-size: cover;
 		background: white;
+	}
+	.commentPicture{
+		float: left;
+		height: 90%;
+		width: 18%;
+		background: url(title.png) repeat;
+		background: cover;
+
 	}
 
 }
@@ -95,6 +104,14 @@
 		font-family: "微软雅黑";
 		color: black;
 		line-height: 150%;
+	}
+	.commentPicture{
+		float: left;
+		height: 90%;
+		width: 20%;
+		background: url(title.png) repeat;
+		background: cover;
+
 	}
 }
 @media screen and (min-width: 900px) and (max-width: 1500px){
@@ -281,6 +298,13 @@
 		color: black;
 		line-height: 200%;
 	}
+	.smallText{
+		font-size: 90%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 180%;
+	}
 	.loginText{
 		font-size: 220%;
 		font-weight: bold;
@@ -292,7 +316,6 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		width: 60%;
 		height: 65%;
 		background: url(title.png) repeat;
 		opacity:0.8;
@@ -426,6 +449,13 @@
 		color: black;
 		line-height: 180%;
 	}
+	.smallText{
+		font-size: 60%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 150%;
+	}
 	.loginText{
 		font-size: 150%;
 		font-weight: bold;
@@ -437,7 +467,6 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		width: 60%;
 		height: 65%;
 		background: url(title.png) repeat;
 		opacity:0.8;
@@ -572,6 +601,13 @@
 		color: black;
 		line-height: 250%;
 	}
+	.smallText{
+		font-size: 20%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 110%;
+	}
 	.loginText{
 		font-size: 100%;
 		font-weight: bold;
@@ -583,7 +619,6 @@
 		position: absolute;
 		z-index: 0;
 		top: 25%;
-		width: 60%;
 		height: 65%;
 		background: url(title.png) repeat;
 		opacity:0.8;
