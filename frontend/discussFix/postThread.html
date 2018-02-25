@@ -6,18 +6,19 @@
   <title>发帖页面</title>
   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>    
-  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-  <link rel="stylesheet" href="homePage.css">  
-  <link rel="stylesheet" href="edit.css">
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script> 
+  <link rel="stylesheet" href="css/homePage.css">  
+  <link rel="stylesheet" href="css/edit.css">
 
 </head>
 <body>
     <!--顶部-->
     <div id="head">
-      <img src="head.jpg" style="position:absolute;left:0;top:0;width:100%;z-index: -2;">
-      <img src="annpm.png"><span> | </span>
+      <img src="pic/head.jpg" style="position:absolute;left:0;top:0;width:100%;z-index: -2;">
+      <img src="pic/annpm.png"><span> | </span>
       <a href="editProfile.html">个人中心</a><span> | </span>
-      <a href="homePageMain.html">退出登录</a><span> | </span>
+      <a href="mainPage.html">退出登录</a><span> | </span>
       <a href="http://www.baidu.com">帮助 |</a>
       <br><br><br><br><br><br>
     </div>
@@ -43,9 +44,18 @@
 		<input type="text" placeholder="请输入帖子标题" id="threadTitle"><br>
 		<textarea id="thread" rows="20">...</textarea><br>
 		<div id="editPicture">
-			<input name="imgfile" type="file" accept="image/gif, image/jpg"/><br>
-  			<input name="upload" type="submit" value="上传图片" />
-  		</div>
+			<input name="imgfile" type="file" accept="image/gif, image/jpg" class="chosenbutton"><br>
+  			<input name="upload" type="submit" value="上传图片" class="chosenbutton">
+  	</div>
+
+    
+    <input type="text" id="captcha" placeholder="验证码">
+    <img src="pic/checkPicture.jpg">
+    <a id="changePic">
+      <span class="glyphicon glyphicon-refresh"></span>看不清楚换一张
+    </a><br>
+
+    <button id="draft">存为草稿</button>
 		<button id="threadSubmit">确定发表</button><br>
 	</div>
 
@@ -56,5 +66,62 @@
 		<a href="#">联系我们</a>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#threadSubmit").click(function(){
+    $.ajax({
+      type:"POST",
+      url:"https://f.dan-shen.dog/api/forum/water",
+      data:{
+        title:$("#threadTitle").val(),
+        content:$("#thread").val(),
+        captcha:$("captcha").val(),
+        draft:0,
+        top:1
+      },
+      dataType:"json",
+      success: function(data){
+        if(data.status=="ok"){
+          /*location.href=data.go;*/
+          alert("发帖成功！")
+        }
+        else{
+          alert(data.reason);
+        }
+      },
+      error: function(jqXHR){
+        alert("出错："+jqXHR.status);
+        return false;
+      },
+    });
+  });
+  $("#draft").click(function(){
+    $.ajax({
+      type:"POST",
+      url:"https://f.dan-shen.dog/api/forum/water",
+      data:{
+        title:$("#threadTitle").val(),
+        content:$("#thread").val(),
+        captcha:$("captcha").val(),
+        draft:1,
+        top:1
+      },
+      dataType:"json",
+      success: function(data){
+        if(data.status=="ok"){
+          alert("储存成功！")
+        }
+        else{
+          alert(data.reason);
+        }
+      },
+      error: function(jqXHR){
+        alert("出错："+jqXHR.status);
+        return false;
+      },
+    });
+  });
+});
+</script>
 </body>
 </html>

@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>个人信息页面</title>
+  <title>个人信息</title>
   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>    
   <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <script src="js/signUp.js"></script>
 </head>
-<body background="bg.jpg" style="
+<body background="pic/bg.jpg" style="
     position:absolute;
     left:0;
     top:0;
@@ -21,50 +22,49 @@
     </div>
 	<div id="headLine">
 	<h1>个人信息</h1>
-  <a href="afterSignIn.html" style="float:right">放弃修改</a>
+  <a href="mainPage.html" style="float:right">放弃修改</a>
 	</div>
 
 	<div class="container text-center" id="signUp">
-	<div class="row">
-
-		<form class="form-inline" role="form"><br>
-  			<div class="form-group">
-  				<label for="username">用户名:</label>
-  				<input type="text" class="form-control" id="username" placeholder="elder" required="required">
-  				<span class="glyphicon glyphicon-ok"></span>
-  				<p>3~15个英文字符/数字</p>
-			</div>
+	<div class="row"><br>
+    <div class="form-inline" role="form"><br>
+  		<div class="form-group">
+        <label for="username">用户名:</label>
+        <input type="text" class="form-control" id="username" placeholder="3~15个英文字符/数字" required="required" onkeyup="checkUsername()">
+        <span id="usernameWarn1" style="display: none">用户名应为3~15个英文字符/数字</span>
+        <span class="glyphicon glyphicon-ok" id="usernameWarn2" style="display: none"></span>
+      </div>
 			<p><br></p>
 
 			<div class="form-group">
-				<label for="password">密码:</label>
-  				<input type="password" class="form-control" id="password" placeholder="******" required="required">
-  				<span class="glyphicon glyphicon-ok"></span>
-  				<p>6~20位字符</p>
-			</div>
+        <label for="password">密码:</label>
+          <input type="password" class="form-control" id="password" placeholder="6~20位字符" required="required" onkeyup="checkPassword()">
+          <span id="passwordWarn1" style="display: none">密码应为6到20位字符</span>
+          <span id="passwordWarn2" style="display: none" class="glyphicon glyphicon-ok"></span>
+      </div>
 			<p><br></p>
 
 			<div class="form-group">
-				<label for="checkPassword">再次确认密码:</label>
-  				<input type="password" class="form-control" id="checkPassword" placeholder="再次确认密码" required="required">
-  				<span class="glyphicon glyphicon-ok"></span>
-  				<p>再次确认密码</p>
-			</div><br>
+        <label for="checkPassword">再次确认密码:</label>
+          <input type="password" class="form-control" id="checkPassword" placeholder="再次确认密码" required="required" onkeyup="checkPasswordAgain(this)">
+          <span id="checkPasswordTip"></span>
+      </div><br>
 			<p><br></p>
 
 			<div class="form-group">
-				<label for="e-mail">邮箱:</label>
-  				<input type="text" class="form-control" id="e-mail" placeholder="xxxx@xx.com" required="required">
-  				<span class="glyphicon glyphicon-ok"></span>
-			</div><br>
+        <label for="email">邮箱:</label>
+          <input type="text" class="form-control" id="email" placeholder="邮箱" required="required" onkeyup="checkemail()">
+          <span style="display: none" id="emailWarn1">请输入正确的邮箱</span>
+          <span class="glyphicon glyphicon-ok" style="display: none" id="emailWarn2"></span>
+      </div><br>
 			<p><br></p>
 
 			<div class="form-group">
-				<label for="nickName">昵称:</label>
-  				<input type="text" class="form-control" id="nickName" placeholder="elder" required="required">
-  				<span class="glyphicon glyphicon-ok"></span>
-  				<p>6~20位字符</p>
-			</div><br>
+        <label for="alias">昵称:</label>
+          <input type="text" class="form-control" id="alias" placeholder="6~20位字符" required="required" onkeyup="checkAlias()">
+          <span id="aliasWarn1" style="display: none">昵称应为6到20位字符</span>
+          <span class="glyphicon glyphicon-ok" id="aliasWarn2" style="display: none"></span>
+      </div><br>
 			<p><br></p>
 
 			<div class="form-group">
@@ -76,15 +76,47 @@
 			<div class="form-group">
 				<label for="checkNum">验证码:</label>
   				<input type="text" class="form-control" id="checkNum" placeholder="输入图中的5位字符" required="required">
-  				<img src="checkPicture.jpg">
+  				<img src="pic/checkPicture.jpg">
   				<a id="changePic">
     				<span class="glyphicon glyphicon-refresh"></span>看不清楚换一张
     			</a>
 			</div><br>
 			<p><br></p>
 
-  			<button type="submit" class="btn btn-default">确认修改个人信息</button><br>
+  			<button type="submit" class="btn btn-default" id="finishEdit">确认修改个人信息</button><br>
+	 </div>
+  </div>
 	</div>
-	</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#finishEdit").click(function(){
+    $.ajax({
+      type:"put",
+      url:"https://f.dan-shen.dog/api/user/info",
+      data:{
+        username:$("#username").val(),
+        password:$("#password").val(),
+        alias:$("#alias").val(),
+        email:$("#email").val(),
+        captcha:$("#captcha").val(),
+      },
+      dataType:"json",
+      success: function(data){
+        if(data.status=="ok"){
+          /*location.href=data.go;*/
+          alert("修改成功！")
+        }
+        else{
+          alert(data.reason);
+        }
+      },
+      error: function(jqXHR){
+        alert("出错："+jqXHR.status);
+      },
+    });
+  });
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>个人信息查询</title>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>    
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="css/profile.css">
+  <style type="text/css">
+    p{
+      display: inline;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body background="pic/bg.jpg" style="
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: -2;
+  ">
+    <div id="bg">
+    </div>
+	<div id="headLine">
+	<h1>个人信息</h1>
+  <a href="editProfile.html" style="float:right">修改个人资料</a>
+	</div>
+
+	<div class="container text-center" id="signUp">
+	<div class="row"><br><br>
+  <p>用户名：</p>
+  <p id="username">elderfish</p><br><br><br>
+  <p>邮箱：</p>
+  <p id="email">xxxx@123.com</p><br><br><br>
+  <p>昵称：</p>
+  <p id="alias">elderfish</p><br><br><br>
+  <!--差一个头像-->
+  </div>
+	</div>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $.ajax({ 
+      type: "GET",  
+      url: "http://f.dan-shen.dog/api/user/info",
+      dataType: "json",
+      success: function(data) {
+        if (data.success) { 
+          $("#username").html(data.username);
+          $("#alias").html(data.alias);
+          $("#email").html(data.email);
+        } else {
+          $("#searchResult").html("出现错误：" + data.msg);
+        }  
+      },
+      error: function(jqXHR){     
+         alert("发生错误：" + jqXHR.status);  
+      },     
+    });
+});  
+</script>
+</body>
+</html>

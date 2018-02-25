@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>体育</title>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>    
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="css/homePage.css">
+</head>
+<body>
+    <!--顶部-->
+    <div id="head">
+    	<img src="pic/head.jpg" style="position:absolute;left:0;top:0;width:100%;z-index: -2;">
+    	<img src="pic/annpm.png"><span> | </span>
+    	<a href="editProfile.html">个人中心</a><span> | </span>
+    	<a href="mainPage.html">退出登录</a><span> | </span>
+    	<a href="http://www.baidu.com">帮助 |</a>
+    	<br><br><br><br><br><br>
+    </div>
+	
+    <div class="container">
+    <div class="row">
+    	<!--导航栏-->
+    	<ul class="nav nav-pills col-lg-offset-1">
+			<li class="active"><a href="playground.html">广场</a></li>
+			<li><a href="love.html">情感</a></li>
+			<li><a href="interesting.html">搞笑</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">更多<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="sports.html" style="color: #B22222">体育</a></li>
+					<li><a href="entertainment.html" style="color: #B22222">娱乐</a></li>
+				</ul>
+			</li>
+		</ul>
+		<!--搜索-->
+		<div class="col-lg-offset-1">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" placeholder="输入帖子关键词">
+            </div>
+            <button type="submit" class="btn btn-default btn-lg">搜索</button>
+            <button type="submit" class="btn btn-default btn-lg" onclick="window.open('http://www.baidu.com')">我要发帖</button>
+        </form>
+    	</div>
+	</div>
+	</div>
+
+<!--body-->
+<div class="container">
+    <div class="row">
+
+    <!--轮播-->
+    	<div id="myCarousel" class="carousel slide  col-lg-6 col-lg-offset-3 co-md-offset-3"  data-ride="carousel" data-interval="3000">
+		<!-- 轮播（Carousel）指标 -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>   
+		<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<a href="http://www.baidu.com" target="_blank">
+						<img src="pic/p1.jpg" alt="First slide">
+						<div class="carousel-caption">
+							<h3>热帖一</h3>
+						</div>
+					</a>
+				</div>
+				<div class="item">
+					<a href="http://www.baidu.com" target="_blank">
+						<img src="pic/p2.jpg" alt="Second slide">
+						<div class="carousel-caption">
+							<h3>热帖二</h3>
+						</div>
+					</a>
+				</div>
+				<div class="item">
+					<a href="http://www.baidu.com" target="_blank">
+						<img src="pic/p3.jpg" alt="Third slide">
+						<div class="carousel-caption">
+							<h3>热帖三</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+		<!-- 轮播（Carousel）导航 -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div> 
+		<!--版面-->
+		<div class="panel panel-danger col-lg-10 col-lg-offset-1">
+			<div class="panel-heading">
+				<h3 class="panel-title">体育</h3>
+			</div>
+    		<div class="panel-body" id="box1">
+    			<a href="#">想打篮球？</a><span class="label label-danger">热</span><br>
+    			<a href="#">想踢足球？</a><br>
+    			<a href="#">。。。</a><br>
+    			<a href="#">。。。</a><br>
+    			<a href="#">。。。</a><br>
+    			<a href="#">。。。</a><br>
+    			<a href="#">。。。</a><br>
+    			<a href="#">不如开黑</a><br>
+    		</div>
+    		<ul class="pagination pagination-sm">
+				<li><a href="#"><<</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">>></a></li>
+			</ul>
+		</div>
+
+		<div class="panel panel-danger col-lg-5 col-lg-offset-1" id="div2">
+			<div class="panel-heading">
+				<h3 class="panel-title">即使热帖</h3>
+			</div>
+    		<div class="panel-body" id="box2">
+    			<a href="#">热帖一</a><br>
+    			<a href="#">热帖二</a><br>
+    			<a href="#">热帖三</a><br>
+    			<a href="#">热帖四</a><br>
+    			<a href="#">热帖五</a><br>
+    			<a href="#">热帖六</a><br>
+    			<a href="#">热帖七</a><br>
+    			<a href="#">热帖八</a><br>
+    			<a href="#">热帖九</a><br>
+    		</div>
+    		<ul class="pagination pagination-sm">
+				<li><a href="#"><<</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">>></a></li>
+			</ul>
+		</div>
+
+		<div class="panel panel-danger col-lg-5">
+			<div class="panel-heading">
+				<h3 class="panel-title">猜你喜欢</h3>
+			</div>
+    		<div class="panel-body" id="box3">
+    			<a href="#">话题一</a><br>
+    			<a href="#">话题二</a><br>
+    			<a href="#">话题三</a><br>
+    			<a href="#">话题四</a><br>
+    			<a href="#">话题五</a><br>
+    		</div>
+    		<ul class="pagination pagination-sm">
+				<li><a href="#"><<</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">>></a></li>
+			</ul>
+		</div>
+	</div>
+</div><br><br><br>
+
+<!--footer-->
+<div class="container" id="footer">
+    <div class="row" >
+		<a href="#">关于我们</a><span> |</span>
+		<a href="#">联系我们</a>
+    </div>
+</div>
+</body>
+</html>

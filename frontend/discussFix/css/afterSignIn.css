@@ -1,0 +1,100 @@
+/*头部分*/
+#head{
+	width:100%;
+	text-align: right;
+	right:10%;
+	font-size: 15px;
+}
+
+/*header文字大小*/
+@media screen and (max-width:700px) and(min-width:650px){
+	#head{
+		font-size: 15px;
+	}
+}
+@media screen and (max-width:650px) and (min-width:400px){
+	#head{
+		font-size: 13px;
+	}
+}
+@media screen and (max-width:400px) and (min-width:0px){
+	#head{
+		font-size: 10px;
+	}
+}
+
+/*导航栏文字大小样式*/
+ul li a{
+	font-size: 30px;
+	color:#A52A2A;
+	font-family:"华文新魏";
+}
+.panel-title{
+	font-size: 25px;
+}
+.panel-body{
+	font-size:20px;
+}
+/*搜索框*/
+.btn{
+	color: #B22222;
+	font-family:"华文新魏";
+}
+#footer{
+	text-align: center;
+}
+body{
+	background-color: #fffaf0;
+}
+
+@media screen and (max-width: 750px) and (min-width: 580px){
+	ul li a{
+		font-size:25px;
+	}
+	.panel-title{
+		font-size: 20px;
+	}
+	.panel-body{
+		font-size:18px;
+	}
+
+}
+@media screen and (max-width: 580px) and (min-width: 380px){
+	ul li a{
+		font-size:20px;
+	}
+	.panel-title{
+		font-size: 18px;
+	}
+	.panel-body{
+		font-size:16px;
+	}
+}
+@media screen and (max-width: 380px) and (min-width: 321px){
+	ul li a{
+		font-size:15px;
+	}
+	.panel-title{
+		font-size: 13px;
+	}
+	.panel-body{
+		font-size:12px;
+	}
+
+}
+@media screen and (max-width: 321px) and (min-width: 0px){
+	ul li a{
+		font-size:14px;
+	}
+	.panel-title{
+		font-size: 14px;
+	}
+	.panel-body{
+		font-size:14px;
+	}
+}
+.profileAuthor{
+	float:right;
+	color:#c0c0c0;
+}
+
