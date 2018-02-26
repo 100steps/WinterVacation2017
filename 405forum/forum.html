@@ -451,9 +451,11 @@ $(function () {
 function userExit() {
     clickFrequency();
     $.ajax({
-            type:'DELETE',
-            url:"http://39.108.171.175/no_hole/api/user/session.php"
-
+	            type:'DELETE',
+	            url:"http://39.108.171.175/no_hole/api/user/session.php",
+	            xhrFields:{
+		             withCredentials:true
+		        },
            	}
         ).success(function(data){
                             var obj=JSON.parse(data);
@@ -464,7 +466,6 @@ function userExit() {
 								$("#state").empty();
 								$("#state").append("未登录");
 								$("#userPicture").empty();
-								clearAllCookie();
                             }
                             else {
                                 alert("退出失败——"+obj.error);
@@ -938,15 +939,6 @@ $(function () {
 	//降低点击频率
 	}
 
-	function clearAllCookie() {
-                var keys = document.cookie.match(/[^ =;]+(?=\=)/g);  
-                if(keys) {  
-                    for(var i = keys.length; i--;){
-                        document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
-                    }
-                }
-            }
-    clearAllCookie();
 </script>
 
 
