@@ -80,9 +80,9 @@
 				<input id="password" type="password" name="password" style="width: 80%"></div>
 			<div id="captcha" class="loginInputSign userText" style="top: 52%;">点击获取验证码:
 				<br>
-				<input id="captchaInput" type="label" name="captchaImg" style="width: 80%;">
+				<div id="captchaShown"></div>
 				<br>
-				<div id="captchaShown"></div></div>
+				<input id="captchaInput" type="label" name="captchaImg" style="width: 80%;"></div>
 			<div id="register" style="display: none;">
 				<div class="loginInputSign loginText" style="top: 52%;">邮&nbsp;&nbsp;&nbsp;箱：
 				<br>
@@ -673,41 +673,41 @@ $(function () {
 							+";作者:"+ary[i].author+";回复数:"+ary[i].replyAmount
 							+"</a></div>");
                                         }
-									}
-	                            }
-	                        });
-	    $.ajax({
-		            type:'GET',
-		            url:"http://39.108.171.175/no_hole/api/forum/postList.php",
-		            data:{
-		            	section:section,
-						type:"active",
-						start:1,
-						amount:100,
-		            },
-	           	}
-	        ).success(function(data){
-	                            var obj=JSON.parse(data);
-	                            if (obj.code==200) {
-									if (obj.postList!="") {
-                                        var num=obj.number-1
-                                        var ary=obj.postList;
-                                        for (var i = 0; i <= num; i++) {
-                                            $("#list").append(
-							"<div class='pageShow' onclick='articleShown="+ary[i].id
-							+";showArticle();'><a class='loginText'>"+ary[i].title
-							+"</a><br><a class='smallText'>时间:"+ary[i].date
-							+";作者:"+ary[i].author+";回复数:"+ary[i].replyAmount
-							+"</a></div>");
-                                         }
+
+					$.ajax({
+							            type:'GET',
+							            url:"http://39.108.171.175/no_hole/api/forum/postList.php",
+							            data:{
+							            	section:section,
+											type:"active",
+											start:1,
+											amount:100,
+							            },
+						           	}
+						        ).success(function(data){
+						                            var obj=JSON.parse(data);
+						                            if (obj.code==200) {
+														if (obj.postList!="") {
+					                                        var num=obj.number-1
+					                                        var ary=obj.postList;
+					                                        for (var i = 0; i <= num; i++) {
+					                                            $("#list").append(
+												"<div class='pageShow' onclick='articleShown="+ary[i].id
+												+";showArticle();'><a class='loginText'>"+ary[i].title
+												+"</a><br><a class='smallText'>时间:"+ary[i].date
+												+";作者:"+ary[i].author+";回复数:"+ary[i].replyAmount
+												+"</a></div>");
+					                                         }
+														}
+						                            }
+						                        });
 									}
 	                            }
 	                            else {
 	                                alert("获取失败，点击导栏首页重试——"+obj.error);
 	                            }
 	                        });
-		
-		
+	    
 	}
 
 	function submitPage(){
