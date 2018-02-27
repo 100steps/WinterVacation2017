@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="forum-css.css">
 	<link rel="stylesheet" type="text/css" href="forum-css-media.css">
 </head>
-<body onload="showList();">
+<body onload="showList();getData();">
 <div class="background">
 	<div style="animation: appear 2s;">
 		<div class="title"></div>
@@ -22,7 +22,7 @@
 		<div id="downMenuId" class="downMenu" style="animation: m 1s">
 			<div class="link"><a class="linkText" onclick="make();">编写</a></div>
 			<div class="link"><a class="linkText" onclick="login();">登录</a></div>
-			<div class="link"><a class="linkText" onclick="main();">首页</a></div>
+			<div class="link"><a href="forum.html" class="linkText">首页</a></div>
 		</div>
 		<div id="list" class="list userL"></div>
 
@@ -211,17 +211,6 @@
 		$("#downMenuId").fadeOut();
 	};
 
-	function main(){
-		clickFrequency();
-		$("#downMenuId").fadeOut();
-		$("#list").attr("style","display: block;animation: appear 1s;");
-		$("#userCard").attr("style","display: block;animation: appear 1s;");
-		$("#article").attr("style","display: none;");
-		$("#comment").attr("style","display: none;");
-		$("#make").attr("style","display: none;");
-		$("#list").empty();
-		showList();
-	};
 
 	function loginReturn(){
 	if (judgeForReturn==0) {
@@ -742,7 +731,7 @@ $(function () {
                             var obj=JSON.parse(data);
                             if (obj.code==201) {
                                 alert( "提交成功，自动回到首界面" );
-								main();
+								window.location.reload();
 								clear("makeTitle");
 								clear("makeBody");
                             }
@@ -905,12 +894,33 @@ $(function () {
                             var obj=JSON.parse(data);
                             if (obj.code==201) {
                                 alert( "修改成功，自动回到首界面" );
-                                main();
+                                window.location.reload();
                                 clear("makeTitle");
 								clear("makeBody");
                             }
                             else {
                                 alert("修改失败，请重新修改——"+obj.error);
+                            }
+                        });
+	}
+
+	function getData(){
+		$.ajax(
+                        {
+                            type:'GET',
+                            url:"http://39.108.171.175/no_hole/api/user/getdata.php",
+                            xhrFields:{
+                                    withCredentials:true
+                            },
+                        }
+                    ).success(function(data){
+                            var obj=JSON.parse(data);
+                            if (obj.code==200) {
+                                userNameRecord=obj.name;
+                                userIdRecord=obj.id;
+                                userPicture();
+                                $("#state").empty();
+								$("#state").append(userNameRecord);
                             }
                         });
 	}
