@@ -216,15 +216,15 @@
 }
 
 .in{
-	top: 100%;
+	top: 115%;
 }
 
 .no{
-	top: 120%;
+	top: 135%;
 }
 
 .reg{
-	top: 130%;
+	top: 135%;
 }
 
 .userSub{
@@ -416,6 +416,9 @@
 	text-align: center;
 }
 
+.pointer{
+	cursor: pointer;
+}
 
 @keyframes appear{
 

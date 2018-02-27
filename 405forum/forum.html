@@ -17,11 +17,11 @@
 
 
 	<div style="animation: appear 2s;">
-		<div class="guide" style="text-align: center;" onclick="show();">导（点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;击）栏</div>
+		<div class="guide pointer" style="text-align: center;" onclick="show();">导（点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;击）栏</div>
 		<div class="downMenuV" onclick="show();"></div>
 		<div id="downMenuId" class="downMenu" style="animation: m 1s">
-			<div class="link"><a class="linkText" onclick="make();">编写</a></div>
-			<div class="link"><a class="linkText" onclick="login();">登录</a></div>
+			<div class="link"><a class="linkText pointer" onclick="make();">编写</a></div>
+			<div class="link"><a class="linkText pointer" onclick="login();">登录</a></div>
 			<div class="link"><a href="forum.html" class="linkText">首页</a></div>
 		</div>
 		<div id="list" class="list userL"></div>
@@ -32,10 +32,10 @@
 				<div id="userPicture" class="userPicture" onclick="userPictureChange();"></div>
 				<div class="userText" style="position: absolute;top: 70%;left: 10%;">用户：<div id="state" class="userMO" style="color: red;">未登录</div></div>
 			</div>
-			<div class="userText makeButton" style="left: 10%;width: 80%;top: 60%;" onclick="userCard();">个人名片</div>
-			<div class="userText makeButton" style="left: 10%;width: 80%;top: 70%;" onclick="userPasswordChange();">修改密码</div>
-			<div class="userText makeButton" style="left: 10%;width: 80%;top: 80%;" onclick="userCardChange();">修改资料</div>
-			<div class="userText makeButton" style="left: 10%;width: 80%;top: 90%;" onclick="userExit();">退出登录</div>
+			<div class="userText makeButton pointer" style="left: 10%;width: 80%;top: 60%;" onclick="userCard();">个人名片</div>
+			<div class="userText makeButton pointer" style="left: 10%;width: 80%;top: 70%;" onclick="userPasswordChange();">修改密码</div>
+			<div class="userText makeButton pointer" style="left: 10%;width: 80%;top: 80%;" onclick="userCardChange();">修改资料</div>
+			<div class="userText makeButton pointer" style="left: 10%;width: 80%;top: 90%;" onclick="userExit();">退出登录</div>
 		</div>
 	<!--这是用户资料卡-->
 
@@ -45,14 +45,14 @@
 	<div id="make" class="make" style="display: none;">
 		<div class="makeText makeLeft">题目</div><textarea type="label" name="" id="makeTitle" class="makeTitle loginText"></textarea><br>
 		<div class="makeText makeLeft">内容</div><textarea type="label" name="" id="makeBody" class="makeBody loginText"></textarea>
-		<div id="makeImprove" class="loginText makeButton" style="left: 35%;display: none;" onclick="changeSubmit();">修改</div>
-		<div id="makeSubmit" class="loginText makeButton" style="left: 35%;" onclick="submitPage();">提交</div>
+		<div id="makeImprove" class="loginText makeButton pointer" style="left: 35%;display: none;" onclick="changeSubmit();">修改</div>
+		<div id="makeSubmit" class="loginText makeButton pointer" style="left: 35%;" onclick="submitPage();">提交</div>
 	</div>
 <!--这里是编辑界面-->
 	<div id="article" class="make" style="display: none;">
-		<div class="loginText makeButton" style="left: 55%;" onclick="articleReturn();">返回</div>
-		<div class="loginText makeButton" style="left: 35%;top: 85%;" onclick="articleChange();">修改</div>
-		<div class="loginText makeButton" style="left: 15%;" onclick="comment();">评论</div>
+		<div class="loginText makeButton pointer" style="left: 55%;" onclick="articleReturn();">返回</div>
+		<div class="loginText makeButton pointer" style="left: 35%;top: 85%;" onclick="articleChange();">修改</div>
+		<div class="loginText makeButton pointer" style="left: 15%;" onclick="comment();">评论</div>
 	</div>
 <!--这里是展示文章界面-->
 	<div id="comment" class="make" style="display: none;">
@@ -60,8 +60,8 @@
 		<div id="commentList" class="commentList"></div>
 		<div class="makeLeft makeText" style="top: 57%;position: absolute;">输入</div>
 		<textarea type="label" name="" id="commentInput" class="makeTitle loginText" style="top: 60%;"></textarea>
-		<div class="loginText makeButton" style="left: 15%;" onclick="commentSend();">发送</div>
-		<div class="loginText makeButton" style="left: 55%;" onclick="commentReturn();">返回</div>
+		<div class="loginText makeButton pointer" style="left: 15%;" onclick="commentSend();">发送</div>
+		<div class="loginText makeButton pointer" style="left: 55%;" onclick="commentReturn();">返回</div>
 	</div>
 <!--这是评论界面-->
 
@@ -89,12 +89,12 @@
 				<input id="mail" type="label" name="mail" style="width: 80%;"></div>
 			</div>
 
-			<div id="in" class="loginButtonIn loginText loginButtonCenter in">登录</div>
-			<div id="no" class="loginButtonIn loginText loginButtonCenter no" onclick="register();">注册</div>
-			<div id="reg" class="loginButtonIn loginText loginButtonCenter reg" style="display: none;">提交</div>
+			<div id="in" class="loginButtonIn loginText loginButtonCenter in pointer">登录</div>
+			<div id="no" class="loginButtonIn loginText loginButtonCenter no pointer" onclick="register();">注册</div>
+			<div id="reg" class="loginButtonIn loginText loginButtonCenter reg pointer" style="display: none;">提交</div>
 
 		</div>
-		<div class="loginButton loginText" style="position: absolute;" onclick="loginReturn();">返回</div>
+		<div class="loginButton loginText pointer" style="position: absolute;" onclick="loginReturn();">返回</div>
 	</div>
 
 <!--这里是登录界面-->
@@ -114,9 +114,9 @@
 				<br>
 				<input id="passwordNewSecond" type="password" name="passwordNewSecond" style="width: 80%;"></div>
 
-			<div id="userPasswordChangeCommit" class="loginButtonIn loginText loginButtonCenter userPasswordChangeCommit">提交</div>
+			<div id="userPasswordChangeCommit" class="loginButtonIn loginText loginButtonCenter userPasswordChangeCommit pointer">提交</div>
 		</div>
-		<div class="loginButton loginText" style="position: absolute;" onclick="userPCReturn();">返回</div>
+		<div class="loginButton loginText pointer" style="position: absolute;" onclick="userPCReturn();">返回</div>
 	</div>
 
 <!--这里是修改密码界面-->
@@ -129,10 +129,10 @@
 			<form id="formUPC" class="pictureForm" method="put" enctype="multipart/form-data" onsubmit="return false;">
             　　<input id="image" class="submitText" type="file" name="image">
             <br>
-            　　<button id="submitUPC" class="formSubmit submitText" type="submit">上传</button>
+            　　<button id="submitUPC" class="formSubmit submitText pointer" type="submit">上传</button>
             </form>
 		</div>
-		<div class="loginButton loginText" style="position: absolute;" onclick="userPiCReturn();">返回</div>
+		<div class="loginButton loginText pointer" style="position: absolute;" onclick="userPiCReturn();">返回</div>
 	</div>
 
 <!--这里是修改头像界面-->
@@ -158,9 +158,9 @@
 			<div class="loginInputSign loginText" style="top: 102%;">手&nbsp;&nbsp;&nbsp;机：<input id="phone" type="label" name="phone" style="width: 70%"></div>
 			<div class="loginInputSign loginText" style="top: 122%;">Q&nbsp;&nbsp;&nbsp;Q：<input id="qq" type="label" name="qq" style="width: 70%"></div>
 			<div class="loginInputSign loginText" style="top: 142%;">签&nbsp;&nbsp;&nbsp;名：<input id="signature" type="label" name="signature" style="width: 70%"></div>
-			<div id="userC" class="loginButtonIn loginText loginButtonCenter userSub">提交</div>
+			<div id="userC" class="loginButtonIn loginText loginButtonCenter userSub pointer">提交</div>
 		</div>
-		<div class="loginButton loginText" style="position: absolute;" onclick="userCCReturn();">返回</div>
+		<div class="loginButton loginText pointer" style="position: absolute;" onclick="userCCReturn();">返回</div>
 	</div>
 
 <!--这是用户修改资料页面-->
@@ -171,15 +171,15 @@
 	<div class="loginWindow">
 		<div class="loginPage">
 			<div id="nameShown" class="loginInputSign loginText" style="top:  2%;color: blue;"></div>
-			<div id="mailShown" class="loginInputSign loginText" style="top: 12%;color: blue;"></div>
-			<div id="birthdayShown" class="loginInputSign loginText" style="top: 22%;color: blue;"></div>
-			<div id="addressShown" class="loginInputSign loginText" style="top: 32%;color: blue;"></div>
-			<div id="sexShown" class="loginInputSign loginText" style="top: 42%;color: blue;"></div>
-			<div id="phoneShown" class="loginInputSign loginText" style="top: 52%;color: blue;"></div>
-			<div id="qqShown" class="loginInputSign loginText" style="top: 62%;color: blue;"></div>
-			<div id="signatureShown" class="loginInputSign loginText" style="top: 72%;color: blue;"></div>
+			<div id="mailShown" class="loginInputSign loginText" style="top: 14%;color: blue;"></div>
+			<div id="birthdayShown" class="loginInputSign loginText" style="top: 26%;color: blue;"></div>
+			<div id="addressShown" class="loginInputSign loginText" style="top: 38%;color: blue;"></div>
+			<div id="sexShown" class="loginInputSign loginText" style="top: 50%;color: blue;"></div>
+			<div id="phoneShown" class="loginInputSign loginText" style="top: 62%;color: blue;"></div>
+			<div id="qqShown" class="loginInputSign loginText" style="top: 74%;color: blue;"></div>
+			<div id="signatureShown" class="loginInputSign loginText" style="top: 86%;color: blue;"></div>
 		</div>
-		<div class="loginButton loginText" style="position: absolute;" onclick="userCReturn();">返回</div>
+		<div class="loginButton loginText pointer" style="position: absolute;" onclick="userCReturn();">返回</div>
 	</div>
 
 <!--这是用户资料页面-->
@@ -361,7 +361,7 @@
                 $("#captcha").bind("click", function () {
                     if (document.getElementById('captchaShown').innerHTML!="") {$("#captchaShown").empty();}
                     clickFrequency();
-                        $("#captchaShown").append( "<img src='http://39.108.171.175/no_hole/api/user/captchaImage.php?width=100&length=40'>");
+                        $("#captchaShown").append( "<img src='http://39.108.171.175/no_hole/api/user/captchaImage.php?width=160&length=50'>");
                 })
             });
 	
@@ -667,7 +667,7 @@ $(function () {
                                         var ary=obj.postList;
                                         for (var i = 0; i <= num; i++) {
                                             $("#list").append(
-							"<div class='pageShow' onclick='articleShown="+ary[i].id
+							"<div class='pageShow pointer' onclick='articleShown="+ary[i].id
 							+";showArticle();'><a class='loginText'>"+ary[i].title
 							+"</a><br><a class='smallText'><strong style='color: red;'>置顶</strong>;时间:"+ary[i].date
 							+";作者:"+ary[i].author+";回复数:"+ary[i].replyAmount
@@ -692,7 +692,7 @@ $(function () {
 					                                        var ary=obj.postList;
 					                                        for (var i = 0; i <= num; i++) {
 					                                            $("#list").append(
-												"<div class='pageShow' onclick='articleShown="+ary[i].id
+												"<div class='pageShow pointer' onclick='articleShown="+ary[i].id
 												+";showArticle();'><a class='loginText'>"+ary[i].title
 												+"</a><br><a class='smallText'>时间:"+ary[i].date
 												+";作者:"+ary[i].author+";回复数:"+ary[i].replyAmount
@@ -827,6 +827,9 @@ $(function () {
                             var obj=JSON.parse(data);
                             if (obj.code==201) {
 									commentShow();
+									clear("commentInput");
+									$("#list").empty();
+									showList();
                             }
                             else {
                                 alert("评论提交失败，请重新尝试——"+obj.error);
