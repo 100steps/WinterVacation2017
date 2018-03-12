@@ -89,13 +89,13 @@
 	}
 }
 
-@media screen and (min-width: 1500px){
+@media screen and (min-width: 2000px){
 	.userText{
-		font-size: 300%;
+		font-size: 250%;
 		font-weight: bold;
 		font-family: "微软雅黑";
 		color: black;
-		line-height: 180%;
+		line-height: 140%;
 	}	
 	.submitText{
 		font-size: 200%;
@@ -104,16 +104,40 @@
 		color: black;
 		line-height: 150%;
 	}
-	.commentPicture{
-		float: left;
-		height: 90%;
-		width: 20%;
-		background: url(title.png) repeat;
-		background: cover;
-
+}
+@media screen and (min-width: 1600px) and (max-width: 2000px){
+	.userText{
+		font-size: 230%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 150%;
+	}	
+	.submitText{
+		font-size: 180%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 150%;
 	}
 }
-@media screen and (min-width: 900px) and (max-width: 1500px){
+@media screen and (min-width: 1400px) and (max-width: 1600px){
+	.userText{
+		font-size: 180%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 180%;
+	}	
+	.submitText{
+		font-size: 160%;
+		font-weight: bold;
+		font-family: "微软雅黑";
+		color: black;
+		line-height: 150%;
+	}
+}
+@media screen and (min-width: 900px) and (max-width: 1400px){
 	.userText{
 		font-size: 140%;
 		font-weight: bold;
